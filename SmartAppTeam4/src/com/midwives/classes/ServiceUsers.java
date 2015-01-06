@@ -147,7 +147,7 @@ public void setNextOfKinName(String nextOfKinName) {
 	this.nextOfKinName = nextOfKinName;
 }
 
-} //close serviceUsers 
+} //close serviceUsers test
 
 	
 	

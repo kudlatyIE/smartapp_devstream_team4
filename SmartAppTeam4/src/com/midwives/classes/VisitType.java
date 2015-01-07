@@ -1,7 +1,7 @@
 package com.midwives.classes;
 
 public enum VisitType {
-	POST_NATAL("post natal",0),
+	ANTE_NATAL("ante natal",0),
 	PRE_NATAL("pre natal",1);
 	
 	private String visitTypeName;

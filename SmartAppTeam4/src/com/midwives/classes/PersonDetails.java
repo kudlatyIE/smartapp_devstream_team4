@@ -1,5 +1,11 @@
 package com.midwives.classes;
 
-public class PersonDetails {
+import java.util.Date;
 
+public class PersonDetails {
+	
+	String homeAddress,homeType,homeCountry,homePostCode, directions;
+	Date dob;
+	String email, phoneHome, phoneMobile,personName;
+	String nextOfKinPhone,nextOfKinName;
 }

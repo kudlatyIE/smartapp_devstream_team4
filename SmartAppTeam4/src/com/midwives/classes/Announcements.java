@@ -14,8 +14,7 @@ public class Announcements {
 		this.announcementsNote=note;
 		this.announcementsDate=date;
 		this.blockingStatus=status;
-	}
-	
+
 	public String getAnnouncementsNote() {
 		return this.announcementsNote;
 	}

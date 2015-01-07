@@ -8,4 +8,6 @@ public class PersonDetails {
 	Date dob;
 	String email, phoneHome, phoneMobile,personName;
 	String nextOfKinPhone,nextOfKinName;
+	
+
 }

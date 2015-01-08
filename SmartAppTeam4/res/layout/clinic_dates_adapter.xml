@@ -20,6 +20,7 @@
         	android:layout_height="wrap_content"
         	android:text="@string/clinic_name"
         	android:textStyle="bold"
+        	
         />
         
         <TextView 
@@ -43,3 +44,5 @@
     
 
 </LinearLayout>
+<!-- 
+just nothing.. -->

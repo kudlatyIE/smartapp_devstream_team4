@@ -3,5 +3,22 @@
 
     <string name="app_name">SmartAppTeam4</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main_view">MainViewActivity</string>
+    <string name="title_activity_service_option">ServiceOptionActivity</string>
+    <string name="title_activity_clinics">ClinicsActivity</string>
+    <string name="title_activity_clinic_dates">ClinicDatesActivity</string>
+    <string name="title_activity_appointment_calendar">AppointmentCalendarActivity</string>
+    <string name="title_activity_service_user">ServiceUserActivity</string>
+    <string name="title_activity_free_slots">FreeSlotsActivity</string>
+    <string name="title_activity_find_service_user">FindServiceUserActivity</string>
+    <string name="title_activity_confirm_appointment">ConfirmAppointmentActivity</string>
+    <string name="title_activity_ante_natal">AnteNatalActivity</string>
+    <string name="title_activity_pre_natal">PreNatalActivity</string>
+    <string name="title_activity_ante_natal_edit">AnteNatalEditActivity</string>
+    <string name="title_activity_pre_natal_edit">PreNatalEditActivity</string>
+    <string name="title_activity_service_user_edit">ServiceUserEditActivity</string>
+    <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
+    <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
 
 </resources>

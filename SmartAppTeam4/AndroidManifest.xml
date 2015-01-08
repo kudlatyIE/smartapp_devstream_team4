@@ -22,6 +22,74 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name=".MainViewActivity"
+            android:label="@string/title_activity_main_view" >
+        </activity>
+        <activity
+            android:name=".ServiceOptionActivity"
+            android:label="@string/title_activity_service_option" >
+        </activity>
+        <activity
+            android:name=".ClinicsActivity"
+            android:label="@string/title_activity_clinics" >
+        </activity>
+        <activity
+            android:name=".ClinicDatesActivity"
+            android:label="@string/title_activity_clinic_dates" >
+        </activity>
+        <activity
+            android:name=".AppointmentCalendarActivity"
+            android:label="@string/title_activity_appointment_calendar" >
+        </activity>
+        <activity
+            android:name=".ServiceUserActivity"
+            android:label="@string/title_activity_service_user" >
+        </activity>
+        <activity
+            android:name=".FreeSlotsActivity"
+            android:label="@string/title_activity_free_slots" >
+        </activity>
+        <activity
+            android:name=".FindServiceUserActivity"
+            android:label="@string/title_activity_find_service_user" >
+        </activity>
+        <activity
+            android:name=".ConfirmAppointmentActivity"
+            android:label="@string/title_activity_confirm_appointment" >
+        </activity>
+        <activity
+            android:name=".AnteNatalActivity"
+            android:label="@string/title_activity_ante_natal" >
+        </activity>
+        <activity
+            android:name=".PreNatalActivity"
+            android:label="@string/title_activity_pre_natal" >
+        </activity>
+        <activity
+            android:name=".AnteNatalEditActivity"
+            android:label="@string/title_activity_ante_natal_edit" >
+        </activity>
+        <activity
+            android:name=".PreNatalEditActivity"
+            android:label="@string/title_activity_pre_natal_edit" >
+        </activity>
+        <activity
+            android:name=".ServiceUserEditActivity"
+            android:label="@string/title_activity_service_user_edit" >
+        </activity>
+        <activity
+            android:name=".ServiceUserAddressActivity"
+            android:label="@string/title_activity_service_user_address" >
+        </activity>
+        <activity
+            android:name=".ServiceUserAddressEditActivity"
+            android:label="@string/title_activity_service_user_address_edit" >
+        </activity>
     </application>
 
 </manifest>

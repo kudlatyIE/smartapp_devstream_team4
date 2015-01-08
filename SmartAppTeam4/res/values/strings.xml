@@ -21,4 +21,12 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
 
+    
+    <string name="btn_back">BACK</string>
+    <string name="btn_home">HOME</string>
+    <string name="btn_book">BOOK</string>
+    <string name="btn_calendar">CALENDAR</string>
+    <string name="clinic_name">Clinic Name</string>
+    <string name="sub_text">temporary sub text</string>
+    <string name="go">GO</string>
 </resources>

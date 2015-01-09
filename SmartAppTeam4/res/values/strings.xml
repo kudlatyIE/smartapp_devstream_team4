@@ -20,5 +20,11 @@
     <string name="title_activity_service_user_edit">ServiceUserEditActivity</string>
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
+    
+    <string name="btn_back">Back Arrow</string>
+    <string name="title_activity_service_options">Service Options</string>
+    <string name="service_optiontext">Select Service Option</string>
+    <string name="btn_home">HOME</string>
+    <string name="btn_book">BOOK</string>
 
 </resources>

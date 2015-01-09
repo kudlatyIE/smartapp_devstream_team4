@@ -1658,6 +1658,7 @@ containing a value of this type.
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
+        public static final int jkll=0x7f090047;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
         public static final int middle=0x7f09001d;
@@ -1677,6 +1678,16 @@ containing a value of this type.
         public static final int search_plate=0x7f090039;
         public static final int search_src_text=0x7f09003a;
         public static final int search_voice_btn=0x7f09003e;
+        public static final int serviceoption_adapter_btn_select=0x7f090049;
+        public static final int serviceoption_adapter_textitem=0x7f090048;
+        public static final int serviceoption_btn_back=0x7f090040;
+        public static final int serviceoption_btn_book=0x7f090046;
+        public static final int serviceoption_btn_home=0x7f090045;
+        public static final int serviceoption_listview_listserviceoptions=0x7f090044;
+        public static final int serviceoptions_bottom=0x7f090043;
+        public static final int serviceoptions_center=0x7f090042;
+        public static final int serviceoptions_text_head=0x7f090041;
+        public static final int serviceoptions_top=0x7f09003f;
         public static final int shortcut=0x7f09002a;
         public static final int showCustom=0x7f090010;
         public static final int showHome=0x7f090011;
@@ -1757,7 +1768,8 @@ containing a value of this type.
         public static final int activity_service_user_address=0x7f030026;
         public static final int activity_service_user_address_edit=0x7f030027;
         public static final int activity_service_user_edit=0x7f030028;
-        public static final int support_simple_spinner_dropdown_item=0x7f030029;
+        public static final int serviceoption_adapter=0x7f030029;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1817,7 +1829,11 @@ containing a value of this type.
          */
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         public static final int app_name=0x7f0a0010;
+        public static final int btn_back=0x7f0a0023;
+        public static final int btn_book=0x7f0a0027;
+        public static final int btn_home=0x7f0a0026;
         public static final int hello_world=0x7f0a0011;
+        public static final int service_optiontext=0x7f0a0025;
         public static final int title_activity_ante_natal=0x7f0a001c;
         public static final int title_activity_ante_natal_edit=0x7f0a001e;
         public static final int title_activity_appointment_calendar=0x7f0a0017;
@@ -1831,6 +1847,7 @@ containing a value of this type.
         public static final int title_activity_pre_natal=0x7f0a001d;
         public static final int title_activity_pre_natal_edit=0x7f0a001f;
         public static final int title_activity_service_option=0x7f0a0014;
+        public static final int title_activity_service_options=0x7f0a0024;
         public static final int title_activity_service_user=0x7f0a0018;
         public static final int title_activity_service_user_address=0x7f0a0021;
         public static final int title_activity_service_user_address_edit=0x7f0a0022;

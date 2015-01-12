@@ -22,9 +22,15 @@
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
     <string name="btn_back">Back Arrow</string>
+    <string name="forward_btn">Forward Btn</string>
     <string name="title_activity_service_options">Service Options</string>
     <string name="service_optiontext">Select Service Option</string>
     <string name="btn_home">HOME</string>
     <string name="btn_book">BOOK</string>
+    
+    <string name="title_activity_clinic_options">Clinics</string>
+    <string name="clinic_optiontext">Select the Clinic Calendar youd like to view</string>
+    <string name="clinic_name_bookingday">Clinic Name and Days for Appointments</string>
+    
 
 </resources>

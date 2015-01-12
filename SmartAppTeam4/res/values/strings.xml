@@ -25,8 +25,21 @@
     <string name="btn_back">BACK</string>
     <string name="btn_home">HOME</string>
     <string name="btn_book">BOOK</string>
+    <string name="btn_prev">PREV</string>
+    <string name="btn_next">NEXT</string>
     <string name="btn_calendar">CALENDAR</string>
+    <string name="app_calendar">APPOINTMENT CALENDAR</string>
+    
     <string name="clinic_name">Clinic Name</string>
     <string name="sub_text">temporary sub text</string>
+    <string name="data_tmp">Wed 12/01/2015</string>
+    <string name="time_tmp">9:15</string>
+    <string name="user_tmp">Harry Potter</string>
+    <string name="date_tmp">23+4</string>
+    <string name="free_slot">Free Slot</string>
+    <string name="btn_info">info</string>
+    <string name="btn_add">ADD</string>
+    <string name="app_number">5 Scheduled Appointments</string>
+    
     <string name="go">GO</string>
 </resources>

@@ -4,9 +4,86 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout 
+        android:id="@+id/app_confirm_top"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="vertical"
+        >
+        
+        <LinearLayout 
+        	android:orientation="horizontal"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"    >
+        
+        
+        	<Button 
+           		android:id="@+id/app_confirm_btn_back"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/btn_back"
+            	/>
+        	<TextView 
+            	android:id="@+id/app_confirm_text_title"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:gravity="center"
+            	android:layout_weight="1"
+            	android:text="@string/title_activity_confirm_appointment"
+            	/>
 
+    	</LinearLayout>
+    	<TextView 
+    	    android:id="@+id/app_confirm_hint"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_margin="5dp"
+    	    android:gravity="center"
+    	    android:background="#FF0E00"
+    	    android:textColor="#FFFFFF"
+    	    android:text="@string/app_confirm_hint"
+    	    />
+
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/app_confirm_center"
+        android:layout_below="@+id/app_confirm_top"
+        android:layout_above="@+id/app_confirm_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <!-- service user detail -->
+        
+    </LinearLayout>
+    <LinearLayout 
+        	android:id="@+id/app_confirm_bottom"
+        	android:layout_alignParentBottom="true"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_margin="5dp"
+        	android:orientation="horizontal"
+        >
+        
+        <Button 
+            android:id="@+id/app_confirm_btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/btn_home"
+            android:layout_weight="1"
+            />
+        
+        <Button 
+            android:id="@+id/app_confirm_btn_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/btn_book"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    
 </RelativeLayout>

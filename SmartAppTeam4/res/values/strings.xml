@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">SmartAppTeam4</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello Girls!</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main_view">MainViewActivity</string>
     <string name="title_activity_service_option">ServiceOptionActivity</string>
@@ -21,12 +21,11 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
-    <string name="btn_back">Back Arrow</string>
+    <string name="btn_back_arrow">Back Arrow</string>
     <string name="forward_btn">Forward Btn</string>
     <string name="title_activity_service_options">Service Options</string>
     <string name="service_optiontext">Select Service Option</string>
-    <string name="btn_home">HOME</string>
-    <string name="btn_book">BOOK</string>
+
     
     <string name="title_activity_clinic_options">Clinics</string>
     <string name="clinic_optiontext">Select the Clinic Calendar youd like to view</string>
@@ -52,6 +51,19 @@
     <string name="btn_info">info</string>
     <string name="btn_add">ADD</string>
     <string name="app_number">5 Scheduled Appointments</string>
+    <string name="free_slots">Free Slots</string>
+    <string name="select_slot">Select A Slot</string>
+    <string name="time_15">15 mins \></string>
+    
+    <string name="findservice_hint">Search by service user\'s hospital number, name and /or date of birth (@dd/mm/yyyy)
+        							You can combne search terms in one line if you like.
+        							Example: Mary Murphy @17/06/1979</string>
+    <string name="btn_search">SEARCH</string>
+    <string name="btn_plus">+</string>
+    <string name="search results">Search results:</string>
+    <string name="search_result_tmp">Search Result 1</string>
+    <string name="search_hint">Enter search parameters &#8230;</string>
+    <string name="app_confirm_hint">Don\'t book anything in the PM</string>
     
     <string name="go">GO</string>
 </resources>

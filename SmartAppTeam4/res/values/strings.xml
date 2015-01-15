@@ -21,6 +21,14 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
+
+    <string name="login_bottom">@ National Maternity Hospital\nABOUT</string>
+    
+    <string name="view_appointments">View Appointments</string>
+    <string name="correct_appointment_calendar">Select the correct appointment calendar</string>
+    <string name="clinics_ante_natal">Clinics (Ante-Natal)</string>
+    <string name="btn_forward">FORWARD</string>
+    <string name="visits_post_natal">Visits (Post-Natal)</string>   
     <string name="btn_back_arrow">Back Arrow</string>
     <string name="forward_btn">Forward Btn</string>
     <string name="title_activity_service_options">Service Options</string>
@@ -38,8 +46,23 @@
     <string name="btn_book">BOOK</string>
     <string name="btn_prev">PREV</string>
     <string name="btn_next">NEXT</string>
+    <string name="btn_edit">EDIT</string>
+    <string name="btn_done">DONE</string>
+    <string name="btn_ante_natal">Ante_natal</string>
+    <string name="btn_personal">Personal</string>
+    <string name="btn_postnatal">Post_natal</string>
+    <string name="btn_parity">Parity -></string>
+    <string name="btn_obstretic_history">Obstretic History</string>
+    <string name="textview_edd">EDD</string>
+    <string name="textview_gestation">Gestation</string>
+    <string name="textview_bloodgroup">Blood Group</string>
+    <string name="textview_rhesus">Rhesus</string>
+    <string name="textview_antenatal_edit">EDIT</string>
+
+    
     <string name="btn_calendar">CALENDAR</string>
     <string name="app_calendar">APPOINTMENT CALENDAR</string>
+    <string name="service_user">Service User</string>
     
     <string name="clinic_name">Clinic Name</string>
     <string name="sub_text">temporary sub text</string>
@@ -51,6 +74,9 @@
     <string name="btn_info">info</string>
     <string name="btn_add">ADD</string>
     <string name="app_number">5 Scheduled Appointments</string>
+
+    <string name="ante_natal_userdetail">Sarah McLachnan Murphy</string>
+
     <string name="free_slots">Free Slots</string>
     <string name="select_slot">Select A Slot</string>
     <string name="time_15">15 mins \></string>
@@ -65,7 +91,6 @@
     <string name="search_hint">Enter search parameters &#8230;</string>
     <string name="app_confirm_hint">Don\'t book anything in the PM</string>
     
-    <string name="service_user">Service User</string>
     <string name="hospital_number">Hospital Number</string>
     <string name="appoitment_clinic">Appoitment Clinic</string>
     <string name="appoitment_date">Appoitment Date</string>

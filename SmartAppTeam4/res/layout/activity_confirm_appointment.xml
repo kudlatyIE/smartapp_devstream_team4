@@ -4,9 +4,218 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout 
+        android:id="@+id/app_confirm_top"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="vertical"
+        >
+        
+        <LinearLayout 
+        	android:orientation="horizontal"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"    >
+        
+        
+        	<Button 
+           		android:id="@+id/app_confirm_btn_back"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/btn_back"
+            	/>
+        	<TextView 
+            	android:id="@+id/app_confirm_text_title"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:gravity="center"
+            	android:layout_weight="1"
+            	android:text="@string/title_activity_confirm_appointment"
+            	/>
 
+    	</LinearLayout>
+    	<TextView 
+    	    android:id="@+id/app_confirm_hint"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_margin="5dp"
+    	    android:gravity="center"
+    	    android:background="#FF0E00"
+    	    android:textColor="#FFFFFF"
+    	    android:text="@string/app_confirm_hint"
+    	    />
+
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/app_confirm_center"
+        android:layout_below="@+id/app_confirm_top"
+        android:layout_above="@+id/app_confirm_bottom"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <!-- service user detail -->
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/service_user"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/user_name_tmp"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hospital_number"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_hospital_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/hospital_number_tmp"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clinic_name"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_clinic_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/clinic_name_tmp"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/appoitment_date"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/date_tmp"
+            />
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/appoitment_time"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/time_tmp"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/appoitment_duration"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/time_15"
+            />
+        
+        <LinearLayout 
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_to"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/email_tmp"
+            /> 
+        </LinearLayout>
+        <LinearLayout 
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sms_to"
+            />
+        
+        <TextView 
+            android:id="@+id/app_confirm_text_user_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left"|android:layout_marginLeft="@dimen/margin_left"
+            android:textColor="@color/black"
+            android:text="@string/phone_tmp"
+            /> 
+        </LinearLayout>
+        <Button 
+            android:id="@+id/app_confirm_btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_confirm_app"
+            />
+    </LinearLayout>
+    <LinearLayout 
+        	android:id="@+id/app_confirm_bottom"
+        	android:layout_alignParentBottom="true"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_margin="5dp"
+        	android:orientation="horizontal"
+        >
+        
+        <Button 
+            android:id="@+id/app_confirm_btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/btn_home"
+            android:layout_weight="1"
+            />
+        
+        <Button 
+            android:id="@+id/app_confirm_btn_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/btn_book"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    
 </RelativeLayout>

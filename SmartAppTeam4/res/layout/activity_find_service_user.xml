@@ -4,9 +4,93 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout 
+        android:id="@+id/findserviceuser_top"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="vertical"
+        >
+        
+        <LinearLayout 
+        	android:orientation="horizontal"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"    >
+        
+        
+        	<Button 
+           		android:id="@+id/findservice_btn_back"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/btn_back"
+            	/>
+        	<TextView 
+            	android:id="@+id/findservice_text_title"
+            	android:layout_width="0dp"
+            	android:layout_height="wrap_content"
+            	android:gravity="center"
+            	android:layout_weight="1"
+            	android:text="@string/title_activity_find_service_user"
+            	/>
 
+    	</LinearLayout>
+    	<TextView 
+    	    android:id="@+id/findservice_hint"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:layout_margin="5dp"
+    	    android:text="@string/findservice_hint"
+    	    />
+    	<EditText 
+        	android:id="@+id/findservice_edit_find"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_margin="5dp"
+        	android:background="#DBD9D9"
+        	android:hint="@string/search_hint"
+        	/>
+    	<Button 
+    	    android:id="@+id/findservice_btn_search"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:gravity="center"
+    	    android:text="@string/btn_search"
+    	    />
+    </LinearLayout>
+    
+    <ListView 
+        android:id="@+id/findservice_list"
+        android:layout_below="@+id/findserviceuser_top"
+        android:layout_above="@+id/findservice_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></ListView>
+    
+    <LinearLayout 
+        	android:id="@+id/findservice_bottom"
+        	android:layout_alignParentBottom="true"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_margin="5dp"
+        	android:orientation="horizontal"
+        >
+        
+        <Button 
+            android:id="@+id/findservice_btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/btn_home"
+            android:layout_weight="1"
+            />
+        
+        <Button 
+            android:id="@+id/findservice_btn_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/btn_book"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
 </RelativeLayout>

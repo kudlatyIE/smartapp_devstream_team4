@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">SmartAppTeam4</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello Girls!</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main_view">MainViewActivity</string>
     <string name="title_activity_service_option">ServiceOptionActivity</string>
@@ -21,12 +21,19 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
-   
+
+    <string name="login_bottom">@ National Maternity Hospital\nABOUT</string>
+    
+    <string name="view_appointments">View Appointments</string>
+    <string name="correct_appointment_calendar">Select the correct appointment calendar</string>
+    <string name="clinics_ante_natal">Clinics (Ante-Natal)</string>
+    <string name="btn_forward">FORWARD</string>
+    <string name="visits_post_natal">Visits (Post-Natal)</string>   
+    <string name="btn_back_arrow">Back Arrow</string>
     <string name="forward_btn">Forward Btn</string>
     <string name="title_activity_service_options">Service Options</string>
     <string name="service_optiontext">Select Service Option</string>
-    
-    
+
     
     <string name="title_activity_clinic_options">Clinics</string>
     <string name="clinic_optiontext">Select the Clinic Calendar youd like to view</string>
@@ -59,15 +66,44 @@
     
     <string name="clinic_name">Clinic Name</string>
     <string name="sub_text">temporary sub text</string>
-    <string name="data_tmp">Wed 12/01/2015</string>
+    <string name="date_tmp">Wed, 12/01/2015</string>
     <string name="time_tmp">9:15</string>
     <string name="user_tmp">Harry Potter</string>
-    <string name="date_tmp">23+4</string>
+    <string name="data_tmp">23+4</string>
     <string name="free_slot">Free Slot</string>
     <string name="btn_info">info</string>
     <string name="btn_add">ADD</string>
     <string name="app_number">5 Scheduled Appointments</string>
+
     <string name="ante_natal_userdetail">Sarah McLachnan Murphy</string>
+
+    <string name="free_slots">Free Slots</string>
+    <string name="select_slot">Select A Slot</string>
+    <string name="time_15">15 mins \></string>
+    
+    <string name="findservice_hint">Search by service user\'s hospital number, name and /or date of birth (@dd/mm/yyyy)
+        							You can combne search terms in one line if you like.
+        							Example: Mary Murphy @17/06/1979</string>
+    <string name="btn_search">SEARCH</string>
+    <string name="btn_plus">+</string>
+    <string name="search results">Search results:</string>
+    <string name="search_result_tmp">Search Result 1</string>
+    <string name="search_hint">Enter search parameters &#8230;</string>
+    <string name="app_confirm_hint">Don\'t book anything in the PM</string>
+    
+    <string name="hospital_number">Hospital Number</string>
+    <string name="appoitment_clinic">Appoitment Clinic</string>
+    <string name="appoitment_date">Appoitment Date</string>
+    <string name="appoitment_time">Appoitment Time</string>
+    <string name="appoitment_duration">Duration</string>
+    <string name="user_name_tmp">Sara MacLachlann-Murphy</string>
+    <string name="hospital_number_tmp">H12344321</string>
+    <string name="clinic_name_tmp">Kilmacanogue</string>
+    <string name="email_to">Email to:</string>
+    <string name="email_tmp">sara.maclachlann@banana.com</string>
+    <string name="sms_to">SMS to:</string>
+    <string name="phone_tmp">+353889871234</string>
+    <string name="btn_confirm_app">Confirm Appoitment</string>
     
     <string name="go">GO</string>
 </resources>

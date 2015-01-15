@@ -2,12 +2,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3.0" >
+
+        <Button
+            android:id="@+id/service_user_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/btn_back" />
+
+        <TextView
+            android:id="@+id/service_user_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            
+            android:text="@string/service_user" />
+
+        <Button
+            android:id="@+id/service_user_btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/btn_edit" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/jkll"
+        android:id="@+id/service_user_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:text="Sara Connor...." />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal"
+        android:weightSum="3.0" >
+
+        <Button
+            android:id="@+id/app_calendar_btn_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Ante-Natal" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:src="@drawable/ic_launcher" />
+
+        <Button
+            android:id="@+id/app_calendar_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Post-Natal" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_marginTop="140dp"
+        android:text="contact"
+        android:textSize="15dp"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Address"
+        android:textSize="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="200dp"
+        android:text="185 Barrow Street, Grand Canal Dock" />
+
+    <Button
+        android:id="@+id/button_nextofkin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:text="NextOfKin"
+        android:textSize="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/button_nextofkin"
+        android:layout_marginLeft="100dp"
+        android:text="Michael Conner - 086 322948845" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/service_user_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/app_calendar_btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/btn_home" />
+
+        <Button
+            android:id="@+id/app_calendar_btn_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/btn_book" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/book_appt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/service_user_bottom"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:gravity="center"
+        android:text="Book Appointment"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button2"
+        android:layout_toRightOf="@+id/button1"
+        android:gravity="right"
+        android:text="H12345667" />
 
 </RelativeLayout>

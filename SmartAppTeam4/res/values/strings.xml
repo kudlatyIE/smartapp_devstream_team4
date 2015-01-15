@@ -17,6 +17,8 @@
     <string name="title_activity_pre_natal">PreNatalActivity</string>
     <string name="title_activity_ante_natal_edit">AnteNatalEditActivity</string>
     <string name="title_activity_pre_natal_edit">PreNatalEditActivity</string>
+    <string name="title_activity_post_natal">PostNatalListView</string>
+    
     <string name="title_activity_service_user_edit">ServiceUserEditActivity</string>
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
@@ -27,8 +29,11 @@
     <string name="btn_book">BOOK</string>
     <string name="btn_prev">PREV</string>
     <string name="btn_next">NEXT</string>
+    <string name="btn_edit">EDIT</string>
     <string name="btn_calendar">CALENDAR</string>
     <string name="app_calendar">APPOINTMENT CALENDAR</string>
+    <string name="service_user">SERVICE USER</string>
+    
     
     <string name="clinic_name">Clinic Name</string>
     <string name="sub_text">temporary sub text</string>
@@ -40,6 +45,13 @@
     <string name="btn_info">info</string>
     <string name="btn_add">ADD</string>
     <string name="app_number">5 Scheduled Appointments</string>
+    
+    <!-- post_natal strings -->
+    <string name="post_natal_mother">Mother</string>
+    
+    
+    
+    
     
     <string name="go">GO</string>
 </resources>

@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".PostNatalActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,13 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        
+         <activity
+            android:name=".PostNatalListActivity"
+            android:label="@string/title_activity_post_natal" >
+        </activity>
+        
+         
         <activity
             android:name=".MainViewActivity"
             android:label="@string/title_activity_main_view" >

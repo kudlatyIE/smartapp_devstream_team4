@@ -1643,6 +1643,7 @@ containing a value of this type.
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
         public static final int checkbox=0x7f090029;
+        public static final int clinic_btn_forward=0x7f090040;
         public static final int collapseActionView=0x7f090015;
         public static final int decor_content_parent=0x7f09002f;
         public static final int default_activity_button=0x7f090024;
@@ -1660,6 +1661,7 @@ containing a value of this type.
         public static final int image=0x7f090023;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
+        public static final int main_btn_back=0x7f09003f;
         public static final int middle=0x7f09001d;
         public static final int never=0x7f090017;
         public static final int none=0x7f09000f;
@@ -1684,10 +1686,11 @@ containing a value of this type.
         public static final int split_action_bar=0x7f090004;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
-        public static final int test=0x7f09003f;
+        public static final int test=0x7f090042;
         public static final int title=0x7f090027;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
+        public static final int visits_btn_forward=0x7f090041;
         public static final int withText=0x7f090018;
         public static final int wrap_content=0x7f090009;
     }
@@ -1819,6 +1822,10 @@ containing a value of this type.
          */
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         public static final int app_name=0x7f0a0010;
+        public static final int btn_back=0x7f0a0023;
+        public static final int btn_forward=0x7f0a0027;
+        public static final int clinics_ante_natal=0x7f0a0026;
+        public static final int correct_appointment_calendar=0x7f0a0025;
         public static final int hello_world=0x7f0a0011;
         public static final int title_activity_ante_natal=0x7f0a001c;
         public static final int title_activity_ante_natal_edit=0x7f0a001e;
@@ -1837,6 +1844,8 @@ containing a value of this type.
         public static final int title_activity_service_user_address=0x7f0a0021;
         public static final int title_activity_service_user_address_edit=0x7f0a0022;
         public static final int title_activity_service_user_edit=0x7f0a0020;
+        public static final int view_appointments=0x7f0a0024;
+        public static final int visits_post_natal=0x7f0a0028;
     }
     public static final class style {
         /** 

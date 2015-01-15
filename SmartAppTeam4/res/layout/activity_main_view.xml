@@ -1,12 +1,109 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:orientation="vertical" 
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+	 <LinearLayout 
+   		 android:layout_width="match_parent" 
+    	 android:layout_height="wrap_content" 
+   		 android:orientation="horizontal"
+    	 >
+    	 
+     		<Button
+     		    android:id="@+id/main_btn_back" 
+      			android:layout_width="wrap_content"
+       		    android:layout_height="wrap_content"
+        		android:text="@string/btn_back"   
+       		    android:layout_marginTop="15dp"    
+         		/>
+           
+     		 <TextView 
+     		   android:layout_width="wrap_content"
+     		   android:layout_height="wrap_content"
+     		   android:layout_weight="1"
+     		   android:gravity="center"
+     		   android:text="@string/view_appointments"
+     		   android:layout_marginTop="15dp"
+     		   />
+     
+ 		</LinearLayout>
+ 		
+	 
 
-</RelativeLayout>
+	 <TextView 
+	    android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="15dp"
+	    android:layout_gravity="center"
+	    android:text="correct_appointment_calendar"
+	    /> 
+	    
+	 
+
+       <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_margin="10dp"
+          android:layout_height="100dp"
+          android:orientation="horizontal"
+          android:background="#DBD9D9"
+          >
+            
+     		<TextView
+         		 android:layout_width="wrap_content"
+         		 android:layout_height="wrap_content"
+          		 android:layout_marginTop="15dp"
+          		 android:gravity="center"
+          		 android:layout_gravity="center_vertical"
+          		 android:text="@string/clinics_ante_natal" 
+          		  android:layout_weight="1"
+          		 />
+          		 
+          	<Button
+                android:id="@+id/clinic_btn_forward" 
+      			android:layout_width="wrap_content"
+       		    android:layout_height="wrap_content"
+        		android:text="@string/btn_forward"   
+
+       		    android:layout_gravity="center_vertical" 
+           		/>
+      
+      </LinearLayout >
+          
+      <LinearLayout
+           android:layout_width="match_parent"
+          android:layout_margin="10dp"
+          android:layout_height="100dp"
+          android:orientation="horizontal"
+          android:background="#DBD9D9"
+          >
+            
+     		<TextView
+         		 android:layout_width="wrap_content"
+         		 android:layout_height="wrap_content"
+          		 android:layout_marginTop="15dp"
+          		 android:gravity="center"
+          		 android:layout_gravity="center_vertical"
+          		 android:text="@string/visits_post_natal" 
+          		  android:layout_weight="1"
+          		 />
+          		 
+          	<Button
+                android:id="@+id/visits_btn_forward" 
+      			android:layout_width="wrap_content"
+       		    android:layout_height="wrap_content"
+        		android:text="@string/btn_forward"   
+
+       		    android:layout_gravity="center_vertical" 
+           		/>
+      
+          >
+      
+      
+      </LinearLayout>
+      
+      
+      
+      
+ </LinearLayout>

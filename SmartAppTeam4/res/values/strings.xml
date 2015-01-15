@@ -22,5 +22,10 @@
     <string name="title_activity_service_user_address_edit">Ser
         
     <string name="login_bottom">@ National Maternity Hospital\nABOUT</string>    viceUserAddressEditActivity</string>
-
+    <string name="btn_back">BACK</string>
+    <string name="view_appointments">View Appointments</string>
+    <string name="correct_appointment_calendar">Select the correct appointment calendar</string>
+    <string name="clinics_ante_natal">Clinics (Ante-Natal)</string>
+    <string name="btn_forward">FORWARD</string>
+    <string name="visits_post_natal">Visits (Post-Natal)</string>   
 </resources>

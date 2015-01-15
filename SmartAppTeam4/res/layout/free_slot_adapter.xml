@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal" >
     
-    <Button 
-        android:id="@+id/app_calendar_free_adapter_btn_add"
+    <TextView 
+        android:id="@+id/freeslot_adapter_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="@string/btn_add"
+        android:text="@string/time_tmp"
         />
     <TextView 
-        android:id="@+id/app_calendar_adapter_text_freeslot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="end"
         android:layout_margin="5dp"
-        android:text="@string/free_slot"
+        android:text="@string/time_15"
         />
     
 

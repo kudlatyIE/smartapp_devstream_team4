@@ -84,6 +84,13 @@
     <string name="findservice_hint">Search by service user\'s hospital number, name and /or date of birth (@dd/mm/yyyy)
         							You can combne search terms in one line if you like.
         							Example: Mary Murphy @17/06/1979</string>
+    <string name="user_address_tmp">Apartment 185, The George, Charlotte Quay Dock,
+        							Ringsend Rd, Dublin 4</string>
+    
+    <string name="address_hint">Direction hints</string>
+    <string name="address_hint_tmp">It\'s opposite Boland\'s Mill, just on the south side
+        							of the bridge over the canal  in Grand Calan Dock.
+        							There\'s underground parking</string>
     <string name="btn_search">SEARCH</string>
     <string name="btn_plus">+</string>
     <string name="search_results">Search results:</string>

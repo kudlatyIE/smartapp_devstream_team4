@@ -4,9 +4,28 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <LinearLayout 
+        android:id="@+id/serviceuser_map_top"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"    >
+        
+        <Button 
+        	android:id="@+id/serviceuser_map_btn_back"
+           	android:layout_width="wrap_content"
+           	android:layout_height="wrap_content"
+           	android:text="@string/btn_back"
+           	/>
+        <TextView 
+           	android:id="@+id/serviceuser_map_text_title"
+           	android:layout_width="0dp"
+           	android:layout_height="wrap_content"
+           	android:gravity="center"
+           	android:layout_weight="1"
+           	android:text="@string/title_activity_find_service_user"
+           	/>
+
+    	</LinearLayout>
 
 </RelativeLayout>

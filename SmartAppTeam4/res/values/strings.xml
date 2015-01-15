@@ -60,7 +60,7 @@
         							Example: Mary Murphy @17/06/1979</string>
     <string name="btn_search">SEARCH</string>
     <string name="btn_plus">+</string>
-    <string name="search results">Search results:</string>
+    <string name="search_results">Search results:</string>
     <string name="search_result_tmp">Search Result 1</string>
     <string name="search_hint">Enter search parameters &#8230;</string>
     <string name="app_confirm_hint">Don\'t book anything in the PM</string>

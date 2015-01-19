@@ -43,7 +43,7 @@ public class ServiceOptionActivity extends Activity {
 		myList = createServiceList(); //create testing list of Services
 		
 		final ListView lv = (ListView) findViewById(R.id.smart_listview);
-		CustomAdapter serviceAdapter = new CustomAdapter();
+		final CustomAdapter serviceAdapter = new CustomAdapter();
 		lv.setAdapter(serviceAdapter);
 		lv.setClickable(false);
 		//listView listener
@@ -53,6 +53,7 @@ public class ServiceOptionActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				ServiceOptions item = (ServiceOptions) lv.getItemAtPosition(position);
+//				ServiceOptions item = (ServiceOptions) serviceAdapter.getItem(position);
 				Toast.makeText(getApplicationContext(), "Click on: "+item.getServiceName(), Toast.LENGTH_SHORT).show();
 			}
 		});

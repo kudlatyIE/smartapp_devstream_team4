@@ -21,8 +21,7 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
-    <string name="login_bottom">@ National Maternity Hospital\nABOUT</string>    viceUserAddressEditActivity</string>
-    <string name="btn_back">BACK</string>
+    <string name="login_bottom">@ National Maternity Hospital\nABOUT</string>
     <string name="view_appointments">View Appointments</string>
     <string name="correct_appointment_calendar">Select the correct appointment calendar</string>
     <string name="clinics_ante_natal">Clinics (Ante-Natal)</string>

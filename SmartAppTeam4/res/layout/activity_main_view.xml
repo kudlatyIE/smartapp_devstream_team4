@@ -54,7 +54,7 @@
          		 android:layout_width="wrap_content"
          		 android:layout_height="wrap_content"
           		 android:layout_marginTop="15dp"
-          		 android:gravity="center"
+           		 android:gravity="center"
           		 android:layout_gravity="center_vertical"
           		 android:text="@string/clinics_ante_natal" 
           		  android:layout_weight="1"

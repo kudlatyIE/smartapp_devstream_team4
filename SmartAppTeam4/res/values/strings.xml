@@ -59,7 +59,7 @@
     <string name="textview_bloodgroup">Blood Group</string>
     <string name="textview_rhesus">Rhesus</string>
     <string name="textview_antenatal_edit">EDIT</string>
-
+	<string name="service_userdetail">Sarah McLaughlan-Murphy</string>
     
     <string name="btn_calendar">CALENDAR</string>
     <string name="app_calendar">APPOINTMENT CALENDAR</string>

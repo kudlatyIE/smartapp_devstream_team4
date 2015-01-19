@@ -2,93 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}"
+    
     >
     
-    	<LinearLayout 
-        android:id="@+id/clinicoptions_top"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-    	    >
-    	    
-    	    <Button 
-    	        android:id="@+id/clinicoption_btn_back"
-           	    android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_back"   
-            	android:layout_weight="1"
-    	        />
-    	    
-    	        <TextView
-           			 android:id="@+id/clinicoptions_text_head"
-            		 android:layout_width="wrap_content"
-            		 android:layout_height="wrap_content"
-            		 android:gravity="center"
-           			 android:text="@string/title_activity_clinic_options"
-            		 android:textSize="18sp"
-            		 android:layout_weight="5" 
-        		/>
-    	       	    
-    	</LinearLayout>
-    	
-	<LinearLayout 
-	    android:id="@+id/clinicoptions_center"
-	    android:layout_below="@+id/clinicoptions_top"
-	    android:layout_above="@+id/clinicoptions_bottom"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dp"
-	    android:orientation="vertical"	    
-	    >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        android:text="@string/clinic_optiontext" />
-        />
-
-    <ListView
-        android:id="@+id/clinicoption_listview_listclinicoptions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-    
-    </LinearLayout>
-    
-    	<LinearLayout 
-       		 android:id="@+id/clinicoptions_bottom"       
-         	 android:layout_alignParentBottom="true"
-       		 android:layout_width="match_parent"
-       	 	 android:layout_height="wrap_content"
-        	 android:layout_margin="5dp"
-        	 android:orientation="horizontal"
-        	 android:layout_gravity="bottom"
-    	     >
-    	        
-    	        <Button 
-    	       		 android:id="@+id/clinicoption_btn_home"
-    	        	 android:layout_width="wrap_content"
-    	        	 android:layout_height="wrap_content"
-    	        	 android:gravity="center"
-            		 android:text="@string/btn_home"
-            		 android:layout_weight="1"
-    	        	 />
-    	        
-    	        <Button 
-    	       		 android:id="@+id/clinicoption_btn_book"
-    	        	 android:layout_width="wrap_content"
-    	        	 android:layout_height="wrap_content"
-    	        	 android:gravity="center"
-            	     android:text="@string/btn_book"
-            		 android:layout_weight="1"
-    	       		 />
-        
-    	</LinearLayout>
-
+   <include layout="@layout/smart_header" />
+   <include layout="@layout/smart_footer" />
+   <include layout="@layout/smart_listview" />
+   
 </RelativeLayout>
 

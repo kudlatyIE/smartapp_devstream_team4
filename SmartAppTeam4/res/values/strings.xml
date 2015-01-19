@@ -21,7 +21,9 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
-    <string name="login_bottom">@ National Maternity Hospital\nABOUT</string>
+
+    <string name="login_bottom">National Maternity Hospital\nABOUT</string>
+    
     <string name="view_appointments">View Appointments</string>
     <string name="correct_appointment_calendar">Select the correct appointment calendar</string>
     <string name="clinics_ante_natal">Clinics (Ante-Natal)</string>
@@ -36,6 +38,7 @@
     <string name="title_activity_clinic_options">Clinics</string>
     <string name="clinic_optiontext">Select the Clinic Calendar youd like to view</string>
     <string name="clinic_name_bookingday">Clinic Name and Days for Appointments</string>
+    <string name="booking_date_tmp">Weekly, Monday</string>
     
 
     
@@ -44,8 +47,25 @@
     <string name="btn_book">BOOK</string>
     <string name="btn_prev">PREV</string>
     <string name="btn_next">NEXT</string>
+    <string name="btn_edit">EDIT</string>
+    <string name="btn_done">DONE</string>
+    <string name="btn_ante_natal">Ante_natal</string>
+    <string name="btn_personal">Personal</string>
+    <string name="btn_postnatal">Post_natal</string>
+    <string name="btn_parity">Parity -></string>
+    <string name="btn_obstretic_history">Obstretic History</string>
+    <string name="textview_edd">EDD</string>
+    <string name="textview_gestation">Gestation</string>
+    <string name="textview_bloodgroup">Blood Group</string>
+    <string name="textview_rhesus">Rhesus</string>
+    <string name="textview_antenatal_edit">EDIT</string>
+	<string name="service_userdetail">Sarah McLaughlan-Murphy</string>
+    
+	<string name="mainview_title">View Appoitments</string>
+	<string name="mainview_subtitle">Select the correct appoitment calendar</string>
     <string name="btn_calendar">CALENDAR</string>
     <string name="app_calendar">APPOINTMENT CALENDAR</string>
+    <string name="service_user">Service User</string>
     
     <string name="clinic_name">Clinic Name</string>
     <string name="sub_text">temporary sub text</string>
@@ -57,6 +77,9 @@
     <string name="btn_info">info</string>
     <string name="btn_add">ADD</string>
     <string name="app_number">5 Scheduled Appointments</string>
+
+    <string name="ante_natal_userdetail">Sarah McLachnan Murphy</string>
+
     <string name="free_slots">Free Slots</string>
     <string name="select_slot">Select A Slot</string>
     <string name="time_15">15 mins \></string>
@@ -64,14 +87,20 @@
     <string name="findservice_hint">Search by service user\'s hospital number, name and /or date of birth (@dd/mm/yyyy)
         							You can combne search terms in one line if you like.
         							Example: Mary Murphy @17/06/1979</string>
+    <string name="user_address_tmp">Apartment 185, The George, Charlotte Quay Dock,
+        							Ringsend Rd, Dublin 4</string>
+    
+    <string name="address_hint">Direction hints</string>
+    <string name="address_hint_tmp">It\'s opposite Boland\'s Mill, just on the south side
+        							of the bridge over the canal  in Grand Calan Dock.
+        							There\'s underground parking</string>
     <string name="btn_search">SEARCH</string>
     <string name="btn_plus">+</string>
-    <string name="search results">Search results:</string>
+    <string name="search_results">Search results:</string>
     <string name="search_result_tmp">Search Result 1</string>
     <string name="search_hint">Enter search parameters &#8230;</string>
     <string name="app_confirm_hint">Don\'t book anything in the PM</string>
     
-    <string name="service_user">Service User</string>
     <string name="hospital_number">Hospital Number</string>
     <string name="appoitment_clinic">Appoitment Clinic</string>
     <string name="appoitment_date">Appoitment Date</string>
@@ -85,6 +114,9 @@
     <string name="sms_to">SMS to:</string>
     <string name="phone_tmp">+353889871234</string>
     <string name="btn_confirm_app">Confirm Appoitment</string>
+    
+    <string name="header_title">Main View Title</string>
+    <string name="header_subtitle">Main View Subtitle</string>
     
     <string name="go">GO</string>
 </resources>

@@ -23,14 +23,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ServiceOptionActivity extends Activity {
-	Button btnBack;
-	ArrayList<ServiceOptions> myList;
+	private Intent intent;
+	private Button btnBack, btnHome;
+	private TextView tvTitle, tvSubtitle;
+	private ArrayList<ServiceOptions> myList; //array just for test
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_service_option);
 		btnBack = (Button) findViewById(R.id.header_btn_back);
+		btnHome = (Button) findViewById(R.id.footer_btn_home);
+		
+		tvTitle = (TextView) findViewById(R.id.header_text_title);
+		tvSubtitle = (TextView) findViewById(R.id.header_text_subtitle);
+		//set title and subtitle for this activity
+		tvTitle.setText(R.string.title_activity_service_option);
+		tvSubtitle.setText(R.string.service_optiontext);
 		//btnBack listsner
 		btnBack.setOnClickListener(new OnClickListener(){
 
@@ -38,6 +47,16 @@ public class ServiceOptionActivity extends Activity {
 			public void onClick(View v) {
 				finish();
 			}
+		});
+		
+		btnHome.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				intent = new Intent(getApplicationContext(),MainViewActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+			}		
 		});
 		
 		myList = createServiceList(); //create testing list of Services
@@ -52,9 +71,14 @@ public class ServiceOptionActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				ServiceOptions item = (ServiceOptions) lv.getItemAtPosition(position);
-//				ServiceOptions item = (ServiceOptions) serviceAdapter.getItem(position);
-				Toast.makeText(getApplicationContext(), "Click on: "+item.getServiceName(), Toast.LENGTH_SHORT).show();
+//				ServiceOptions item = (ServiceOptions) lv.getSelectedItem();// testing line
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getServiceName(), Toast.LENGTH_SHORT).show();
+				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
+				//send selected Clinic Id to new activity
+				intent.putExtra("ClinicId", myList.get(position).getServiceId());
+				//prevent to open too many same activity
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 			}
 		});
 

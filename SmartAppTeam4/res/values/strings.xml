@@ -61,6 +61,8 @@
     <string name="textview_antenatal_edit">EDIT</string>
 	<string name="service_userdetail">Sarah McLaughlan-Murphy</string>
     
+	<string name="mainview_title">View Appoitments</string>
+	<string name="mainview_subtitle">Select the correct appoitment calendar</string>
     <string name="btn_calendar">CALENDAR</string>
     <string name="app_calendar">APPOINTMENT CALENDAR</string>
     <string name="service_user">Service User</string>

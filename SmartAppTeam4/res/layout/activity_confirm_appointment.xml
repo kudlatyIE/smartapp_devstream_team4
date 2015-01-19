@@ -50,7 +50,7 @@
     <LinearLayout 
         android:id="@+id/app_confirm_center"
         android:layout_below="@+id/app_confirm_top"
-        android:layout_above="@+id/app_confirm_bottom"
+ 
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

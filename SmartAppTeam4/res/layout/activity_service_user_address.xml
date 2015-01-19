@@ -32,7 +32,7 @@
     <LinearLayout 
         android:id="@+id/serviceuser_map_midle_top"
         android:layout_below="@+id/serviceuser_map_top"
-        android:layout_above="@+idserviceuser_map_map"
+        
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -86,7 +86,7 @@
     <LinearLayout 
         android:id="@+id/serviceuser_map_map"
         android:layout_below="@+id/serviceuser_map_midle_top"
-        android:layout_above="@+id/serviceuser_map_bottom"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

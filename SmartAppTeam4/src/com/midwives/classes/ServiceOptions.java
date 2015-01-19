@@ -5,7 +5,7 @@ public class ServiceOptions {
 	private String serviceName;
 	private int serviceId;
 	
-	ServiceOptions(String name, int id){
+	public ServiceOptions(int id, String name){
 		this.serviceName=name;
 		this.serviceId=id;
 		

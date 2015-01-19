@@ -21,6 +21,9 @@
     <string name="title_activity_service_user_address">ServiceUserAddressActivity</string>
     <string name="title_activity_service_user_address_edit">ServiceUserAddressEditActivity</string>
     
+
+    <string name="login_bottom">National Maternity Hospital\nABOUT</string>
+    
     <string name="view_appointments">View Appointments</string>
     <string name="correct_appointment_calendar">Select the correct appointment calendar</string>
     <string name="clinics_ante_natal">Clinics (Ante-Natal)</string>
@@ -35,6 +38,7 @@
     <string name="title_activity_clinic_options">Clinics</string>
     <string name="clinic_optiontext">Select the Clinic Calendar youd like to view</string>
     <string name="clinic_name_bookingday">Clinic Name and Days for Appointments</string>
+    <string name="booking_date_tmp">Weekly, Monday</string>
     
 
     
@@ -55,8 +59,7 @@
     <string name="textview_bloodgroup">Blood Group</string>
     <string name="textview_rhesus">Rhesus</string>
     <string name="textview_antenatal_edit">EDIT</string>
-    <string name="service_userdetail">Sarah McLaughlan-Murphy</string>
-
+	<string name="service_userdetail">Sarah McLaughlan-Murphy</string>
     
     <string name="btn_calendar">CALENDAR</string>
     <string name="app_calendar">APPOINTMENT CALENDAR</string>
@@ -109,6 +112,9 @@
     <string name="sms_to">SMS to:</string>
     <string name="phone_tmp">+353889871234</string>
     <string name="btn_confirm_app">Confirm Appoitment</string>
+    
+    <string name="header_title">Main View Title</string>
+    <string name="header_subtitle">Main View Subtitle</string>
     
     <string name="go">GO</string>
 </resources>

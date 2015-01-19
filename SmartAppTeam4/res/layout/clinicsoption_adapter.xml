@@ -4,20 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" 
     >
-    
-    	<TextView 
-    	    android:id="@+id/clinicsoption_adapter_textitem"
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        
+        >
+        <TextView 
+    	    android:id="@+id/clinicsoption_adapter_text_clinicname"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
-    	    android:layout_weight="1"
-    	    android:text="@string/clinic_name_bookingday"
+    	    android:text="@string/clinic_name"
         />
-        
+    	
+    	<TextView 
+    	    android:id="@+id/clinicsoption_adapter_text_bookongdate"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="@string/booking_date_tmp"
+        />
+    </LinearLayout>
+    
     	<Button 
     	    android:id="@+id/clinicsoption_adapter_btn_select"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
-    	    android:text="@string/forward_btn"
+    	    android:layout_gravity="end"
+    	    android:text="@string/btn_forward"
     	    />
   
 </LinearLayout>
+

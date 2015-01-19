@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}">
+    tools:context="${relativePackage}.${activityClass}" >
 
     <LinearLayout 
         android:id="@+id/app_confirm_top"
@@ -15,7 +15,7 @@
         <LinearLayout 
         	android:orientation="horizontal"
         	android:layout_width="match_parent"
-        	android:layout_height="wrap_content">
+        	android:layout_height="wrap_content"    >
         
         
         	<Button 
@@ -34,7 +34,6 @@
             	/>
 
     	</LinearLayout>
-    	
     	<TextView 
     	    android:id="@+id/app_confirm_hint"
     	    android:layout_width="match_parent"
@@ -51,7 +50,7 @@
     <LinearLayout 
         android:id="@+id/app_confirm_center"
         android:layout_below="@+id/app_confirm_top"
-        android:layout_above="@+id/app_confirm_bottom"
+ 
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

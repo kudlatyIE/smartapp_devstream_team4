@@ -39,7 +39,7 @@
 	<LinearLayout 
 	    android:id="@+id/clinicdates_center"
 	    android:layout_below="@+id/clinicdates_top"
-	    android:layout_above="@+id/clinicdates_bottom"
+
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_margin="5dp"

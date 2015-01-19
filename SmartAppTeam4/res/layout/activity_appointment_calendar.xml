@@ -75,7 +75,7 @@
     <ListView 
         android:id="@+id/app_calendar_list"
         android:layout_below="@+id/app_calendar_text_app_number"
-        android:layout_above="@+id/app_calendar_bottom"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         

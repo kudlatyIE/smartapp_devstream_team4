@@ -16,7 +16,7 @@ public class ServiceUsers {
     private String nextOfKinPhone;
     private String nextOfKinName;
     
-  public ServiceUsers (int ServiceUserId, int hospitalNumber, String homeAddress, String HomeType, String homeCounty, String homePostcode, String directions, String dob, String email, String homePhone, String mobilrPhone, String name, String nextOfKinPhone, String nextOfKinName) {
+  public ServiceUsers (int ServiceUserId, int hospitalNumber, String homeAddress, String HomeType, String homeCounty, String homePostcode, String directions, String dob, String email, String homePhone, String mobilrPhone, String name, String nextOfKinPhone, String nextOfKinName, int serviceUserId, String homeType, String mobilePhone) {
 	  this.serviceUserId = serviceUserId;
 	  this.hospitalNumber = hospitalNumber;
 	  this.homeAddress = homeAddress;

@@ -1,69 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <LinearLayout
-        android:id="@+id/serviceuser_edit_layout_top"
+   		android:id="@+id/smart_layout_ante_natal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="vertical"
+        android:layout_below="@+id/smart_layout_header"
+        android:layout_above="@+id/smart_layout_footer"
         
-        <Button 
-            android:id="@+id/serviceuser_edit_btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_back"
-            />
-        
-        <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/textview_antenatal_edit"
-            />
-        
-         <Button 
-            android:id="@+id/serviceuser_btn_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_done"
-            />
-               
-    	</LinearLayout>
-    
-            	<LinearLayout
+    	 >
+    	 
+       	<LinearLayout
             		android:layout_width="match_parent"
            		    android:layout_height="wrap_content"
-           		    android:layout_margin="5dp"
             		android:orientation="vertical"
             		>
     
              		    	<TextView
-         		    	    android:id="@+id/serviceuser_textview_userdetail_edit"
+         		    	    android:id="@+id/antenatal_textview_userdetail"
          		    	    android:layout_width="match_parent"
          		    	    android:layout_height="wrap_content"
          		    	    android:gravity="center"
          		    	    android:layout_weight="1"
          		    	    android:padding="10dp"
-         		    	    android:text="@string/service_userdetail"        		    	    
+         		    	    android:text="@string/ante_natal_userdetail"        		    	    
          		    	    />
              		    	
     			</LinearLayout>
-    				            	
+    				
+            	
+            	<LinearLayout
+            	    android:id="@+id/antenatal_layout_middle"
+            	    android:layout_width="match_parent"
+            	    android:layout_height="wrap_content"
+            	    android:orientation="horizontal"
+            	    >
+             		    	
+            	    	<Button 
+            	    	    android:id="@+id/antenatal_btn_antenatal"
+            	    	    android:layout_width="wrap_content"
+            	    	    android:layout_height="wrap_content"
+            	    	    android:text="@string/btn_ante_natal"
+            	    	    />
+            	    	
+            	    	<Button 
+            	    	    android:id="@+id/antenatal_btn_personal"
+            	    	    android:layout_width="wrap_content"
+            	    	    android:layout_height="wrap_content"
+            	    	    android:text="@string/btn_personal"
+            	    	    />
+            	    	
+            	    	<Button 
+            	    	    android:id="@+id/antenatal_btn_postnatal"
+            	    	    android:layout_width="wrap_content"
+            	    	    android:layout_height="wrap_content"
+            	    	    android:text="@string/btn_postnatal"
+            	    	    />
+            	    
+            	</LinearLayout>
+            	
  		<LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
+ 		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    
- 		    	<EditText
- 		    	    android:id="@+id/serviceuser_textView_editdate_edd"
+ 		    	<TextView 
+ 		    	    android:id="@+id/antenatal_textView_date_edd"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="start"
@@ -72,7 +76,7 @@
  		    	    />
  		    	
  		    	<TextView 
- 		    	    android:id="@+id/serviceuser_textView_edit_edd"
+ 		    	    android:id="@+id/antenatal_textView_edd"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content" 		    	    
  		    	    android:gravity="end"
@@ -85,12 +89,12 @@
  	<LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
+ 		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <EditText
- 		    	    android:id="@+id/serviceuser_textView_editgestation_weeks"
+ 		    	 <TextView 
+ 		    	    android:id="@+id/antenatal_textView_gestation_weeks"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="start"
@@ -99,7 +103,7 @@
  		    	    />
  		    	
  		    	<TextView 
- 		    	    android:id="@+id/serviceuser_textView_edit_gestatiom"
+ 		    	    android:id="@+id/antenatal_textView_gestatiom"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="end"
@@ -112,12 +116,12 @@
  	 	<LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
+ 		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <EditText
- 		    	    android:id="@+id/serviceuser_textView_editbloodgroup_type"
+ 		    	 <TextView 
+ 		    	    android:id="@+id/antenatal_textView_bloodgroup_type"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"	    	    
  		    	    android:gravity="start"
@@ -126,7 +130,7 @@
  		    	    />
  		    	
  		    	<TextView 
- 		    	    android:id="@+id/serviceuser_textView_editbloodgroup"
+ 		    	    android:id="@+id/antenatal_textView_bloodgroup"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="end"
@@ -139,12 +143,12 @@
  	 	 <LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
+ 		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <EditText
- 		    	    android:id="@+id/serviceuser_textView_editrhesus_value"
+ 		    	 <TextView 
+ 		    	    android:id="@+id/antenatal_textView_rhesus_value"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"	    	    
  		    	    android:gravity="start"
@@ -153,7 +157,7 @@
  		    	    />
  		    	
  		    	<TextView 
- 		    	    android:id="@+id/serviceuser_textView_editrhesus"
+ 		    	    android:id="@+id/antenatal_textView_rhesus"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="end"
@@ -166,12 +170,12 @@
  	 	<LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
+ 		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <EditText
- 		    	    android:id="@+id/serviceuser_textview_editparity"
+ 		    	 <TextView 
+ 		    	    android:id="@+id/antenatal_textview_parity"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"	    	    
  		    	    android:gravity="start"
@@ -180,7 +184,7 @@
  		    	    />
  		    	
  		    	<Button
- 		    	    android:id="@+id/serviceuser_btn_editparity"
+ 		    	    android:id="@+id/antenatal_btn_parity"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="center"		    	    
@@ -192,12 +196,12 @@
  	 	<LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
+ 		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <EditText
- 		    	    android:id="@+id/serviceuser_textview_editobstretic_history"
+ 		    	 <TextView 
+ 		    	    android:id="@+id/antenatal_textview_obstretic_history"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"	    	    
  		    	    android:gravity="start"
@@ -206,7 +210,7 @@
  		    	    />
  		    	
  		    	<Button
- 		    	    android:id="@+id/serviceuser_btn_editobstretic_history"
+ 		    	    android:id="@+id/antenatal_btn_obstretic_history"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="center"		    	    
@@ -215,32 +219,6 @@
  		    		    
  		</LinearLayout> 
  		
- 	 	 <LinearLayout
- 		    android:layout_width="match_parent"
- 		    android:layout_height="wrap_content"
- 		    android:layout_margin="5dp"
- 		    android:orientation="horizontal"
- 		    >
- 		    	
- 		    	 <Button
- 		    	    android:id="@+id/serviceuser_edit_btn_home"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"	    	    
- 		    	    android:gravity="center"
- 		    	    android:layout_weight="1"
- 		    	    android:text="@string/btn_home" 		    	    
- 		    	    />
- 		    	
- 		    	<Button
- 		    	    android:id="@+id/serviceuser_edit_btn_book"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="center"
- 		    	    android:layout_weight="1"		    	    
- 		    	    android:text="@string/btn_book" 		    	    
- 		    	    />
- 		    		    
- 		</LinearLayout> 
- 		  		
-
-</LinearLayout>
+</LinearLayout> 
+    	 
+    

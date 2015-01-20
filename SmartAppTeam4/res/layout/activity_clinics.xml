@@ -37,7 +37,7 @@
 	<LinearLayout 
 	    android:id="@+id/clinicoptions_center"
 	    android:layout_below="@+id/clinicoptions_top"
-	    android:layout_above="@+id/clinicoptions_bottom"
+
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_margin="5dp"

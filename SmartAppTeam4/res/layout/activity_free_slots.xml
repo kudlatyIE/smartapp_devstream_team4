@@ -47,7 +47,7 @@
         <ListView 
         	android:id="@+id/freeslot_list"
         	android:layout_below="@+id/freeslot_top"
-        	android:layout_above="@+id/freeslot_bottom"
+
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         ></ListView>

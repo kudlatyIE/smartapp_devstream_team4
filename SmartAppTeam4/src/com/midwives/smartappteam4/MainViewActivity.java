@@ -8,11 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainViewActivity extends Activity {
 	
 	Intent intent;
 	Button btnClinics,btnVisits,btnBack;
+	TextView tvTitle, tvSubtitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,12 @@ public class MainViewActivity extends Activity {
 		btnClinics = (Button) findViewById(R.id.mainview_btn_clinics);
 		btnVisits = (Button) findViewById(R.id.mainview_btn_visits);
 		btnBack = (Button) findViewById(R.id.header_btn_back);
+		
+		tvTitle = (TextView) findViewById(R.id.header_text_title);
+		tvSubtitle = (TextView) findViewById(R.id.header_text_subtitle);	
+		// set title and subtitle for this activity
+		tvTitle.setText(R.string.mainview_title);
+		tvSubtitle.setText(R.string.mainview_subtitle);
 		
 		MyButtons myButton = new MyButtons();
 		btnClinics.setOnClickListener(myButton);

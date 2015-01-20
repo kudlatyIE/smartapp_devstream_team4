@@ -23,26 +23,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ServiceOptionActivity extends Activity {
-	Button btnBack;
-	ArrayList<ServiceOptions> myList;
+	private Intent intent;
+	private Button btnBack, btnHome, btnBook;
+	private TextView tvTitle, tvSubtitle;
+	private ArrayList<ServiceOptions> myList; //array just for test
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_service_option);
 		btnBack = (Button) findViewById(R.id.header_btn_back);
+		btnHome = (Button) findViewById(R.id.footer_btn_home);
+		btnBook = (Button) findViewById(R.id.footer_btn_book);
+		
+		tvTitle = (TextView) findViewById(R.id.header_text_title);
+		tvSubtitle = (TextView) findViewById(R.id.header_text_subtitle);
+		//set title and subtitle for this activity
+		tvTitle.setText(R.string.title_activity_service_option);
+		tvSubtitle.setText(R.string.service_optiontext);
 		//btnBack listsner
-		btnBack.setOnClickListener(new OnClickListener(){
 
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
+		MyButtons button = new MyButtons();
+		btnBack.setOnClickListener(button);
+		btnHome.setOnClickListener(button);
+		btnBook.setOnClickListener(button);
 		
 		myList = createServiceList(); //create testing list of Services
 		
-		final ListView lv = (ListView) findViewById(R.id.smart_listview);
+		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		CustomAdapter serviceAdapter = new CustomAdapter();
 		lv.setAdapter(serviceAdapter);
 		lv.setClickable(false);
@@ -52,12 +60,38 @@ public class ServiceOptionActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				ServiceOptions item = (ServiceOptions) lv.getItemAtPosition(position);
-				Toast.makeText(getApplicationContext(), "Click on: "+item.getServiceName(), Toast.LENGTH_SHORT).show();
+//				ServiceOptions item = (ServiceOptions) lv.getSelectedItem();// testing line
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getServiceName(), Toast.LENGTH_SHORT).show();
+				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
+				//send selected Clinic Id to new activity
+				intent.putExtra("ClinicId", String.valueOf(myList.get(position).getServiceId()));
+				//prevent to open too many same activity
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 			}
 		});
 
 	}// end onCreate()
+	
+	private class MyButtons implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			switch(v.getId()){
+			case R.id.header_btn_back:
+				finish();
+				break;
+			case R.id.footer_btn_home:
+				intent = new Intent(getApplicationContext(),MainViewActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				break;
+			case R.id.footer_btn_book:
+				Toast.makeText(getApplicationContext(), "BOOK button - yeah!", Toast.LENGTH_SHORT).show();
+				break;
+			}
+		}
+	}
 	
 	private class CustomAdapter extends BaseAdapter{
 		

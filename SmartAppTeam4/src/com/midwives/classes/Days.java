@@ -7,7 +7,8 @@ public enum Days {
 	THURSDAY("thursday",false),
 	FRIDAY("friday",false),
 	SATURDAY("saturday",false),
-	SUNDAY("sunday",false);
+	SUNDAY("sunday",false),
+	MISCELLANEOUS("miscellaneous",false);
     
     private String dayName;
 	private boolean openStatus;

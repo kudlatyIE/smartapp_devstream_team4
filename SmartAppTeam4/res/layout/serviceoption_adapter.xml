@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" 
+    android:descendantFocusability="blocksDescendants"    
     >
-    
     	<TextView 
     	    android:id="@+id/serviceoption_adapter_textitem"
-    	    android:layout_width="wrap_content"
+    	    android:layout_width="0dp"
     	    android:layout_height="wrap_content"
     	    android:layout_weight="1"
     	    android:text="service option item x"
@@ -20,6 +20,12 @@
     	    android:layout_height="wrap_content"
     	    android:layout_gravity="end"
     	    android:text="@string/btn_forward"
+    	    
     	    />
   
 </LinearLayout>
+
+<!-- 
+Button
+android:focusable="false"
+ -->

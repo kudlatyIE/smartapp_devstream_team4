@@ -3,10 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" 
+    android:layout_margin="@dimen/margin_small"
+    android:background="#aa11bb22"
+    android:descendantFocusability="blocksDescendants"
     >
     <LinearLayout 
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         
@@ -15,13 +18,30 @@
     	    android:id="@+id/clinicsoption_adapter_text_clinicname"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
+    	    android:textStyle="bold"
     	    android:text="@string/clinic_name"
+        />
+        <TextView 
+    	    android:id="@+id/clinicsoption_adapter_text_clinicaddress"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    
         />
     	
     	<TextView 
-    	    android:id="@+id/clinicsoption_adapter_text_bookongdate"
+    	    android:id="@+id/clinicsoption_adapter_text_reccurence"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
+    	    android:layout_marginLeft="@dimen/margin_left"
+    	    android:layout_marginStart="@dimen/margin_left"
+    	    android:text="@string/booking_date_tmp"
+        />
+    	<TextView 
+    	    android:id="@+id/clinicsoption_adapter_text_bookongday"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginLeft="@dimen/margin_left"
+    	    android:layout_marginStart="@dimen/margin_left"
     	    android:text="@string/booking_date_tmp"
         />
     </LinearLayout>

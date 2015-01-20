@@ -5,14 +5,23 @@ import java.util.Date;
 public class Clinics {
 	
 	private int clinicId, appointmentInterval;
-	private String clinicName, clinicAddress, recurrence,type;
+	private String clinicName, clinicAddress, type;
 	private Date openingTime, closingTime;
 	private Days openDays;
+	private Recurrence recurrence;
 	private int [][] serviceOptionIds;
 	private Announcements announcement;
 	
 	Clinics(){}
-	Clinics(int id, String name, String address, Date openTime, Date closeTime,String recurrence,
+	public Clinics (int id, String name, String address, Recurrence reccurence, Days days){ // short, for test only!
+		this.clinicId=id;
+		this.clinicName=name;
+		this.clinicAddress=address;
+		this.openDays=days;
+		this.recurrence=reccurence;
+		
+	}
+	public Clinics(int id, String name, String address, Date openTime, Date closeTime,Recurrence recurrence,
 			String type, int appointmentInterval, Days day, int [][] serviceOption){
 		
 		this.clinicId=id;
@@ -52,10 +61,10 @@ public class Clinics {
 	public void setClinicAddress(String clinicAddress) {
 		this.clinicAddress = clinicAddress;
 	}
-	public String getRecurrence() {
+	public Recurrence getRecurrence() {
 		return this.recurrence;
 	}
-	public void setRecurrence(String recurrence) {
+	public void setRecurrence(Recurrence recurrence) {
 		this.recurrence = recurrence;
 	}
 	public Date getOpeningTime() {

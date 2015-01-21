@@ -13,31 +13,8 @@
         android:layout_margin="5dp"
         android:orientation="vertical"
         >
-        <LinearLayout 
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            
-            <Button 
-                android:id="@+id/app_calendar_btn_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_back"
-                />
-            <TextView 
-                android:id="@+id/app_calendar_text_calendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_calendar"
-                />
-        </LinearLayout>
-        <TextView 
-            android:id="@+id/app_calendar_text_clinic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/clinic_name"
-            />
+
+
         <LinearLayout 
             android:orientation="horizontal"
             android:layout_width="match_parent"

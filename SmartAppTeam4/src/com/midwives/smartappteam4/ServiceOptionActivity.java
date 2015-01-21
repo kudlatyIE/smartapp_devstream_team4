@@ -65,6 +65,7 @@ public class ServiceOptionActivity extends Activity {
 				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
 				//send selected Clinic Id to new activity
 				intent.putExtra("ClinicId", String.valueOf(myList.get(position).getServiceId()));
+				intent.putExtra("clinicName", myList.get(position).getServiceName().toString());
 				//prevent to open too many same activity
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
@@ -156,3 +157,4 @@ public class ServiceOptionActivity extends Activity {
 	}
 	
 }
+//Nick

@@ -1,24 +1,34 @@
 package com.midwives.classes;
 
 public enum Days {
-	MONDAY("mondat",false),
-	TUESDAY("tuesday", false),
-	WEDNESDAY("wednesday", false),
-	THURSDAY("thursday",false),
-	FRIDAY("friday",false),
-	SATURDAY("saturday",false),
-	SUNDAY("sunday",false),
-	MISCELLANEOUS("miscellaneous",false);
+	MONDAY(1,"monday",false),
+	TUESDAY(2,"tuesday", false),
+	WEDNESDAY(3,"wednesday", false),
+	THURSDAY(4,"thursday",false),
+	FRIDAY(5,"friday",false),
+	SATURDAY(6,"saturday",false),
+	SUNDAY(0,"sunday",false),
+	MISCELLANEOUS(10,"miscellaneous",false);
     
+	private int dayId;
     private String dayName;
 	private boolean openStatus;
     
-    Days(String name, boolean open){
+    Days(int dayId,String name, boolean open){
+    	this.dayId=dayId;
     	this.dayName=name;
     	this.openStatus=open;
 	}
     
-    public String getDayName(){
+    public int getDayId() {
+		return dayId;
+	}
+
+	public void setDayId(int dayId) {
+		this.dayId = dayId;
+	}
+
+	public String getDayName(){
     	return this.dayName;
     }
     

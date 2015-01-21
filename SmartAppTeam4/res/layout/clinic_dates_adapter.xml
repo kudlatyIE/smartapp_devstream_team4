@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" 
+    android:descendantFocusability="blocksDescendants"
     
     >
     
    <LinearLayout 
-       android:layout_width="wrap_content"
+       android:layout_width="0dp"
        android:layout_height="wrap_content"
        android:orientation="vertical"
        android:layout_gravity="start"
-       android:layout_weight="5"
+       android:layout_margin="@dimen/margin_small"
+       android:layout_weight="1"
        >
        
         <TextView 
@@ -27,6 +29,8 @@
         	android:id="@+id/clinicdates_adapter_text_sub"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
+        	android:layout_marginLeft="@dimen/margin_left"
+        	android:layout_marginStart="@dimen/margin_left"
         	android:text="@string/sub_text"
         	android:textStyle="italic"
         />
@@ -39,10 +43,10 @@
        android:layout_gravity="end"
        android:text="@string/go"
        android:textStyle="bold"
-       android:layout_weight="1"
+
        />
     
 
 </LinearLayout>
 <!-- 
-just nothing.. -->
+Nick -->

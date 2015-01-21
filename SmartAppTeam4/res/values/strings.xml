@@ -36,6 +36,7 @@
 
     
     <string name="title_activity_clinic_options">Clinics</string>
+    <string name="clinic_hint">Select a calendar from </string>
     <string name="clinic_optiontext">Select the Clinic Calendar youd like to view</string>
     <string name="clinic_name_bookingday">Clinic Name and Days for Appointments</string>
     <string name="booking_date_tmp">Weekly, Monday</string>

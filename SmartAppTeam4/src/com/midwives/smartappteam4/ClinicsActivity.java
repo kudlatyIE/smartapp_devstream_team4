@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import com.midwives.classes.Clinics;
 import com.midwives.classes.Days;
 import com.midwives.classes.Recurrence;
-import com.midwives.smartappteam4.ServiceOptionActivity.ViewHolder;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-//test change 
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -35,6 +32,7 @@ public class ClinicsActivity extends Activity {
 	private ArrayList<Clinics> myList; //array just for test
 	
 	private int id;
+	private String hint,clinicName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,15 +40,19 @@ public class ClinicsActivity extends Activity {
 		//Receive Clinic Id from previous activity
 		extras = getIntent().getExtras();
 		id = Integer.parseInt(extras.getString("ClinicId"));
+		clinicName = extras.getString("clinicName");
 		//set title and subtitle for this activity
 		tvTitle = (TextView) findViewById(R.id.header_text_title);
 		tvSubtitle = (TextView) findViewById(R.id.header_text_subtitle);
 		tvTitle.setText(R.string.title_activity_clinic_options);
-		tvSubtitle.setText(R.string.clinic_optiontext);
+		//set hint text as subtitle view
+		hint = getResources().getString(R.string.clinic_hint).concat(clinicName);
+		tvSubtitle.setText(hint);
 		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_btn_home);
 		btnBook = (Button) findViewById(R.id.footer_btn_book);
+		//add listener for buttons
 		MyButtons button = new MyButtons();
 		btnBack.setOnClickListener(button);
 		btnHome.setOnClickListener(button);
@@ -59,7 +61,7 @@ public class ClinicsActivity extends Activity {
 		//create clinics list for testing....
 		myList=createClinicList();
 		
-		//populate list f clinics...
+		//populate list of clinics...
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		CustomAdapter clinicsAdapter = new CustomAdapter();
 		lv.setAdapter(clinicsAdapter);
@@ -70,7 +72,12 @@ public class ClinicsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ String.valueOf(position), Toast.LENGTH_SHORT).show();
+				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				intent.putExtra("clinicName", myList.get(position).getClinicName());// to be handle by clinicID in the future...
+				intent.putExtra("weekDay", myList.get(position).getOpenDays().getDayName());
+				startActivity(intent);
 				
 			}
 		});
@@ -168,4 +175,4 @@ public class ClinicsActivity extends Activity {
 	}
 }
 
-// TO do: create test array with clinics, populate listView and add listener
+// Nick

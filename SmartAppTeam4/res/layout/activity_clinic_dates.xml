@@ -2,116 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    
+    android:orientation="vertical" 
     >
     
-    <LinearLayout 
-        android:id="@+id/clinicdates_top"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        
-        >
-        <Button 
-            android:id="@+id/clinicdates_btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_back"
-            
-            android:layout_weight="1"
-            />
-
-        <TextView
-            android:id="@+id/clinicdatec_text_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/title_activity_clinic_dates"
-            android:textSize="18sp"
-            android:layout_weight="5"
-             />
-        
-    </LinearLayout>
-    
-	<LinearLayout 
-	    android:id="@+id/clinicdates_center"
-	    android:layout_below="@+id/clinicdates_top"
-
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_margin="5dp"
-	    android:orientation="vertical"
-	    
-	    >
-        
-	    <TextView
-        	android:id="@+id/clinicdates_text_clinic_name"
-       		android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:layout_margin="5dp"
-        	android:gravity="center"
-        	android:text="@string/clinic_name" />
-    
-    	<ListView 
-        	android:id="@+id/clinicdates_list"
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	>
-        
-    	</ListView>
-    
-    	
-	    
-	</LinearLayout>
-    
-    <LinearLayout 
-        android:id="@+id/clinicdates_bottom"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        
-        >
-    	<Button 
-        	android:id="@+id/clinicdates_btn_calendar"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_gravity="end"
-        	android:text="@string/btn_calendar"
-        	/>
-        
-        <LinearLayout 
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:layout_margin="5dp"
-        	android:orientation="horizontal"
-        	android:layout_gravity="bottom"
-        
-        >
-        
-        <Button 
-            android:id="@+id/clinicdates_btn_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/btn_home"
-            android:layout_weight="1"
-            />
-        
-        <Button 
-            android:id="@+id/clinicdates_btn_book"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/btn_book"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
-    </LinearLayout>
+   <include layout="@layout/smart_header" />
+   <include layout="@layout/smart_listview" />
+   <include layout="@layout/smart_footer_clinicdates"/>
+ 
 
 </RelativeLayout>
 <!-- 
-just nothing.. -->
+Nick.. -->

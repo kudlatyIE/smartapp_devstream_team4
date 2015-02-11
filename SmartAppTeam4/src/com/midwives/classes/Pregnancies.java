@@ -15,7 +15,10 @@ public class Pregnancies {
 	private String lastMenstrualPeriod;
 	private String gestation;
 	
-public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String birthMode, String perineum, String antiD, String feeding, String lastMenstrualPeriod, String gestation) {
+	public Pregnancies(){}
+	
+	public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String birthMode, 
+					String perineum, String antiD, String feeding, String lastMenstrualPeriod, String gestation) {
 	
 	this.idNum = idNum;
 	this.serviceUserId = serviceUserId;

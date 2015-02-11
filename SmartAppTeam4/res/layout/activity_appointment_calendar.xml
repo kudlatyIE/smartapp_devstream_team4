@@ -4,88 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" 
     >
-
-    <LinearLayout 
-        android:id="@+id/app_calendar_top"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        >
-
-
-        <LinearLayout 
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <Button 
-                android:id="@+id/app_calendar_btn_prev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_prev" />
-            <TextView
-                android:id="@+id/app_calendar_text_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/data_tmp" />
-            <Button
-                android:id="@+id/app_calendar_btn_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/btn_next" />"
-        </LinearLayout>
-    </LinearLayout>
-    
-    <TextView 
-        android:id="@+id/app_calendar_text_app_number"
-        android:layout_below="@+id/app_calendar_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/app_number"
-        />
-    <ListView 
-        android:id="@+id/app_calendar_list"
-        android:layout_below="@+id/app_calendar_text_app_number"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-    </ListView>
-    
-    <LinearLayout 
-        android:id="@+id/app_calendar_bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom"
-        
-        >
-        
-        <Button 
-            android:id="@+id/app_calendar_btn_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/btn_home"
-            android:layout_weight="1"
-            />
-        
-        <Button 
-            android:id="@+id/app_calendar_btn_book"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/btn_book"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
+	
+   <include layout="@layout/smart_appointment_calendar_header" />
+   <include layout="@layout/smart_footer" />
+   <include layout="@layout/smart_appoitment_calendar_listview" />
 
 </RelativeLayout>

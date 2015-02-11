@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.midwives.classes.ServiceOptions;
 import com.midwives.classes.XFiles;
 import com.midwives.smartappteam4.ClinicsActivity.ViewHolder;
 
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -68,7 +70,8 @@ public class ClinicDatesActivity extends Activity {
 		myList = XFiles.getDateList(weekDay);
 		//populate listView content
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
-		CustomAdapter customAdapter = new CustomAdapter();
+		
+		MyAdapter customAdapter = new MyAdapter(getApplicationContext(),R.layout.clinic_dates_adapter,myList);
 		lv.setAdapter(customAdapter);
 		
 		//listView listener....
@@ -78,6 +81,14 @@ public class ClinicDatesActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString(), Toast.LENGTH_SHORT).show();
+				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
+				
+				//send selected date and clinic name to next activity
+				intent.putExtra("appointment_date", myList.get(position).toString());
+				intent.putExtra("week_day", weekDay);
+				intent.putExtra("clinic_name", clinicName);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 			}	
 		});
 		
@@ -106,57 +117,39 @@ public class ClinicDatesActivity extends Activity {
 		}
 	}
 	//---custom adapter------------
-	
-	private class CustomAdapter extends BaseAdapter{
+	public class MyAdapter extends ArrayAdapter<String> { 
 		
-		LayoutInflater myInflater;
+		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<String> objects) { 
+			super(ctx, txtViewResourceId, objects); 
+		} 
+		@Override 
+		public View getDropDownView(int position, View cnvtView, ViewGroup prnt) { 
+			return getCustomView(position, cnvtView, prnt); 
+		} 
+		@Override 
+		public View getView(int pos, View cnvtView, ViewGroup prnt) { 
+			return getCustomView(pos, cnvtView, prnt); 
+		} 
 		
-		CustomAdapter(){
-			myInflater = (LayoutInflater) ClinicDatesActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		}
-
-		@Override
-		public int getCount() {
-			return myList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getCustomView(int position, View convertView, ViewGroup parent) { 
 			final ViewHolder vHolder = new ViewHolder();
+			LayoutInflater inflater = getLayoutInflater(); 
+			convertView = inflater.inflate(R.layout.clinic_dates_adapter, parent, false); //layout adapter HERE!
 			
-			if(convertView==null){
-				convertView = myInflater.inflate(R.layout.clinic_dates_adapter, parent, false);
-				//now inflate our adapter
-				vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
-				vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
-				//there are two fields (textView)
-			}else  convertView.setTag(vHolder);
-			
-			//set service name from ArrayList into adapter TextView
+			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
+			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
+		
 			vHolder.tvName.setText((position+1) + " - ID: "+weekDay); //add value from previous Activity for test only!
-
 			vHolder.tvDays.setText(myList.get(position).toString());// Available data for test only
 			
 			return convertView;
-		}
-		
+		} 
 	}
 	
 	class ViewHolder{
-		//here we declare all fields for current adapter
 		TextView tvName,tvDays;	
 	}
+	
 
 }
 //Nick

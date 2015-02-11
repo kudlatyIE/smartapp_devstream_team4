@@ -9,13 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,7 +51,8 @@ public class ServiceOptionActivity extends Activity {
 		myList = createServiceList(); //create testing list of Services
 		
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
-		CustomAdapter serviceAdapter = new CustomAdapter();
+		
+		MyAdapter serviceAdapter = new MyAdapter(getApplicationContext(),R.layout.serviceoption_adapter,myList);
 		lv.setAdapter(serviceAdapter);
 		lv.setClickable(false);
 		//listView listener
@@ -93,56 +94,38 @@ public class ServiceOptionActivity extends Activity {
 			}
 		}
 	}
-	
-	private class CustomAdapter extends BaseAdapter{
+	public class MyAdapter extends ArrayAdapter<ServiceOptions> { 
 		
-		LayoutInflater myInflater;
+		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<ServiceOptions> objects) { 
+			super(ctx, txtViewResourceId, objects); 
+		} 
+		@Override 
+		public View getDropDownView(int position, View cnvtView, ViewGroup prnt) { 
+			return getCustomView(position, cnvtView, prnt); 
+		} 
+		@Override 
+		public View getView(int pos, View cnvtView, ViewGroup prnt) { 
+			return getCustomView(pos, cnvtView, prnt); 
+		} 
 		
-		CustomAdapter(){
-			myInflater = (LayoutInflater) ServiceOptionActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		}
-
-		@Override
-		public int getCount() {
-			return myList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getCustomView(int position, View convertView, ViewGroup parent) { 
 			final ViewHolder vHolder = new ViewHolder();
+			LayoutInflater inflater = getLayoutInflater(); 
+			convertView = inflater.inflate(R.layout.serviceoption_adapter, parent, false); //layout adapter HERE!
 			
-			if(convertView==null){
-				convertView = myInflater.inflate(R.layout.serviceoption_adapter, parent, false);
-				//now inflate our adapter
-				vHolder.tView1 = (TextView) convertView.findViewById(R.id.serviceoption_adapter_textitem);
-				//there is only one field in service_option_adapter
-				//we'll add more in other adapters....
-			}else  convertView.setTag(vHolder);
-			
-			//set service name from ArrayList into adapter TextView
+			vHolder.tView1 = (TextView) convertView.findViewById(R.id.serviceoption_adapter_textitem);
+		
 			vHolder.tView1.setText(myList.get(position).getServiceName());
 			
 			return convertView;
-		}
-		
+		} 
+	}
+
+	class ViewHolder{
+		TextView tView1, tView2;
 	}
 	
-	class ViewHolder{
-		//here we declare all fields for current adapter
-		TextView tView1, tView2;
-		
-	}
+
 	
 	private ArrayList<ServiceOptions> createServiceList(){
 		

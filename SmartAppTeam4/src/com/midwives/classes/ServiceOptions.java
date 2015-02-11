@@ -1,5 +1,9 @@
 package com.midwives.classes;
-
+/**
+ * Service provider as "Domino Dublin", "Domino Wicklow", "ETH Dublin", "Satelite"
+ * @author kudlaty
+ *
+ */
 public class ServiceOptions {
 	
 	private String serviceName;

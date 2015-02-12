@@ -7,12 +7,10 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="21" />
-   
-       <!-- Allow to connect with internet and to know the current network state-->
-    	<uses-permission android:name="android.permission.INTERNET">
-        </uses-permission>
-    	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE">
-  		</uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -20,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".LoginActivity"
+            android:name=".SplashScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainViewActivity"
             android:label="@string/title_activity_main_view" >
@@ -93,11 +90,16 @@
             android:name=".ServiceUserAddressEditActivity"
             android:label="@string/title_activity_service_user_address_edit" >
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_splash_screen" >
+        </activity>
     </application>
 
-</manifest>
-<!--         <activity
+</manifest><!--
+             <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
-        </activity>
- -->
+        </activity>
+-->
+

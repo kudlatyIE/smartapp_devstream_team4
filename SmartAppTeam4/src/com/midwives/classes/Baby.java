@@ -13,6 +13,7 @@ public class Baby {
 	private String hearingTest;
 	private String newBornScreeningTest;
 	
+	public Baby(){}// used if no babies....
 	public Baby(int babyId, int pregnancyId, String hospitalNumber, String gender, double weight, Date deliveryDateTime, String vitaminK, String hearingTest, String newBornScreeningTest ) {
 		this.babyId = babyId;
 		this.pregnancyId = pregnancyId;

@@ -1,15 +1,14 @@
 package com.midwives.classes;
 
 public enum VisitType {
-	ANTE_NATAL("ante natal",0),
-	PRE_NATAL("pre natal",1);
+	ANTE_NATAL("ante natal"),
+	PRE_NATAL("pre natal");
 	
 	private String visitTypeName;
 	private int visitTypeId; 
 	
-	VisitType(String name, int id){
+	VisitType(String name){
 		this.visitTypeName=name;
-		this.visitTypeId=id;
 	}
 
 	public String getVisitTypeName() {
@@ -20,13 +19,6 @@ public enum VisitType {
 		this.visitTypeName = visitTypeName;
 	}
 
-	public int getVisitTypeId() {
-		return this.visitTypeId;
-	}
-
-	public void setVisitTypeId(int visitTypeId) {
-		this.visitTypeId = visitTypeId;
-	}
 	
 	
 

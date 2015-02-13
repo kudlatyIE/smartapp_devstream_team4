@@ -39,7 +39,7 @@ public class AppointmentCalendarActivity extends Activity {
 	private ListView lv;
 	private String hint,clinicName, appointmentDate,weekDay, jsonString, token; 
 	
-	private ArrayList<AppointmentJson> myList;
+	private ArrayList<Appointment> myList;
 //	private ArrayList<ServiceOptions> service;
 //	private ArrayList<ServiceUser> user;
 //	private ArrayList<Clinics> clinic;
@@ -79,9 +79,12 @@ public class AppointmentCalendarActivity extends Activity {
 		
 		// generate testing data only - test json...........
 		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),SmartAuth.getTableUrl());
-		this.token=SmartAuth.getToken();
-		jsonString=smart.accessTheDBTable(token);
-		myList = AppointmentParser.parseAppointment(jsonString);
+		
+		this.token=SmartAuth.getToken(); // get TOKEN
+		
+		jsonString=smart.accessTheDBTable(token); // get json String
+		
+		myList = AppointmentParser.parseAppointment(jsonString); // parse json String into ArrayList
 		
 		//populate listView
 		ListView lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
@@ -91,9 +94,13 @@ public class AppointmentCalendarActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), myList.get(position).getLinks().getServiceOptions()+"\n"+
-								myList.get(position).getLinks().getServiceProviders()+"\n"+
-								myList.get(position).getLinks().getServiceUsers(), Toast.LENGTH_SHORT).show();
+
+				intent = new Intent(getApplicationContext(),ServiceUserActivity.class);
+				intent.putExtra("service option", myList.get(position).getLinks().getServiceOptions());
+				intent.putExtra("service provider", myList.get(position).getLinks().getServiceProviders());
+				intent.putExtra("service user", myList.get(position).getLinks().getServiceUsers());
+				startActivity(intent);
+				
 			}
 		});
 		
@@ -125,9 +132,9 @@ public class AppointmentCalendarActivity extends Activity {
 		}
 	}
 	
-	public class MyAdapter extends ArrayAdapter<AppointmentJson> { 
+	public class MyAdapter extends ArrayAdapter<Appointment> { 
 		
-		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<AppointmentJson> objects) { 
+		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<Appointment> objects) { 
 			super(ctx, txtViewResourceId, objects); 
 		} 
 		@Override 
@@ -148,9 +155,9 @@ public class AppointmentCalendarActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_user);
 			vHolder.tvGestation = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_data);
 		
-			vHolder.tvTime.setText(myList.get(position).getTime());
-			vHolder.tvName.setText(myList.get(position).getServiceUser().getUserName());
-			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getGestation()); 
+			vHolder.tvTime.setText(myList.get(position).getAppTime());
+			vHolder.tvName.setText(myList.get(position).getServiceUser().getPersonalFields().getName());
+			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getPregnancy().getGestation()); 
 			
 			return convertView;
 		} 

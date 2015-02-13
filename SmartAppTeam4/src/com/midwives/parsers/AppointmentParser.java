@@ -10,9 +10,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.midwives.classes.Appointment;
-import com.midwives.classes.AppointmentJson;
 import com.midwives.classes.Links;
+import com.midwives.classes.PersonalFields;
+import com.midwives.classes.Pregnancies;
 import com.midwives.classes.ServiceUser;
 
 
@@ -32,14 +35,14 @@ public class AppointmentParser implements Serializable{
 	private final static String TAG_USER_GESTATION="gestation", TAG_USER_ID="id", TAG_USER_NAME="name";
 	private final static String TAG_SERVICE_OPTIONS="service_options",TAG_SERVICE_PROVIDER="service_provider",TAG_SERVICE_USER="service_user";
 	private static String jsonString;
-	private static Appointment appData;
+//	private static Appointment appData;
 	
 	private static JSONArray jArray;
 	private static JSONObject json;
 	
-	public static ArrayList<AppointmentJson> parseAppointment(String data){
+	public static ArrayList<Appointment> parseAppointment(String data){
 		
-		 ArrayList<AppointmentJson> myList = new ArrayList<AppointmentJson>();
+		 ArrayList<Appointment> myList = new ArrayList<Appointment>();
  
 		 
 		 try {
@@ -49,40 +52,72 @@ public class AppointmentParser implements Serializable{
 			for(int i=0;i<jArray.length();i++){
 				 json = jArray.getJSONObject(i);
 				 
-				 String clinicId = String.valueOf(json.getInt(TAG_CLINIC_ID));
+				 int clinicID = json.getInt(TAG_CLINIC_ID);
 				 String date = json.getString(TAG_DATE);
-				 String id = String.valueOf(json.getInt(TAG_ID));
-				 String serviceOptions = json.getJSONObject(TAG_LINKS).getString(TAG_SERVICE_OPTIONS);
-				 String serviceProvider = json.getJSONObject(TAG_LINKS).getString(TAG_SERVICE_PROVIDER);
-				 String serviceUser = json.getJSONObject(TAG_LINKS).getString(TAG_SERVICE_USER);
+				 int id = json.getInt(TAG_ID);//appointment ID
+				 //Links
+				 String serviceOptionsLink = json.getJSONObject(TAG_LINKS).getString(TAG_SERVICE_OPTIONS);
+				 String serviceProviderLink = json.getJSONObject(TAG_LINKS).getString(TAG_SERVICE_PROVIDER);
+				 String serviceUserLink = json.getJSONObject(TAG_LINKS).getString(TAG_SERVICE_USER);
+				 //
 				 String priority = json.getString(TAG_PRIORITY);
+				 //---------------------------------------------------------
+				 //how to parse  String array from json???
 				 
-				 //how to parse nested String array from jsonArray???
-//				 String[] serviceOptionIDs = json.getNames(getJSONObject(TAG_SERVICE_OPTION_IDS));
+//				 int[] serviceOptionIDs = null;//{11,222,333,444};
 				 
-				 String serviceProviderID = String.valueOf(json.getInt(TAG_SERVICE_PROVIDER_ID));
-				 String serviceUserID = String.valueOf(json.getInt(TAG_SERVCE_USER_ID));
-				 
-				 String userGestation;  
-				 try{
-					 if(json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION).equals(null)) userGestation =  " ---- ";
-					 else userGestation =  json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION);
-					  
-				 }catch(Exception e){
-					 userGestation =  " ---- "; // return when gestation is NULL
+				 String[] visitLogs;
+				 JSONArray arrstr = json.getJSONArray(TAG_VISIT_LOGS);
+				 if (arrstr.length()!=0){
+					 visitLogs = new String[arrstr.length()];
+					 for(int j=0;i<arrstr.length();j++){
+						 visitLogs[j]= arrstr.getString(j);
+						 Log.e("String[j]= ", visitLogs[j]);
+					 }
+				 }else {
+					 visitLogs= new String[1];
+					 visitLogs[0]="no logs";
 				 }
-
+				 //---------------------------------
+				 int[]serviceOptionIDs;
+				 JSONArray arrint = json.getJSONArray(TAG_SERVICE_OPTION_IDS);
+				 if(arrint.length()!=0){
+					 serviceOptionIDs = new int[arrint.length()];
+					 for(int j=0;i<arrint.length();j++){
+						 serviceOptionIDs[j]=arrint.getInt(j);
+						 Log.e("int[j]= ", String.valueOf(serviceOptionIDs[j]));
+					 }
+				 }else {
+					 serviceOptionIDs = new int[1];
+					 serviceOptionIDs[0]=99999;
+				 }
+				 //-------------------------------------------------
 				 
-				 String userName = json.getJSONObject(TAG_USER).getString(TAG_USER_NAME);
-				 String userId= String.valueOf(json.getJSONObject(TAG_USER).getInt(TAG_USER_ID));
+				 int serviceProviderID = json.getInt(TAG_SERVICE_PROVIDER_ID);
+				 int serviceUserID = json.getInt(TAG_SERVCE_USER_ID);
+
+				 String gestation;  
+				 try{
+					 if(json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION).equals(null)) gestation =  " ---- ";
+					 else gestation =  json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION);  
+				 }catch(Exception e){
+					 gestation =  " ---- "; // return when gestation is NULL
+				 }
+				 
+				 String name = json.getJSONObject(TAG_USER).getString(TAG_USER_NAME);
+				 int userId= json.getJSONObject(TAG_USER).getInt(TAG_USER_ID);
 				 String time = json.getString(TAG_TIME);
 				 //to do: parse visit_logs Array.....
 //				 String[] visitLogs;
 				 String visitType = json.getString(TAG_VISIT_TYPE);
 				 
-				 //to fix.....
-				 myList.add(new AppointmentJson(clinicId,date,id,new Links(serviceOptions,serviceProvider,serviceUser),
-						 					priority,serviceProviderID,serviceUserID,new ServiceUser(userGestation,userId, userName),time,visitType));
+//				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),
+//						 	priority,serviceProviderID,new ServiceUser(new Pregnancies(gestation),userId,new PersonalFields(name))
+//				 			,serviceUserID,time,visitType));
+				 //cant parse [] from json yet, will be fixed.....
+				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
+						 					serviceOptionIDs,serviceProviderID,new ServiceUser(new Pregnancies(gestation),userId,
+						 					new PersonalFields(name)),serviceUserID,time,visitLogs,visitType));
 				 
 				 
 			 }

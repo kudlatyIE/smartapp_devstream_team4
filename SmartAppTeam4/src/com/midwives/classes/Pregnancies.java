@@ -17,121 +17,105 @@ public class Pregnancies {
 	
 	public Pregnancies(){}
 	
+	public Pregnancies(String gestation){// used in Appointment
+		this.gestation=gestation;
+	}
+	
 	public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String birthMode, 
 					String perineum, String antiD, String feeding, String lastMenstrualPeriod, String gestation) {
 	
-	this.idNum = idNum;
-	this.serviceUserId = serviceUserId;
-	this.estDeliveryDate = estDeliveryDate;
-	this.additionalInfo = additionalInfo;
-	this.birthMode = birthMode;
-	this.perineum = perineum;
-	this.antiD = antiD;
-	this.feeding = feeding;
-	this.lastMenstrualPeriod = lastMenstrualPeriod;
-	this.gestation = gestation;
-	
+		this.idNum = idNum;
+		this.serviceUserId = serviceUserId;
+		this.estDeliveryDate = estDeliveryDate;
+		this.additionalInfo = additonalInfo;
+		this.birthMode = birthMode;
+		this.perineum = perineum;
+		this.antiD = antiD;
+		this.feeding = feeding;
+		this.lastMenstrualPeriod = lastMenstrualPeriod;
+		this.gestation = gestation;
+	}
 
-}
+	public int getIdNum() {
+		return idNum;
+	}
 
-public void setidNum(int newId)
-{
-	idNum = newId;
-}
+	public void setIdNum(int idNum) {
+		this.idNum = idNum;
+	}
 
-public void setServiceUserId(int newServiceUserId)
-{
-	serviceUserId = newServiceUserId;
-	
-}
+	public int getServiceUserId() {
+		return serviceUserId;
+	}
 
-public void setestDeliveryDate(String newEstDeliveryDate)
-{
-	estDeliveryDate = newEstDeliveryDate;
-}
+	public void setServiceUserId(int serviceUserId) {
+		this.serviceUserId = serviceUserId;
+	}
 
-public void setAdditionalInfo(String newAdditionalInfo)
-{
-	additionalInfo = newAdditionalInfo;
-}
-public void setBirthMode(String newBirthMode)
-{
-	birthMode = newBirthMode;
-}
+	public String getEstDeliveryDate() {
+		return estDeliveryDate;
+	}
 
-public void perineum(String newPerineum)
-{
-	perineum = newPerineum;
-}
+	public void setEstDeliveryDate(String estDeliveryDate) {
+		this.estDeliveryDate = estDeliveryDate;
+	}
 
-public void antiD(String newAntiD)
-{
-	antiD = newAntiD;
-}
-public void feeding(String newFeeding)
-{
-	feeding = newFeeding;
-}
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
 
-public void lastMenstrualPeriod(String newLastMenustrualPeriod)
-{
-	lastMenstrualPeriod = newLastMenustrualPeriod;
-}
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
 
-public void gestation(String newGestation)
-{
-	gestation = newGestation;
-}
+	public String getBirthMode() {
+		return birthMode;
+	}
 
-public int getidNum()
-{
-	return idNum;
-	
-}
+	public void setBirthMode(String birthMode) {
+		this.birthMode = birthMode;
+	}
 
-public int getServiceUserId()
-{
-	return serviceUserId;
-}
-public String getEstDeliveryDate()
-{
-	return estDeliveryDate;
-}
+	public String getPerineum() {
+		return perineum;
+	}
 
-public String getAdditionalInfo()
-{
-	return additionalInfo;
-	
-}
+	public void setPerineum(String perineum) {
+		this.perineum = perineum;
+	}
 
-public String getbirthMode()
-{
-	return birthMode;
-}
+	public String getAntiD() {
+		return antiD;
+	}
 
-public String getPerineum()
-{
-	return perineum;
-}
+	public void setAntiD(String antiD) {
+		this.antiD = antiD;
+	}
 
-public String getantiD()
-{
-	return antiD;
-}
-public String feeding()
-{
-	return feeding;
-}
+	public String getFeeding() {
+		return feeding;
+	}
 
-public String getLastMenstrualPeriod()
-{
-	return lastMenstrualPeriod;
-}
+	public void setFeeding(String feeding) {
+		this.feeding = feeding;
+	}
 
-public String getGestation()
-{
-	return gestation;
-}
+	public String getLastMenstrualPeriod() {
+		return lastMenstrualPeriod;
+	}
+
+	public void setLastMenstrualPeriod(String lastMenstrualPeriod) {
+		this.lastMenstrualPeriod = lastMenstrualPeriod;
+	}
+
+	public String getGestation() {
+		return gestation;
+	}
+
+	public void setGestation(String gestation) {
+		this.gestation = gestation;
+	}
+
 
 }
 

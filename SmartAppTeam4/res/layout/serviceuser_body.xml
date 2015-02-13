@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_below="@+id/serviceuser_header_edit"
+    android:layout_above="@+id/smart_layout_footer"
+    >
+    
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button 
+            android:id="@+id/serviceuser_body_btn_antenatal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_ante_natal"
+            />
+        <Button 
+            android:id="@+id/serviceuser_body_btn_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_personal"
+            />
+        <Button 
+            android:id="@+id/serviceuser_body_btn_postnatal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_postnatal"
+            />
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/serviceuser_body_layout_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        >
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_contact"
+            />
+        <TextView 
+            android:id="@+id/serviceuser_body_text_user_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="@string/serviceuser_contact"
+            />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/serviceuser_body_layout_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        >
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_direction_hint"
+            />
+        <TextView 
+            android:id="@+id/serviceuser_body_text_user_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="@string/user_address_tmp"
+            />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/serviceuser_body_layout_nextofkin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        >
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_nextofkin"
+            />
+        <TextView 
+            android:id="@+id/serviceuser_body_text_user_nextofkin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="@string/serviceuser_nextofkin"
+            />
+    </LinearLayout>
+    
+    <Button 
+        android:id="@+id/serviceuser_body_book_appointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/serviceuser_btn_book"
+        />
+    
+
+</LinearLayout>

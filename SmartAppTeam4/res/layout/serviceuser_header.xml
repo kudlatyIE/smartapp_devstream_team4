@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   		android:id="@+id/serviceuser_header_edit"
+   		android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+    	 >
+    	 
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        >
+        <ImageButton 
+    	    android:id="@+id/serviceuser_header_imgbtn_back"
+    	    style="@style/img_btn_style"
+            android:background="@drawable/ic_back_arrow"   
+   
+    	    />
+    	    
+    	 <TextView
+           android:id="@+id/serviceuser_header_text_title"
+           android:layout_width="0dp"
+           android:layout_height="48dp"
+           android:gravity="center"
+           
+           android:text="@string/header_title"
+           android:textSize="18sp"
+           android:layout_weight="1" 
+        	/>
+    	 <ImageButton 
+    	    android:id="@+id/serviceuser_header_imgbtn_edit"
+           	style="@style/img_btn_style"
+            android:src="@drawable/ic_edit" 
+    	     />
+        
+    </LinearLayout>
+    <TextView 
+        android:id="@+id/serviceuser_header_text_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/serviceuser_userdetail"
+        />
+	
+</LinearLayout>

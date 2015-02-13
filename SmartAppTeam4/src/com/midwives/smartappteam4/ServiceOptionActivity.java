@@ -48,7 +48,7 @@ public class ServiceOptionActivity extends Activity {
 		btnHome.setOnClickListener(button);
 		btnBook.setOnClickListener(button);
 		
-		myList = createServiceList(); //create testing list of Services
+		myList = ServiceOptions.createServiceList(); //create testing list of Services
 		
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		
@@ -124,20 +124,7 @@ public class ServiceOptionActivity extends Activity {
 	class ViewHolder{
 		TextView tView1, tView2;
 	}
-	
 
-	
-	private ArrayList<ServiceOptions> createServiceList(){
-		
-		ArrayList<ServiceOptions> serviceList = new ArrayList<ServiceOptions>();
-		
-		serviceList.add(new ServiceOptions(0,"Domino (Dublin)"));
-		serviceList.add(new ServiceOptions(1,"Domino (Wicklow)"));
-		serviceList.add(new ServiceOptions(2,"ETH (Dublin)"));
-		serviceList.add(new ServiceOptions(3,"ETH (Wicklow)"));
-		serviceList.add(new ServiceOptions(4,"Satelite"));
-		return serviceList;
-	}
 	
 }
 //Nick

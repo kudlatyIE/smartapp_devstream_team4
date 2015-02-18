@@ -15,120 +15,107 @@ public class Pregnancies {
 	private String lastMenstrualPeriod;
 	private String gestation;
 	
-public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String birthMode, String perineum, String antiD, String feeding, String lastMenstrualPeriod, String gestation) {
+	public Pregnancies(){}
 	
-	this.idNum = idNum;
-	this.serviceUserId = serviceUserId;
-	this.estDeliveryDate = estDeliveryDate;
-	this.additionalInfo = additionalInfo;
-	this.birthMode = birthMode;
-	this.perineum = perineum;
-	this.antiD = antiD;
-	this.feeding = feeding;
-	this.lastMenstrualPeriod = lastMenstrualPeriod;
-	this.gestation = gestation;
+	public Pregnancies(String gestation){// used in Appointment
+		this.gestation=gestation;
+	}
 	
-
-}
-
-public void setidNum(int newId)
-{
-	idNum = newId;
-}
-
-public void setServiceUserId(int newServiceUserId)
-{
-	serviceUserId = newServiceUserId;
+	public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String birthMode, 
+					String perineum, String antiD, String feeding, String lastMenstrualPeriod, String gestation) {
 	
-}
+		this.idNum = idNum;
+		this.serviceUserId = serviceUserId;
+		this.estDeliveryDate = estDeliveryDate;
+		this.additionalInfo = additonalInfo;
+		this.birthMode = birthMode;
+		this.perineum = perineum;
+		this.antiD = antiD;
+		this.feeding = feeding;
+		this.lastMenstrualPeriod = lastMenstrualPeriod;
+		this.gestation = gestation;
+	}
 
-public void setestDeliveryDate(String newEstDeliveryDate)
-{
-	estDeliveryDate = newEstDeliveryDate;
-}
+	public int getIdNum() {
+		return idNum;
+	}
 
-public void setAdditionalInfo(String newAdditionalInfo)
-{
-	additionalInfo = newAdditionalInfo;
-}
-public void setBirthMode(String newBirthMode)
-{
-	birthMode = newBirthMode;
-}
+	public void setIdNum(int idNum) {
+		this.idNum = idNum;
+	}
 
-public void perineum(String newPerineum)
-{
-	perineum = newPerineum;
-}
+	public int getServiceUserId() {
+		return serviceUserId;
+	}
 
-public void antiD(String newAntiD)
-{
-	antiD = newAntiD;
-}
-public void feeding(String newFeeding)
-{
-	feeding = newFeeding;
-}
+	public void setServiceUserId(int serviceUserId) {
+		this.serviceUserId = serviceUserId;
+	}
 
-public void lastMenstrualPeriod(String newLastMenustrualPeriod)
-{
-	lastMenstrualPeriod = newLastMenustrualPeriod;
-}
+	public String getEstDeliveryDate() {
+		return estDeliveryDate;
+	}
 
-public void gestation(String newGestation)
-{
-	gestation = newGestation;
-}
+	public void setEstDeliveryDate(String estDeliveryDate) {
+		this.estDeliveryDate = estDeliveryDate;
+	}
 
-public int getidNum()
-{
-	return idNum;
-	
-}
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
 
-public int getServiceUserId()
-{
-	return serviceUserId;
-}
-public String getEstDeliveryDate()
-{
-	return estDeliveryDate;
-}
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
 
-public String getAdditionalInfo()
-{
-	return additionalInfo;
-	
-}
+	public String getBirthMode() {
+		return birthMode;
+	}
 
-public String getbirthMode()
-{
-	return birthMode;
-}
+	public void setBirthMode(String birthMode) {
+		this.birthMode = birthMode;
+	}
 
-public String getPerineum()
-{
-	return perineum;
-}
+	public String getPerineum() {
+		return perineum;
+	}
 
-public String getantiD()
-{
-	return antiD;
-}
-public String feeding()
-{
-	return feeding;
-}
+	public void setPerineum(String perineum) {
+		this.perineum = perineum;
+	}
 
-public String getLastMenstrualPeriod()
-{
-	return lastMenstrualPeriod;
-}
+	public String getAntiD() {
+		return antiD;
+	}
 
-public String getGestation()
-{
-	return gestation;
-}
+	public void setAntiD(String antiD) {
+		this.antiD = antiD;
+	}
+
+	public String getFeeding() {
+		return feeding;
+	}
+
+	public void setFeeding(String feeding) {
+		this.feeding = feeding;
+	}
+
+	public String getLastMenstrualPeriod() {
+		return lastMenstrualPeriod;
+	}
+
+	public void setLastMenstrualPeriod(String lastMenstrualPeriod) {
+		this.lastMenstrualPeriod = lastMenstrualPeriod;
+	}
+
+	public String getGestation() {
+		return gestation;
+	}
+
+	public void setGestation(String gestation) {
+		this.gestation = gestation;
+	}
+
 
 }
 

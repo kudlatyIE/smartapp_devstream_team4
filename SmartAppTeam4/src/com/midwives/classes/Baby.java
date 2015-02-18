@@ -1,36 +1,45 @@
 package com.midwives.classes;
 
-import java.util.Date;
 
 public class Baby {
-	private int babyId;
+	private String birthOutcome;
+	private String screeningTest;
+	private String name;
+	private int id;
 	private int pregnancyId;
 	private String hospitalNumber;
 	private String gender;
 	private double weight;
-	private Date deliveryDateTime;
+	private String deliveryDateTime;
 	private String vitaminK;
 	private String hearingTest;
 	private String newBornScreeningTest;
 	
-	public Baby(int babyId, int pregnancyId, String hospitalNumber, String gender, double weight, Date deliveryDateTime, String vitaminK, String hearingTest, String newBornScreeningTest ) {
-		this.babyId = babyId;
-		this.pregnancyId = pregnancyId;
-		this.hospitalNumber = hospitalNumber;
-		this.gender = gender;
-		this.weight = weight;
-		this.deliveryDateTime = deliveryDateTime;
-		this.vitaminK = vitaminK;
-		this.hearingTest = hearingTest;
-		this.newBornScreeningTest = newBornScreeningTest;		
+	public Baby(){}// used if no babies....
+	
+	public Baby(String birthOutcome, String deliveryDateTime, String gender, String hearing, String hospitalNumber,
+				int id, String name, String screeaningTest, int pregnacyId, String vitaminK, double weight){
+		this.birthOutcome=birthOutcome;
+		this.deliveryDateTime=deliveryDateTime;
+		this.gender=gender;
+		this.hearingTest=hearing;
+		this.hospitalNumber=hospitalNumber;
+		this.id=id;
+		this.name=name;
+		this.screeningTest=screeaningTest;
+		this.pregnancyId=pregnacyId;
+		this.vitaminK=vitaminK;
+		this.weight=weight;
+		
 	}
+	
 
 	public int getBabyId() {
-		return babyId;
+		return id;
 	}
 
 	public void setBabyId(int babyId) {
-		this.babyId = babyId;
+		this.id = babyId;
 	}
 
 	public int getPregnancyId() {
@@ -65,11 +74,11 @@ public class Baby {
 		this.weight = weight;
 	}
 
-	public Date getDeliveryDateTime() {
+	public String getDeliveryDateTime() {
 		return deliveryDateTime;
 	}
 
-	public void setDeliveryDateTime(Date deliveryDateTime) {
+	public void setDeliveryDateTime(String deliveryDateTime) {
 		this.deliveryDateTime = deliveryDateTime;
 	}
 

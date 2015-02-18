@@ -9,7 +9,6 @@ import com.midwives.classes.Recurrence;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -37,14 +37,17 @@ public class ClinicsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clinics);
+		
 		//Receive Clinic Id from previous activity
 		extras = getIntent().getExtras();
 		id = Integer.parseInt(extras.getString("ClinicId"));
 		clinicName = extras.getString("clinicName");
+		
 		//set title and subtitle for this activity
 		tvTitle = (TextView) findViewById(R.id.header_text_title);
 		tvSubtitle = (TextView) findViewById(R.id.header_text_subtitle);
 		tvTitle.setText(R.string.title_activity_clinic_options);
+		
 		//set hint text as subtitle view
 		hint = getResources().getString(R.string.clinic_hint).concat(clinicName);
 		tvSubtitle.setText(hint);
@@ -63,7 +66,7 @@ public class ClinicsActivity extends Activity {
 		
 		//populate list of clinics...
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
-		CustomAdapter clinicsAdapter = new CustomAdapter();
+		MyAdapter clinicsAdapter = new MyAdapter(getApplicationContext(),R.layout.clinicsoption_adapter,myList);
 		lv.setAdapter(clinicsAdapter);
 		
 		//set listener for listView
@@ -74,7 +77,7 @@ public class ClinicsActivity extends Activity {
 					int position, long id) {
 				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ String.valueOf(position), Toast.LENGTH_SHORT).show();
 				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra("clinicName", myList.get(position).getClinicName());// to be handle by clinicID in the future...
 				intent.putExtra("weekDay", myList.get(position).getOpenDays().getDayName());
 				startActivity(intent);
@@ -105,6 +108,44 @@ public class ClinicsActivity extends Activity {
 		}
 	}
 	
+
+	public class MyAdapter extends ArrayAdapter<Clinics> { 
+		
+		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<Clinics> objects) { 
+			super(ctx, txtViewResourceId, objects); 
+		} 
+		@Override 
+		public View getDropDownView(int position, View cnvtView, ViewGroup prnt) { 
+			return getCustomView(position, cnvtView, prnt); 
+		} 
+		@Override 
+		public View getView(int pos, View cnvtView, ViewGroup prnt) { 
+			return getCustomView(pos, cnvtView, prnt); 
+		} 
+		
+		public View getCustomView(int position, View convertView, ViewGroup parent) { 
+			final ViewHolder vHolder = new ViewHolder();
+			LayoutInflater inflater = getLayoutInflater(); 
+			convertView = inflater.inflate(R.layout.clinicsoption_adapter, parent, false); //layout adapter HERE!
+			
+			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicname);
+			vHolder.tvAddress = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicaddress);
+			vHolder.tvRecurrence = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_reccurence);
+			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_bookongday);
+			
+			
+			vHolder.tvName.setText((myList.get(position).getClinicName() + " - ID:"+String.valueOf(id))); //add value from previous Activity for test only!
+			vHolder.tvAddress.setText(myList.get(position).getClinicAddress());
+			vHolder.tvRecurrence.setText(myList.get(position).getRecurrence().getReccName());
+			vHolder.tvDays.setText(myList.get(position).getOpenDays().getDayName());
+			
+			return convertView; } }
+
+	class ViewHolder{
+		//here we declare all fields for current adapter
+		TextView tvName, tvAddress, tvRecurrence,tvDays;	
+	}
+	
 	private ArrayList<Clinics> createClinicList(){
 		ArrayList<Clinics> myList = new ArrayList<Clinics>();
 		
@@ -117,62 +158,7 @@ public class ClinicsActivity extends Activity {
 		
 		return myList;
 	}
-
-	private class CustomAdapter extends BaseAdapter{
-		
-		LayoutInflater myInflater;
-		
-		CustomAdapter(){
-			myInflater = (LayoutInflater) ClinicsActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		}
-
-		@Override
-		public int getCount() {
-			return myList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			final ViewHolder vHolder = new ViewHolder();
-			
-			if(convertView==null){
-				convertView = myInflater.inflate(R.layout.clinicsoption_adapter, parent, false);
-				//now inflate our adapter
-				vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicname);
-				vHolder.tvAddress = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicaddress);
-				vHolder.tvRecurrence = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_reccurence);
-				vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_bookongday);
-				//there is only one field in service_option_adapter
-				//we'll add more in other adapters....
-			}else  convertView.setTag(vHolder);
-			
-			//set service name from ArrayList into adapter TextView
-			vHolder.tvName.setText((myList.get(position).getClinicName() + " - ID:"+String.valueOf(id))); //add value from previous Activity for test only!
-			vHolder.tvAddress.setText(myList.get(position).getClinicAddress());
-			vHolder.tvRecurrence.setText(myList.get(position).getRecurrence().getReccName());
-			vHolder.tvDays.setText(myList.get(position).getOpenDays().getDayName());
-			
-			return convertView;
-		}
-		
-	}
 	
-	class ViewHolder{
-		//here we declare all fields for current adapter
-		TextView tvName, tvAddress, tvRecurrence,tvDays;
-		
-	}
 }
 
 // Nick

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainViewActivity extends Activity {
@@ -15,12 +16,15 @@ public class MainViewActivity extends Activity {
 	Intent intent;
 	Button btnClinics,btnVisits,btnBack;
 	TextView tvTitle, tvSubtitle;
+	LinearLayout anteLayout, postLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
 		
+		anteLayout = (LinearLayout) findViewById(R.id.mainview_Layout_antenatal);
+		postLayout = (LinearLayout) findViewById(R.id.mainview_Layout_postnatal);
 		btnClinics = (Button) findViewById(R.id.mainview_btn_clinics);
 		btnVisits = (Button) findViewById(R.id.mainview_btn_visits);
 		btnBack = (Button) findViewById(R.id.header_btn_back);
@@ -35,6 +39,8 @@ public class MainViewActivity extends Activity {
 		btnClinics.setOnClickListener(myButton);
 		btnVisits.setOnClickListener(myButton);
 		btnBack.setOnClickListener(myButton);
+		anteLayout.setOnClickListener(myButton);
+		postLayout.setOnClickListener(myButton);
 		
 	}
 	
@@ -45,6 +51,16 @@ public class MainViewActivity extends Activity {
 			// TODO Auto-generated method stub
 			Intent intent;
 			switch(v.getId()){
+				case R.id.mainview_Layout_antenatal:
+					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits...............
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(intent);
+					break;
+				case R.id.mainview_Layout_postnatal:
+					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits...............
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(intent);
+					break;
 				case R.id.mainview_btn_clinics:
 					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

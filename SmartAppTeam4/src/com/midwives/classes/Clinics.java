@@ -9,10 +9,18 @@ public class Clinics {
 	private Date openingTime, closingTime;
 	private Days openDays;
 	private Recurrence recurrence;
-	private int [][] serviceOptionIds;
+	private int[] serviceOptionIds;
 	private Announcements announcement;
 	
 	Clinics(){}
+	/**
+	 * Contractor for test only
+	 * @param id
+	 * @param name
+	 * @param address
+	 * @param reccurence
+	 * @param days
+	 */
 	public Clinics (int id, String name, String address, Recurrence reccurence, Days days){ // short, for test only!
 		this.clinicId=id;
 		this.clinicName=name;
@@ -22,7 +30,7 @@ public class Clinics {
 		
 	}
 	public Clinics(int id, String name, String address, Date openTime, Date closeTime,Recurrence recurrence,
-			String type, int appointmentInterval, Days day, int [][] serviceOption){
+			String type, int appointmentInterval, Days day, int [] serviceOption){
 		
 		this.clinicId=id;
 		this.clinicName=name;
@@ -85,10 +93,10 @@ public class Clinics {
 	public void setOpenDays(Days openDays) {
 		this.openDays = openDays;
 	}
-	public int[][] getServiceOptionIds() {
+	public int[] getServiceOptionIds() {
 		return this.serviceOptionIds;
 	}
-	public void setServiceOptionIds(int[][] serviceOptionIds) {
+	public void setServiceOptionIds(int[] serviceOptionIds) {
 		this.serviceOptionIds = serviceOptionIds;
 	}
 	public Announcements getAnnouncement() {

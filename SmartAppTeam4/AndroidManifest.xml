@@ -94,6 +94,10 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_splash_screen" >
         </activity>
+        <activity
+            android:name=".PostNatalActivity"
+            android:label="@string/title_activity_splash_screen" >
+        </activity>
     </application>
 
 </manifest><!--

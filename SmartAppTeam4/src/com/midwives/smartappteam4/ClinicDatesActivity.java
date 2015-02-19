@@ -36,7 +36,7 @@ public class ClinicDatesActivity extends Activity {
 	private Date date;
 	private Button btnBack, btnHome, btnBook,btnCalendar;
 	private TextView tvTitle, tvSubtitle;
-	private String hint,clinicName, weekDay; 
+	private String hint,clinicName, weekDay, token, apiKey, url; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,8 @@ public class ClinicDatesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString()+"\n"+
+									token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
 				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
 				
 				//send selected date and clinic name to next activity

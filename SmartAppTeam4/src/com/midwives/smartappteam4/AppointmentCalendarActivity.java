@@ -4,24 +4,31 @@
  */
 package com.midwives.smartappteam4;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
+
+import org.json.JSONException;
+
 import com.midwives.parsers.*;
 import com.midwives.classes.*;
-import com.midwives.smartappteam4.ClinicDatesActivity.ViewHolder;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,9 +44,9 @@ public class AppointmentCalendarActivity extends Activity {
 	private TextView tvTitle, tvSubtitle,tvDate;
 	private Button btnPrev, btnNext, btnBack, btnBook,btnHome;
 	private ListView lv;
-	private String hint,clinicName, appointmentDate,weekDay, jsonString, token; 
+	private String hint,clinicName, appointmentDate,weekDay, jsonString, token, tableUrl, apiKey; 
 	
-	private ArrayList<AppointmentJson> myList;
+	private ArrayList<Appointment> myList;
 //	private ArrayList<ServiceOptions> service;
 //	private ArrayList<ServiceUser> user;
 //	private ArrayList<Clinics> clinic;
@@ -49,11 +56,19 @@ public class AppointmentCalendarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_appointment_calendar);
 		
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+	      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	      StrictMode.setThreadPolicy(policy);
+	    }
+		
+
 		//Receive selected appointment date/clinic name and week day from previous activity... TEST STUFF
 		extras = getIntent().getExtras();
 		clinicName = extras.getString("clinic_name");
 		appointmentDate = extras.getString("appointment_date");
 		weekDay = extras.getString("week_day");
+		this.tableUrl=getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_appointment));
+		
 				
 		btnBack = (Button) findViewById(R.id.app_calendar_header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_btn_home);
@@ -77,27 +92,34 @@ public class AppointmentCalendarActivity extends Activity {
 		btnPrev.setOnClickListener(button);
 		btnNext.setOnClickListener(button);
 		
-		// generate testing data only - test json...........
-		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),SmartAuth.getTableUrl());
+		
+		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),tableUrl);
+		
 		this.token=SmartAuth.getToken();
-		jsonString=smart.accessTheDBTable(token);
-		myList = AppointmentParser.parseAppointment(jsonString);
+		jsonString=smart.accessTheDBTable(token); 
+
+		myList = AppointmentParser.parseAppointment(jsonString); // parse json String into ArrayList
 		
 		//populate listView
-		ListView lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
+		lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
 		lv.setAdapter(new MyAdapter(getApplicationContext(),R.layout.app_calendar_full_adapter,myList));
 		
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), myList.get(position).getLinks().getServiceOptions()+"\n"+
-								myList.get(position).getLinks().getServiceProviders()+"\n"+
-								myList.get(position).getLinks().getServiceUsers(), Toast.LENGTH_SHORT).show();
+										
+				// send links to service user activity
+				intent = new Intent(getApplicationContext(),ServiceUserActivity.class);
+				intent.putExtra("service option", myList.get(position).getLinks().getServiceOptions());
+				intent.putExtra("service provider", myList.get(position).getLinks().getServiceProviders());
+				intent.putExtra("service user", myList.get(position).getLinks().getServiceUsers());
+				startActivity(intent);
+				
 			}
 		});
 		
-	}
+	}//end onCreate
 	private class MyButtons implements OnClickListener{
 
 		@Override
@@ -125,9 +147,9 @@ public class AppointmentCalendarActivity extends Activity {
 		}
 	}
 	
-	public class MyAdapter extends ArrayAdapter<AppointmentJson> { 
+	public class MyAdapter extends ArrayAdapter<Appointment> { 
 		
-		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<AppointmentJson> objects) { 
+		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<Appointment> objects) { 
 			super(ctx, txtViewResourceId, objects); 
 		} 
 		@Override 
@@ -148,9 +170,9 @@ public class AppointmentCalendarActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_user);
 			vHolder.tvGestation = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_data);
 		
-			vHolder.tvTime.setText(myList.get(position).getTime());
-			vHolder.tvName.setText(myList.get(position).getServiceUser().getUserName());
-			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getGestation()); 
+			vHolder.tvTime.setText(myList.get(position).getAppTime());
+			vHolder.tvName.setText(myList.get(position).getServiceUser().getPersonalFields().getName());
+			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getPregnancy().getGestation()); 
 			
 			return convertView;
 		} 
@@ -160,6 +182,55 @@ public class AppointmentCalendarActivity extends Activity {
 		TextView tvTime, tvName, tvGestation;	
 	}
 	
+	//-----------async class----------------------
+	
+		private class DataTable extends AsyncTask<String, String, String>{
+
+			@Override
+			protected String doInBackground(String... params) {
+				String token = params[0];
+				String key = params[1];
+				String url = params[2];
+				System.out.println("AppCalendar inBackground URL: "+url);
+				System.out.println("AppCalendar inBackground KEY: "+key);
+				System.out.println("AppCalendar inBackground TOKEN: "+token);
+				
+				
+				SmartAuth smart = new SmartAuth(token, key, url);
+				jsonString=smart.accessTheDBTable(token); // get json String
+				System.out.println("return json from end AsymcTask: "+jsonString);
+				return jsonString;
+			}
+
+//			@Override
+//			protected void onPreExecute() {
+//				super.onPreExecute();
+//				dialog = new ProgressDialog(getApplicationContext());
+//				dialog.setTitle("SMART Login");
+//				dialog.setMessage("Connection...");
+//				dialog.setIndeterminate(false);
+//				dialog.setCancelable(true);
+//				dialog.show();
+//			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				super.onPostExecute(result);
+				Log.e("Async", "done - onPostExecute stuff...."+result);
+//				System.out.println("jsson from onPostExecute: "+result);
+				jsonString = result;
+				
+//				dialog.dismiss();
+			}
+
+//			@Override
+//			protected void onProgressUpdate(String... msg) {
+//				super.onProgressUpdate(msg);
+//				dialog.setMessage(msg[0]);
+//				
+//			}
+			
+		}
 }
 
 //Nick

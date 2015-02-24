@@ -19,7 +19,7 @@ public class ServiceProvider {
 		this.activeStatus=active;
 		this.adminRight=admin;
 		this.jobOcupation=occupation;
-		this.jobLevel=jobLevel;
+		this.jobLevel=jobLewel;
 		this.providerPrimaryPhone=primaryPhone;
 		this.providerSecondatPhone=secondaryPhone;
 		 

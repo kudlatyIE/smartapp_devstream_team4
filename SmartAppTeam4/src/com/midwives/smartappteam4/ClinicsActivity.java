@@ -35,18 +35,17 @@ public class ClinicsActivity extends Activity {
 	private Bundle extras;
 	private Button btnBack, btnHome,btnBook;
 	private TextView tvTitle, tvSubtitle;
-	private ArrayList<Clinics> myList; //array just for test
-	
+	private ArrayList<Clinics> myList; 
+	private String token, apiKey, url;	
 	private int id;
 	private String hint,clinicName;
-	private String token;
 	private String jsonString;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clinics);
 		
-		//Receive Clinic Id from previous activity
+		//Receive Clinic Id, token, apiKey from previous activity
 		extras = getIntent().getExtras();
 		id = Integer.parseInt(extras.getString("ClinicId"));
 		clinicName = extras.getString("clinicName");
@@ -87,7 +86,8 @@ public class ClinicsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ String.valueOf(position), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ String.valueOf(position)+"\n"+
+													token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
 				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra("clinicId", myList.get(position).getClinicId());
@@ -111,6 +111,8 @@ public class ClinicsActivity extends Activity {
 				break;
 			case R.id.footer_btn_home:
 				intent = new Intent(getApplicationContext(),MainViewActivity.class);
+				intent.putExtra("token", token);
+				intent.putExtra("apiKey", apiKey);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				break;

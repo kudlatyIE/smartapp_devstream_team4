@@ -2,58 +2,61 @@ package com.midwives.classes;
 
 public class ServiceUser {
 	private ClinicalFields clinicalFields;
-	private PersonDetails personDetails;
-	private Baby babies;
-	private Pregnancies pregnancies;
+	private int id;
+	private String hospitalNumber;
+	private PersonalFields personalFields;
+	private Baby []babies;
+	private Pregnancies [] pregnancies;
 	
-	//for object from appointments
-	private String gestation, userId, userName;
-	//user ID is a key
-	public ServiceUser(String gestation, String id, String name){
-		this.gestation=gestation;
-		this.userId=id;
-		this.userName=name;
+	private int [] pregnencyIds, babyIds;
+	
+	private Pregnancies pregnancy;
+	
+	//test - used with Appointemt class
+	public ServiceUser(Pregnancies gestation, int id, PersonalFields name){
+		this.pregnancy=gestation;
+		this.id=id;
+		this.personalFields=name;
 	}
 	
-	public String getGestation() {
-		return gestation;
-	}
-
-	public void setGestation(String gestation) {
-		this.gestation = gestation;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	// full constructor
-	public ServiceUser(ClinicalFields clinicalFields, PersonDetails person, Baby baby, Pregnancies pregnancies){
+	/**
+	 * constructor to use...  or not to use
+	 * @param clinicalFields - ClinicalFields class object
+	 * @param id
+	 * @param hospitalName
+	 * @param person - PersonalFields class object
+	 * @param baby - array of Baby class objects
+	 * @param pregnancies - array of Pregnancies class object
+	 */
+	public ServiceUser(ClinicalFields clinicalFields, int id, String hospitalName, PersonalFields person, Baby [] baby, Pregnancies [] pregnancies){
 		this.clinicalFields=clinicalFields;
-		this.personDetails=person;
+		this.personalFields=person;
 		this.babies=baby;
 		this.pregnancies=pregnancies;
 	}
-
-	public Pregnancies getPregnancies() {
-		return pregnancies;
+	/**
+	 * constructor to use - I hope.. this one is better
+	 * @param clinicalFields - ClinicalFields class object
+	 * @param id
+	 * @param hospitalName
+	 * @param person - PersonalFields class object
+	 * @param baby - array of Baby class objects
+	 * @param pregnancies - array of Pregnancies class object
+	 * @param pregancyIds - int array
+	 * @param babyIds - int array
+	 */
+	public ServiceUser(ClinicalFields clinicalFields, int id, String hospitalName, PersonalFields person, Baby [] baby, Pregnancies [] pregnancies,
+						int[] pregancyIds, int[] babyIds){
+		this.clinicalFields=clinicalFields;
+		this.personalFields=person;
+		this.babies=baby;
+		this.pregnancies=pregnancies;
+		this.pregnencyIds=pregancyIds;
+		this.babyIds=babyIds;
 	}
 
-	public void setPregnancies(Pregnancies pregnancies) {
-		this.pregnancies = pregnancies;
-	}
+
+
 
 	public ClinicalFields getClinicalFields() {
 		return clinicalFields;
@@ -63,19 +66,70 @@ public class ServiceUser {
 		this.clinicalFields = clinicalFields;
 	}
 
-	public PersonDetails getPersonDetails() {
-		return personDetails;
+	public int getId() {
+		return id;
 	}
 
-	public void setPersonDetails(PersonDetails personDetails) {
-		this.personDetails = personDetails;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Baby getBabies() {
+	public String getHospitalNumber() {
+		return hospitalNumber;
+	}
+
+	public void setHospitalNumber(String hospitalNumber) {
+		this.hospitalNumber = hospitalNumber;
+	}
+
+	public PersonalFields getPersonalFields() {
+		return personalFields;
+	}
+
+	public void setPersonalFields(PersonalFields personalFields) {
+		this.personalFields = personalFields;
+	}
+
+	public Baby[] getBabies() {
 		return babies;
 	}
 
-	public void setBabies(Baby babies) {
+	public void setBabies(Baby[] babies) {
 		this.babies = babies;
 	}
+
+	public Pregnancies[] getPregnancies() {
+		return pregnancies;
+	}
+
+	public void setPregnancies(Pregnancies[] pregnancies) {
+		this.pregnancies = pregnancies;
+	}
+
+	public int[] getPregnencyIds() {
+		return pregnencyIds;
+	}
+
+	public void setPregnencyIds(int[] pregnencyIds) {
+		this.pregnencyIds = pregnencyIds;
+	}
+
+	public int[] getBabyIds() {
+		return babyIds;
+	}
+
+	public void setBabyIds(int[] babyIds) {
+		this.babyIds = babyIds;
+	}
+
+	public Pregnancies getPregnancy() {
+		return pregnancy;
+	}
+
+
+	public void setPregnancy(Pregnancies gestation) {
+		this.pregnancy = gestation;
+	}
+	
+	
 }

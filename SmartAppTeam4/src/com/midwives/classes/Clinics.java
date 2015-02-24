@@ -23,9 +23,9 @@ public class Clinics {
 		this.recurrence=reccurence;
 		
 	}
+
 	public Clinics(int id, String name, String address, String openTime, String closeTime,Recurrence recurrence,
-			String type, int appointmentInterval, String[] day, int [] serviceOption){
-		
+			String type, int appointmentInterval, String[] day, int [] serviceOption){		
 		this.clinicId=id;
 		this.clinicName=name;
 		this.clinicAddress=address;

@@ -13,15 +13,18 @@ import android.widget.TextView;
 
 public class MainViewActivity extends Activity {
 	
-	Intent intent;
-	Button btnClinics,btnVisits,btnBack;
-	TextView tvTitle, tvSubtitle;
-	LinearLayout anteLayout, postLayout;
+	private Bundle extras;
+	private Intent intent;
+	private Button btnClinics,btnVisits,btnBack;
+	private TextView tvTitle, tvSubtitle;
+	private LinearLayout anteLayout, postLayout;
+	private String token, apiKey, url;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
+		
 		
 		anteLayout = (LinearLayout) findViewById(R.id.mainview_Layout_antenatal);
 		postLayout = (LinearLayout) findViewById(R.id.mainview_Layout_postnatal);
@@ -52,12 +55,12 @@ public class MainViewActivity extends Activity {
 			Intent intent;
 			switch(v.getId()){
 				case R.id.mainview_Layout_antenatal:
-					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits...............
+					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits.....
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 					break;
 				case R.id.mainview_Layout_postnatal:
-					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits...............
+					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits.........
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 					break;
@@ -67,7 +70,7 @@ public class MainViewActivity extends Activity {
 					startActivity(intent);
 					break;
 				case R.id.mainview_btn_visits:
-					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits...............
+					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits.......
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 					break;

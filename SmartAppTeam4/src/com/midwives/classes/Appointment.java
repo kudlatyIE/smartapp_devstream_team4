@@ -1,50 +1,126 @@
 package com.midwives.classes;
 
-import java.util.Date;
 
 public class Appointment {
 	
-	private int appointmentId, serviceProviderId, serviceUserId, clinicId;
-	private Date appointmentDate, appointmentTime;
-	private Priority priority;
-	private VisitType visitType;
-	private int serviceOptionId;
-	// new class Links
+	private int id, serviceProviderId, serviceUserId, clinicId;
+	private String date, time;
+//	private Priority priority;
+//	private VisitType visitType; -----------------remove all Enums!!!!
+	private String visitType;
+	private String priority;
+	private int [] serviceOptionIds;
+	private ServiceUser serviceUser;
+	private String[] visitLogs;
+	
 	private Links links;
-//	private ServiceOptions links;
-	// fake stuff
-	private String appDate, appTime;
 	
 	public Appointment(){} //used when is empty slot
 	
+	public Appointment(int clinicId, String date, int id, Links links, String priority , int serviceProviderId,
+			ServiceUser serviceUser, int serviceUserId, String time, String visitType){
+		this.clinicId=clinicId;
+		this.date=date;
+		this.id=id;
+		this.links=links;
+		this.priority=priority;
+		this.serviceProviderId=serviceProviderId;
+		this.serviceUser=serviceUser;
+		this.serviceProviderId=serviceUserId;
+		this.time=time;
+		this.visitType=visitType;
+
+	}
+	
+	
+	/**
+	 * I can't parse int[] from json yet.... Dont use for now
+	 * @param clinicId
+	 * @param date
+	 * @param id
+	 * @param links
+	 * @param priority
+	 * @param serviceOptionsIds
+	 * @param serviceProviderId
+	 * @param serviceUser
+	 * @param serviceUserId
+	 * @param time
+	 * @param visitLogs
+	 * @param visitType
+	 */
+	public Appointment(int clinicId, String date, int id, Links links, String priority, int[] serviceOptionsIds, int serviceProviderId,
+						ServiceUser serviceUser, int serviceUserId, String time, String[] visitLogs, String visitType){
+		this.clinicId=clinicId;
+		this.date=date;
+		this.id=id;
+		this.links=links;
+		this.priority=priority;
+		this.serviceOptionIds=serviceOptionsIds;
+		this.serviceProviderId=serviceProviderId;
+		this.serviceUser=serviceUser;
+		this.serviceProviderId=serviceUserId;
+		this.time=time;
+		this.visitLogs=visitLogs;
+		this.visitType=visitType;
+		
+	}
+	
 	//a new constructor with Links class
-	public Appointment(String date, int appId, int serviceId, int userId, Priority priority, String time, 
-			VisitType visitType, int clinicId, Links links){
-		this.appDate=date;
-		this.appointmentId=appId;
+	public Appointment(String date, int appId, int serviceId, int userId, String priority, String time, 
+			String visitType, int clinicId, Links links){
+		this.date=date;
+		this.id=appId;
 		this.serviceProviderId=serviceId;
 		this.serviceUserId=userId;
 		this.priority=priority;
-		this.appTime=time;
+		this.time=time;
 		this.visitType=visitType;
 		this.clinicId=clinicId;
 		this.links=links;
 	}
 	
-	// constructor for test only Dates as String...............
-	public Appointment(String date, int appId, int serviceId, int userId, Priority priority, String time, 
-			VisitType visitType, int clinicId){
-		this.appDate=date;
-		this.appointmentId=appId;
-		this.serviceProviderId=serviceId;
-		this.serviceUserId=userId;
-		this.priority=priority;
-		this.appTime=time;
-		this.visitType=visitType;
-		this.clinicId=clinicId;
-		
-	}
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public int[] getServiceOptionIds() {
+		return serviceOptionIds;
+	}
+
+	public void setServiceOptionIds(int[] serviceOptionIds) {
+		this.serviceOptionIds = serviceOptionIds;
+	}
+
+	public ServiceUser getServiceUser() {
+		return serviceUser;
+	}
+
+	public void setServiceUser(ServiceUser serviceUser) {
+		this.serviceUser = serviceUser;
+	}
+
 	public Links getLinks(){
 		return links;
 	}
@@ -60,19 +136,19 @@ public class Appointment {
 	}
 
 	public String getAppDate() {
-		return appDate;
+		return date;
 	}
 
 	public void setAppDate(String appDate) {
-		this.appDate = appDate;
+		this.date = appDate;
 	}
 
 	public String getAppTime() {
-		return appTime;
+		return time;
 	}
 
 	public void setAppTime(String appTime) {
-		this.appTime = appTime;
+		this.time = appTime;
 	}
 
 //	public Appointment(int id, Date date, Date time,int provider,int user,Priority priority, VisitType visit,
@@ -98,10 +174,10 @@ public class Appointment {
 //		this.links = links;
 //	}
 	public int getAppointmentId() {
-		return appointmentId;
+		return id;
 	}
 	public void setAppointmentId(int appointmentId) {
-		this.appointmentId = appointmentId;
+		this.id = appointmentId;
 	}
 	public int getServiceProviderId() {
 		return this.serviceProviderId;
@@ -115,35 +191,26 @@ public class Appointment {
 	public void setServiceUserId(int serviceUserId) {
 		this.serviceUserId = serviceUserId;
 	}
-	public Date getAppointmentDate() {
-		return this.appointmentDate;
-	}
-	public void setAppointmentDate(Date appointmentDate) {
-		this.appointmentDate = appointmentDate;
-	}
-	public Date getAppointmentTime() {
-		return this.appointmentTime;
-	}
-	public void setAppointmentTime(Date appointmentTime) {
-		this.appointmentTime = appointmentTime;
-	}
-	public Priority getPriority() {
+	
+	public String getPriority() {
 		return this.priority;
 	}
-	public void setPriority(Priority priority) {
+	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-	public VisitType getVisitType() {
+	public String getVisitType() {
 		return this.visitType;
 	}
-	public void setVisitType(VisitType visitType) {
+	public void setVisitType(String visitType) {
 		this.visitType = visitType;
 	}
-	public int getServiceOptionId() {
-		return this.serviceOptionId;
+
+	public String[] getVisitLogs() {
+		return visitLogs;
 	}
-	public void setServiceOptionId(int serviceOptionId) {
-		this.serviceOptionId = serviceOptionId;
+
+	public void setVisitLogs(String[] visitLogs) {
+		this.visitLogs = visitLogs;
 	}
 
 	

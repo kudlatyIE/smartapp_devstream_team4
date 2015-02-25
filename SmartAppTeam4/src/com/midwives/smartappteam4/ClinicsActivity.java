@@ -3,6 +3,7 @@ package com.midwives.smartappteam4;
 import java.util.ArrayList;
 
 import com.midwives.classes.Clinics;
+import com.midwives.classes.DataManager;
 import com.midwives.classes.Days;
 import com.midwives.classes.Recurrence;
 
@@ -39,10 +40,11 @@ public class ClinicsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clinics);
 		
-		//Receive Clinic Id, token, apiKey from previous activity
-		extras = getIntent().getExtras();
-		id = Integer.parseInt(extras.getString("ClinicId"));
-		clinicName = extras.getString("clinicName");
+		//Receive Clinic Id, token, apiKey from previous activity by DataManager!!!!!
+		
+		// add try-catch block - if my serviceOptions data are NULL !!!!!
+		id = DataManager.getServiceOptions().getServiceId();
+		clinicName = DataManager.getServiceOptions().getServiceName();
 		
 		//set title and subtitle for this activity
 		tvTitle = (TextView) findViewById(R.id.header_text_title);
@@ -80,8 +82,8 @@ public class ClinicsActivity extends Activity {
 													token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
 				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra("clinicName", myList.get(position).getClinicName());// to be handle by clinicID in the future...
-				intent.putExtra("weekDay", myList.get(position).getOpenDays().getDayName());
+				DataManager.setClinics(new Clinics(myList.get(position).getClinicName(),myList.get(position).getOpenDays().getDayName()));// test shit only!!!
+				
 				startActivity(intent);
 				
 			}

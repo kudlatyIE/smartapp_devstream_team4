@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="auth_login_name">team_andorra</string>
-    <string name="auth_password">smartappiscoming</string>
+    <string name="auth_login_name">team_denmark</string>
+    <string name="auth_password">smartiscoming</string>
     <string name="auth_api_key">1b74f729&#8211;d05a&#8211;4573&#8211;b814&#8211;95e3c6713fe1</string>
     
     <!-- SMART URLS -->

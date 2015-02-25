@@ -1,39 +1,47 @@
 package com.midwives.classes;
 
-public class ServiceUser {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class ServiceUser implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5518374187111281600L;
 	private ClinicalFields clinicalFields;
 	private int id;
 	private String hospitalNumber;
 	private PersonalFields personalFields;
-	private Baby []babies;
-	private Pregnancies [] pregnancies;
+	private ArrayList<Baby> babies;
+	private ArrayList<Pregnancies> pregnancies;
 	
 	private int [] pregnencyIds, babyIds;
 	
 	private Pregnancies pregnancy;
 	
-	//test - used with Appointemt class
+	private static ServiceUser serviceUser;
+	private static Links links;
+	
+	//test - used with Appointment class
 	public ServiceUser(Pregnancies gestation, int id, PersonalFields name){
 		this.pregnancy=gestation;
 		this.id=id;
 		this.personalFields=name;
 	}
 	
-	/**
-	 * constructor to use...  or not to use
-	 * @param clinicalFields - ClinicalFields class object
-	 * @param id
-	 * @param hospitalName
-	 * @param person - PersonalFields class object
-	 * @param baby - array of Baby class objects
-	 * @param pregnancies - array of Pregnancies class object
-	 */
-	public ServiceUser(ClinicalFields clinicalFields, int id, String hospitalName, PersonalFields person, Baby [] baby, Pregnancies [] pregnancies){
-		this.clinicalFields=clinicalFields;
-		this.personalFields=person;
+	public ServiceUser(ArrayList<Baby> baby, ArrayList<Pregnancies> pregnancies,int[] babyIds, ClinicalFields clinicalFields,String hospitalNumber,
+						int id, PersonalFields personalFields, int[] pregnanciesIds){
 		this.babies=baby;
 		this.pregnancies=pregnancies;
+		this.babyIds=babyIds;
+		this.clinicalFields=clinicalFields;
+		this.hospitalNumber=hospitalNumber;
+		this.id=id;
+		this.personalFields=personalFields;
+		this.pregnencyIds=pregnanciesIds;
 	}
+	
+	
 	/**
 	 * constructor to use - I hope.. this one is better
 	 * @param clinicalFields - ClinicalFields class object
@@ -45,7 +53,7 @@ public class ServiceUser {
 	 * @param pregancyIds - int array
 	 * @param babyIds - int array
 	 */
-	public ServiceUser(ClinicalFields clinicalFields, int id, String hospitalName, PersonalFields person, Baby [] baby, Pregnancies [] pregnancies,
+	public ServiceUser(ClinicalFields clinicalFields, int id, String hospitalName, PersonalFields person, ArrayList<Baby> baby, ArrayList<Pregnancies> pregnancies,
 						int[] pregancyIds, int[] babyIds){
 		this.clinicalFields=clinicalFields;
 		this.personalFields=person;
@@ -54,9 +62,6 @@ public class ServiceUser {
 		this.pregnencyIds=pregancyIds;
 		this.babyIds=babyIds;
 	}
-
-
-
 
 	public ClinicalFields getClinicalFields() {
 		return clinicalFields;
@@ -90,19 +95,19 @@ public class ServiceUser {
 		this.personalFields = personalFields;
 	}
 
-	public Baby[] getBabies() {
+	public ArrayList<Baby> getBabies() {
 		return babies;
 	}
 
-	public void setBabies(Baby[] babies) {
+	public void setBabies(ArrayList<Baby> babies) {
 		this.babies = babies;
 	}
 
-	public Pregnancies[] getPregnancies() {
+	public ArrayList<Pregnancies> getPregnancies() {
 		return pregnancies;
 	}
 
-	public void setPregnancies(Pregnancies[] pregnancies) {
+	public void setPregnancies(ArrayList<Pregnancies> pregnancies) {
 		this.pregnancies = pregnancies;
 	}
 
@@ -130,6 +135,27 @@ public class ServiceUser {
 	public void setPregnancy(Pregnancies gestation) {
 		this.pregnancy = gestation;
 	}
+	//----------------------------------storage area----------------------------
+	//------------------------for parsed data... or may be not------------------
+	//...well, i think we will use it - data for ServiceUser, AnteNatal, PostNatal...
+
+	public static ServiceUser getServiceUser() {
+		return serviceUser;
+	}
+
+	public static void setServiceUser(ServiceUser serviceUser) {
+		ServiceUser.serviceUser = serviceUser;
+	}
+
+	public static Links getLinks() {
+		return links;
+	}
+
+	public static void setLinks(Links links) {
+		ServiceUser.links = links;
+	}
+	
+	
 	
 	
 }

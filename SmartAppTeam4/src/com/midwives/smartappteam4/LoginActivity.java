@@ -38,15 +38,12 @@ public class LoginActivity extends Activity {
 	private Button btnLogin;
 	private Intent intent;
 	private HttpURLConnection httpcon;
-	private String loginUrl= "http://54.72.7.91:8888/login";
-	private String tableUrl="http://54.72.7.91:8888/appointments";
-	
+	private String loginUrl;
 
-	private String apiKey = "6f9a1abf-443e-4d18-a1a8-93dd39f69d6a";//andorra
 	
-	private String user="team_andorra";
+	private String user;
 	
-	private String pass="smartappiscoming";
+	private String pass;//="smartiscoming";
 	private String result,id="no id",token="no token";
 	private SmartAuth smartAuth;
 	
@@ -55,11 +52,15 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
+		loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
+		user = getResources().getString(R.string.auth_login_name);
+		pass = getResources().getString(R.string.auth_password);
+		
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		      StrictMode.setThreadPolicy(policy);
 		    }
-		smartAuth = new SmartAuth(user,loginUrl, tableUrl,apiKey,pass);
+		smartAuth = new SmartAuth(user,loginUrl, null,null,pass);
 		this.token = smartAuth.getToken();
 		
 		

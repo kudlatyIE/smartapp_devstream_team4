@@ -11,7 +11,8 @@ import com.midwives.classes.ServiceOptions;
 
 public class ServiceOptionsParser implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5692736555719611369L;
+	
 	private final static String TAG_OBJECT = "service_options";
 	private final static String TAG_ARRAY = "service_options";// array title
 	private final static String TAG_SERVICE_NAME = "name";

@@ -36,9 +36,7 @@ public class ServiceOptionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_service_option);
 		
-//		extras = getIntent().getExtras();
-//		token = extras.getString("token");
-//		apiKey = extras.getString("apiKey");
+
 		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_service_options));
 		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
@@ -78,15 +76,9 @@ public class ServiceOptionActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-//				ServiceOptions item = (ServiceOptions) lv.getSelectedItem();// testing line
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getServiceName(), Toast.LENGTH_SHORT).show();
+				//we'll send all data by static way to DataManager!!!!
+				DataManager.setServiceOptions(new ServiceOptions(myList.get(position).getServiceId(),myList.get(position).getServiceName()));
 				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
-				//send selected Clinic Id to new activity
-				intent.putExtra("ClinicId", String.valueOf(myList.get(position).getServiceId()));
-				intent.putExtra("clinicName", myList.get(position).getServiceName().toString());
-//				intent.putExtra("token", token);
-//				intent.putExtra("apiKey", apiKey);
-				//prevent to open too many same activity
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
@@ -104,8 +96,6 @@ public class ServiceOptionActivity extends Activity {
 				break;
 			case R.id.footer_btn_home:
 				intent = new Intent(getApplicationContext(),MainViewActivity.class);
-//				intent.putExtra("token", token);
-//				intent.putExtra("apiKey", apiKey);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				break;

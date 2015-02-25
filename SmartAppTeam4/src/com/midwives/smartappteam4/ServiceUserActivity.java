@@ -3,6 +3,9 @@ package com.midwives.smartappteam4;
 import java.util.ArrayList;
 
 import com.midwives.classes.*;
+import com.midwives.parsers.ServiceOptionsParser;
+import com.midwives.parsers.ServiceProviderParser;
+import com.midwives.parsers.ServiceUserParser;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,30 +26,47 @@ public class ServiceUserActivity extends Activity {
 	
 	private Bundle extras;
 	private Intent intent;
-	private TextView tvTitle, tvSubtitle, tvContact,tvAddress,tvNextOfKin;
+	private TextView tvTitle, tvSubtitle1, tvSubtitle2, tvContact,tvAddress,tvNextOfKin;
 	private Button btnHome, btnBook, btnAnteNatal, btnPostNatal, btnBookAppointment;
 	private ImageButton imgBtnBack, imgBtnEdit;
-	private LinearLayout llContact,llAddress,llNextOfKin;
+	private LinearLayout llContact,llAddress,llNextOfKin;//clicable
 	
-	private String serviceOptionUrl, serviceProviderUrl,serviceUserUrl;
+	private String serviceOptionUrl, serviceProviderUrl,serviceUserUrl,token,apiKey,jsonString;
+	private String serviceUserName,serviceUserDetails; // display in tvSubtitle (name, age, gestation ect..)
+	private String contact, address, nextOfKin;
 	
-	private ArrayList<ServiceUser> myList;
-	private ArrayList<ServiceProvider>serviceProviderList;
+	private int age;
+	
+	private ArrayList<ServiceUser> myList;//but we expected only one object by ID...
+	private ServiceUser serviceUser;
+	private ArrayList<ServiceProvider>serviceProviderList;// but we expected only one object by ID???...
+	private ServiceProvider serviceProvider;
+	private Appointment appointment;
 	private ArrayList<ServiceOptions> serviceOptionsList;
+	
+	private Links links;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_service_user);
 		
-		//get links from Appointments json
-		extras = getIntent().getExtras();
-		serviceOptionUrl = extras.getString("service option");
-		serviceProviderUrl = extras.getString("service provider");
-		serviceUserUrl = extras.getString("service user");
+		//get links from Appointments json - no, we dont use this way, we pass data by static method: create new Links object, stored in ServiceUser class
+//		extras = getIntent().getExtras();
+//		serviceOptionUrl = extras.getString("service option");
+//		serviceProviderUrl = extras.getString("service provider");
+//		serviceUserUrl = extras.getString("service user");
+		links = DataManager.getLinks();
+		
+		serviceOptionUrl = getResources().getString(R.string.auth_url_server).concat(links.getServiceOptions());
+		serviceProviderUrl = getResources().getString(R.string.auth_url_server).concat(links.getServiceProviders());
+		serviceUserUrl = getResources().getString(R.string.auth_url_server).concat(links.getServiceUsers());
+		
+		appointment = DataManager.getAppointment();//get data from AppointmentCalendar.....
 		
 		tvTitle=(TextView) findViewById(R.id.serviceuser_header_text_title);
-		tvSubtitle=(TextView) findViewById(R.id.serviceuser_header_text_subtitle);
+		tvSubtitle1=(TextView) findViewById(R.id.serviceuser_header_text_subtitle1);
+		tvSubtitle2=(TextView) findViewById(R.id.serviceuser_header_text_subtitle2);
 		tvContact=(TextView) findViewById(R.id.serviceuser_body_text_user_contact);
 		tvAddress=(TextView) findViewById(R.id.serviceuser_body_text_user_address);
 		tvNextOfKin=(TextView) findViewById(R.id.serviceuser_body_text_user_nextofkin);
@@ -77,9 +97,44 @@ public class ServiceUserActivity extends Activity {
 		llContact.setOnClickListener(button);
 		llAddress.setOnClickListener(button);
 	
+		//lets get DB data!
+		token = SmartAuth.getToken();
+		apiKey = SmartAuth.getApiKey();
+		SmartAuth smart = new SmartAuth(token, apiKey,serviceOptionUrl);
+		jsonString = smart.accessTheDBTable(token);
+		serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
+		
+		smart = new SmartAuth(token, apiKey,serviceProviderUrl);
+		jsonString = smart.accessTheDBTable(token);
+//		serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
+		serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
+		
+		smart = new SmartAuth(token,apiKey,serviceUserUrl);
+		jsonString = smart.accessTheDBTable(token);
+		serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
+		
+		//display data in textViews....
+		tvTitle.setText(getResources().getString(R.string.title_activity_service_user));
+		
+		serviceUserName = serviceUser.getPersonalFields().getName();// need to add one more textView......
+		tvSubtitle1.setText(serviceUserName);
+		// need to find what is "P"
+		age = XFiles.getAge(serviceUser.getPersonalFields().getDob());
+		serviceUserDetails = String.valueOf(age).concat("yrs, ").concat("G:"+appointment.getServiceUser().getPregnancy().getGestation().concat(", P:WHAT??"));//hm......
+		tvSubtitle2.setText(serviceUserDetails);
+		
+		contact = serviceUser.getHospitalNumber()+"\n"+serviceUser.getPersonalFields().getEmail()+"\n"+serviceUser.getPersonalFields().getMobilePhone();
+		tvContact.setText(contact);
+		
+		address = serviceUser.getPersonalFields().getHomeType()+"\n"+serviceUser.getPersonalFields().getHomeAddress();
+		tvAddress.setText(address);
+		
+		nextOfKin = serviceUser.getPersonalFields().getNextOfKinName()+"\n"+serviceUser.getPersonalFields().getNextOfKinPhone();
+		tvNextOfKin.setText(nextOfKin);
 	
 	}//end onCreate
 	
+	//--------------------------------------------------------
 	private class MyButtons implements OnClickListener{
 
 		@Override

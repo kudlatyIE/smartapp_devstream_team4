@@ -137,6 +137,11 @@ public class SmartAuth {
 	}
 	
 	// using the auth key and api key we can access the database
+	/**
+	 * 
+	 * @param token
+	 * @return json String
+	 */
 	public String accessTheDBTable(String token) {
 		URL obj;
 		try {

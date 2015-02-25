@@ -45,6 +45,7 @@ public class AppointmentCalendarActivity extends Activity {
 	private Button btnPrev, btnNext, btnBack, btnBook,btnHome;
 	private ListView lv;
 	private String hint,clinicName, appointmentDate,weekDay, jsonString, token, tableUrl, apiKey; 
+	private Appointment appointment;
 	
 	private ArrayList<Appointment> myList;
 //	private ArrayList<ServiceOptions> service;
@@ -111,9 +112,10 @@ public class AppointmentCalendarActivity extends Activity {
 										
 				// send links to service user activity
 				intent = new Intent(getApplicationContext(),ServiceUserActivity.class);
-				intent.putExtra("service option", myList.get(position).getLinks().getServiceOptions());
-				intent.putExtra("service provider", myList.get(position).getLinks().getServiceProviders());
-				intent.putExtra("service user", myList.get(position).getLinks().getServiceUsers());
+				DataManager.setAppointment(myList.get(position));
+				DataManager.setLinks(new Links(myList.get(position).getLinks().getServiceOptions(),
+												myList.get(position).getLinks().getServiceProviders(),
+												myList.get(position).getLinks().getServiceUsers()));
 				startActivity(intent);
 				
 			}

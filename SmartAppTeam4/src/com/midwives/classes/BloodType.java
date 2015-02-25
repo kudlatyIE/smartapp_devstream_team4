@@ -1,5 +1,7 @@
 package com.midwives.classes;
 
+//not used, will be deleted... I think.
+
 public enum BloodType {
 	
 	A_POSITIVE ("A+"),

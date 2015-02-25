@@ -103,11 +103,11 @@
     <string name="header_subtitle">Main View Subtitle</string>
     <string name="go">GO</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
-    
     <string name="serviceuser_userdetail">Sarah McLachnan Murphy \n 28yrs, P:2+1, G:34+5</string>
     <string name="serviceuser_contact">H12344321 \nsara.maclachlann@banana.com \n+353 889 871 234</string>
     <string name="serviceuser_nextofkin">Laura Murphy \n +353 889 871 234</string>
     <string name="serviceuser_btn_book">Book Appointment</string>
-    
+    <string name="title_activity_obstretic_history">ObstreticHistoryActivity</string>
+    <string name="title_activity_parity">ParityActivity</string>
 
 </resources>

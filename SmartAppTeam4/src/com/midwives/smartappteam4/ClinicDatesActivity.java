@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.midwives.classes.DataManager;
 import com.midwives.classes.ServiceOptions;
 import com.midwives.classes.XFiles;
 import com.midwives.smartappteam4.ClinicsActivity.ViewHolder;
@@ -44,9 +45,8 @@ public class ClinicDatesActivity extends Activity {
 		setContentView(R.layout.activity_clinic_dates);
 		
 		//Receive data from previous activity...
-		extras = getIntent().getExtras();
-		clinicName = extras.getString("clinicName");
-		weekDay = extras.getString("weekDay");
+		clinicName = DataManager.getClinics().getClinicName();
+		weekDay = DataManager.getClinics().getWeek();
 		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_clinicdates_btn_home);

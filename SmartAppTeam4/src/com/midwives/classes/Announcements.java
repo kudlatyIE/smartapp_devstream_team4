@@ -6,10 +6,10 @@ public class Announcements {
 	
 	private int announcementsId;
 	private String announcementsNote;
-	private Date announcementsDate;
+	private String announcementsDate; //change from type date to type string - Bola
 	private boolean blockingStatus;
 	
-	Announcements(int id, String note, Date date, boolean status){
+	public Announcements(int id, String note, String date, boolean status){
 		this.announcementsId=id;
 		this.announcementsNote=note;
 		this.announcementsDate=date;
@@ -30,10 +30,10 @@ public class Announcements {
 	public void setAnnouncementsId(int announcementsId) {
 		this.announcementsId = announcementsId;
 	}
-	public Date getAnnouncementsDate() {
+	public String getAnnouncementsDate() {
 		return this.announcementsDate;
 	}
-	public void setAnnouncementsDate(Date announcementsDate) {
+	public void setAnnouncementsDate(String announcementsDate) {
 		this.announcementsDate = announcementsDate;
 	}
 	public boolean getBlockingStatus() {

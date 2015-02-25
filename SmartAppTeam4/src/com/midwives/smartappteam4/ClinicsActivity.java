@@ -72,6 +72,9 @@ public class ClinicsActivity extends Activity {
 		
 		//get the list of clinics 
 		//myList=createClinicList(); //switch to hard coded array see below for populate method 
+		
+		//to be fixed: if clinic list doesn't exist in DataManager then run code below, if exist, just populate listView!!!!!!!.....................
+		
 		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),"http://54.72.7.91:8888/clinics");
 		this.token=SmartAuth.getToken(); //get token needed to get the table 
 		jsonString=smart.accessTheDBTable(token); //get the clinics table as a json formatted string
@@ -88,20 +91,14 @@ public class ClinicsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ String.valueOf(position)+"\n"+
-													token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ myList.get(position).getOpenDays()[0], Toast.LENGTH_SHORT).show();
 				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-//				DataManager.setClinics(new Clinics(myList.get(position).getClinicName(),myList.get(position).getOpenDays().getDayName()));// test shit only!!!
 				DataManager.setClinics(new Clinics(myList.get(position).getClinicId(),myList.get(position).getClinicName(), myList.get(position).getClinicAddress(),
 													myList.get(position).getOpeningTime(),myList.get(position).getClosingTime(),myList.get(position).getRecurrence(),
 													myList.get(position).getType(),myList.get(position).getAppointmentInterval(),
 													myList.get(position).getOpenDays(),myList.get(position).getServiceOptionIds()));
-
-//				intent.putExtra("clinicId", myList.get(position).getClinicId());
-//				intent.putExtra("clinicName", myList.get(position).getClinicName());// to be handle by clinicID in the future...
-//				intent.putExtra("weekDay", getOpenDays(myList, position));
 
 				startActivity(intent);
 				
@@ -162,7 +159,8 @@ public class ClinicsActivity extends Activity {
 			//vHolder.tvAddress.setText(myList.get(position).getClinicAddress());
 			vHolder.tvRecurrence.setText(myList.get(position).getRecurrence().getReccName());
 			//vHolder.tvDays.setText(myList.get(position).getOpenDays().getDayName()); //when switch to hard coded test array
-			vHolder.tvDays.setText(makeString(openDays(myList,position))); //get the open days for the clinic from the list
+			vHolder.tvDays.setText(myList.get(position).getOpenDays()[0]); //get the open days for the clinic from the list
+			// need to fix how hold click on more than one day.............!!!!!!!!!!!!!!!
 			
 			return convertView; } }
 
@@ -182,15 +180,15 @@ public class ClinicsActivity extends Activity {
 //		return daysOpen;
 //	}
 	
-	private String[] openDays(ArrayList<Clinics> clinicList, int position){
-		ArrayList<String> days = new ArrayList<String>();
-		String [] temp = clinicList.get(position).getOpenDays();
-		for(int i=0;i<temp.length;i++){
-			if(temp[i]!=null) days.add(temp[i]);
-		}
-		String[] result = days.toArray(new String[days.size()]);
-		return result;
-	}
+//	private String[] openDays(ArrayList<Clinics> clinicList, int position){
+//		ArrayList<String> days = new ArrayList<String>();
+//		String [] temp = clinicList.get(position).getOpenDays();
+//		for(int i=0;i<temp.length;i++){
+//			if(temp[i]!=null) days.add(temp[i]);
+//		}
+//		String[] result = days.toArray(new String[days.size()]);
+//		return result;
+//	}
 	private String makeString(String[] days){
 		String result="";
 		for(String arr:days){

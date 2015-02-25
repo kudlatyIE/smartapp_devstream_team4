@@ -11,6 +11,7 @@ import java.util.Date;
 
 
 
+
 import org.json.JSONException;
 
 import com.midwives.parsers.*;
@@ -65,9 +66,11 @@ public class AppointmentCalendarActivity extends Activity {
 
 		//Receive selected appointment date/clinic name and week day from previous activity... TEST STUFF
 		extras = getIntent().getExtras();
-		clinicName = extras.getString("clinic_name");
-		appointmentDate = extras.getString("appointment_date");
-		weekDay = extras.getString("week_day");
+		clinicName = DataManager.getClinicDates().getClinicName();
+		appointmentDate = DataManager.getClinicDates().getAppointmentDate();
+		weekDay = DataManager.getClinicDates().getWeekDay();		
+		
+		
 		this.tableUrl=getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_appointment));
 		
 				

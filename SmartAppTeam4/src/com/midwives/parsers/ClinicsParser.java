@@ -56,29 +56,31 @@ public class ClinicsParser implements Serializable {
 					String type = json.getString(TAG_TYPE);
 					int appointmentInterval = json.getInt(TAG_APPOINTMENT_INTERVAL);
 					
-					String[] dayNames = new String[7];
+					String[] dayNames;
 					// will change to arrayList.................................
+					ArrayList<String>days = new ArrayList<String>();
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_SUNDAY)){
-						dayNames[0] = Days.SUNDAY.getDayName();
+						days.add(Days.SUNDAY.getDayName());
 					}
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_MONDAY)){
-						dayNames[1] = Days.MONDAY.getDayName();
+						days.add(Days.MONDAY.getDayName());
 					}
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_TUESDAY)){
-						dayNames[2] = Days.TUESDAY.getDayName();
+						days.add(Days.TUESDAY.getDayName());
 					} 
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_WEDNESDAY)){
-						dayNames[3] = Days.WEDNESDAY.getDayName();
+						days.add(Days.WEDNESDAY.getDayName());
 					}
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_THURSDAY)){
-						dayNames[4] = Days.THURSDAY.getDayName();
+						days.add(Days.THURSDAY.getDayName());
 					} 
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_FRIDAY)){
-						dayNames[5] = Days.FRIDAY.getDayName();
+						days.add(Days.FRIDAY.getDayName());
 					} 
 					if(json.getJSONObject(TAG_DAYS).getBoolean(TAG_SATURDAY)){
-						dayNames[6] = Days.SATURDAY.getDayName();
+						days.add(Days.SATURDAY.getDayName());
 					}
+					dayNames = days.toArray(new String[days.size()]);
 										
 					JSONArray temp = json.getJSONArray(TAG_SERVICE_OPTION_IDS);
 					int length = temp.length();

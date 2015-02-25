@@ -14,6 +14,7 @@ public class DataManager {
 	private static Baby baby = null;
 	private static ClinicalFields clinicalFields = null;
 	private static Clinics clinics = null;
+	private static ClinicDates clinicDates=null;
 	private static Links links = null;
 	private static PersonalFields personalFields = null;
 	private static Pregnancies pregnancies = null;
@@ -204,6 +205,14 @@ public class DataManager {
 
 	public static void setDataManager(DataManager dataManager) {
 		DataManager.dataManager = dataManager;
+	}
+
+	public static ClinicDates getClinicDates() {
+		return clinicDates;
+	}
+
+	public static void setClinicdates(ClinicDates clinicDates) {
+		DataManager.clinicDates = clinicDates;
 	}
 
 }

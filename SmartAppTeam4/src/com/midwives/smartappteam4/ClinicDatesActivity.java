@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.midwives.classes.ClinicDates;
 import com.midwives.classes.DataManager;
 import com.midwives.classes.ServiceOptions;
 import com.midwives.classes.XFiles;
@@ -84,11 +85,11 @@ public class ClinicDatesActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString()+"\n"+
 									token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
 				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
-				
+				DataManager.setClinicdates(new ClinicDates(myList.get(position),weekDays[0], clinicName));
 				//send selected date and clinic name to next activity
-				intent.putExtra("appointment_date", myList.get(position).toString());
-				intent.putExtra("week_day", weekDay);
-				intent.putExtra("clinic_name", clinicName);
+//				intent.putExtra("appointment_date", myList.get(position).toString());
+//				intent.putExtra("week_day", weekDay);
+//				intent.putExtra("clinic_name", clinicName);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}	
@@ -141,7 +142,8 @@ public class ClinicDatesActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
 			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
 		
-			vHolder.tvName.setText((position+1) + " - ID: "+weekDay); //add value from previous Activity for test only!
+			vHolder.tvName.setText((position+1) + " - ID: "+weekDays[0]); //add value from previous Activity for test only!
+			//need to hold more than one day, when click on!!!!!!!!!!!!!!!!
 			vHolder.tvDays.setText(myList.get(position).toString());// Available data for test only
 			
 			return convertView;
@@ -150,6 +152,13 @@ public class ClinicDatesActivity extends Activity {
 	
 	class ViewHolder{
 		TextView tvName,tvDays;	
+	}
+	private String makeString(String[] days){
+		String result="";
+		for(String arr:days){
+			result=result.concat(arr+", ");
+		}
+		return result;
 	}
 	
 

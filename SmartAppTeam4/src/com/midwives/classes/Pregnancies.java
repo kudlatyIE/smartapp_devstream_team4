@@ -1,14 +1,14 @@
 package com.midwives.classes;
 
-
-
 public class Pregnancies {
 	
-	private int idNum = 0; //patient 
+	private int id = 0; //patient 
 	private int serviceUserId; //user/doctor/nurse
+	private int[] babyIds;
+	private String createdAt;
 	private String estDeliveryDate;
 	private String additionalInfo;
-	private String birthMode; // not sure about what to declare this as, "Forceps" or "Svd"
+	private String[] birthMode; // not sure about what to declare this as, "Forceps" or "Svd"
 	private String perineum;
 	private String antiD;
 	private String feeding;
@@ -21,10 +21,28 @@ public class Pregnancies {
 		this.gestation=gestation;
 	}
 	
-	public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String birthMode, 
+	//constructor for json data
+	public Pregnancies(String info,String antiD, int[] babyIds, String []birthMode, String createdAt, String estimatedDeliveryDate, String feeding,
+						String gestation, int id, String lastPeriod, String perineum, int serviceUserId){
+		this.additionalInfo=info;
+		this.antiD=antiD;
+		this.babyIds=babyIds;
+		this.birthMode=birthMode;
+		this.createdAt=createdAt;
+		this.estDeliveryDate=estimatedDeliveryDate;
+		this.feeding=feeding;
+		this.gestation=gestation;
+		this.id=id;
+		this.lastMenstrualPeriod=lastPeriod;
+		this.perineum=perineum;
+		this.serviceUserId=serviceUserId;
+		
+	}
+	
+	public Pregnancies(int idNum, int serviceUserId, String estDeliveryDate, String additonalInfo, String[] birthMode, 
 					String perineum, String antiD, String feeding, String lastMenstrualPeriod, String gestation) {
 	
-		this.idNum = idNum;
+		this.id = idNum;
 		this.serviceUserId = serviceUserId;
 		this.estDeliveryDate = estDeliveryDate;
 		this.additionalInfo = additonalInfo;
@@ -36,12 +54,12 @@ public class Pregnancies {
 		this.gestation = gestation;
 	}
 
-	public int getIdNum() {
-		return idNum;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdNum(int idNum) {
-		this.idNum = idNum;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getServiceUserId() {
@@ -68,11 +86,11 @@ public class Pregnancies {
 		this.additionalInfo = additionalInfo;
 	}
 
-	public String getBirthMode() {
+	public String[] getBirthMode() {
 		return birthMode;
 	}
 
-	public void setBirthMode(String birthMode) {
+	public void setBirthMode(String[] birthMode) {
 		this.birthMode = birthMode;
 	}
 
@@ -116,9 +134,22 @@ public class Pregnancies {
 		this.gestation = gestation;
 	}
 
+	public int[] getBabyIds() {
+		return babyIds;
+	}
+
+	public void setBabyIds(int[] babyIds) {
+		this.babyIds = babyIds;
+	}
+
+	public String getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
 
 }
 
-
-
-
+//Nick

@@ -11,6 +11,12 @@ import java.net.URL;
 
 
 
+
+
+
+
+import org.json.JSONException;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -32,15 +38,12 @@ public class LoginActivity extends Activity {
 	private Button btnLogin;
 	private Intent intent;
 	private HttpURLConnection httpcon;
-	private String loginUrl= "http://54.72.7.91:8888/login";
-	private String tableUrl="http://54.72.7.91:8888/appointments";
+	private String loginUrl;
+
 	
-	private String apiKey1="1b74f729-d05a-4573-b814-95e3c6713fe1";//denmark
-	private String apiKey2 = "6f9a1abf-443e-4d18-a1a8-93dd39f69d6a";//andorra
+	private String user;
 	
-	private String user1="team_denmark", user2="team_andorra";
-	
-	private String pass="smartappiscoming";
+	private String pass;//="smartiscoming";
 	private String result,id="no id",token="no token";
 	private SmartAuth smartAuth;
 	
@@ -49,11 +52,15 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
+		loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
+		user = getResources().getString(R.string.auth_login_name);
+		pass = getResources().getString(R.string.auth_password);
+		
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		      StrictMode.setThreadPolicy(policy);
 		    }
-		smartAuth = new SmartAuth(user2,loginUrl, tableUrl,apiKey2,pass);
+		smartAuth = new SmartAuth(user,loginUrl, null,null,pass);
 		this.token = smartAuth.getToken();
 		
 		
@@ -63,9 +70,6 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				intent = new Intent(getApplicationContext(), MainViewActivity.class);
-				intent.putExtra("token",token );
-				intent.putExtra("apiKey", apiKey2);
-				intent.putExtra("tableUrl", tableUrl);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);	
 			}
@@ -73,6 +77,106 @@ public class LoginActivity extends Activity {
 	}//end onCreate
 
 }
+//public class LoginActivity extends Activity {
+//
+//	private Button btnLogin;
+//	private Intent intent;
+//	private ProgressDialog dialog;
+//	private HttpURLConnection httpcon;
+//
+//	private String user, pass,apiKey,loginUrl;
+//	private String result,id="no id",token="no token";
+//	private SmartAuth smartAuth;
+//	
+//	@Override
+//	protected void onCreate(Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.activity_login);
+//		
+////		if (android.os.Build.VERSION.SDK_INT > 9) {
+////		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+////		      StrictMode.setThreadPolicy(policy);
+////		    }
+//		user = getResources().getString(R.string.auth_login_name);
+//		pass = getResources().getString(R.string.auth_password);
+//		loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
+//		apiKey = getResources().getString(R.string.auth_api_key);
+//		System.out.println("user: "+user);
+//		System.out.println("pass: "+pass);
+//		System.out.println("url: "+loginUrl);
+//		System.out.println("key: "+apiKey);
+//		// run async task here!
+//		new SmartLogin().execute();
+//		
+//		
+//		
+//		
+//		
+//		btnLogin = (Button) findViewById(R.id.login_btn_login);
+//		btnLogin.setOnClickListener(new OnClickListener(){
+//
+//			@Override
+//			public void onClick(View v) {
+//				intent = new Intent(getApplicationContext(), MainViewActivity.class);
+//				intent.putExtra("token",token );
+//				intent.putExtra("apiKey", apiKey);
+//				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//				startActivity(intent);	
+//			}
+//		});
+//	}//end onCreate
+	
+	//-----------async class----------------------
+	
+//	private class SmartLogin extends AsyncTask<Void, String, String>{
+//
+//		@Override
+//		protected String doInBackground(Void... params) {
+//			try {
+//				smartAuth = new SmartAuth();
+//				token = smartAuth.getTheAuthKey(user, pass, loginUrl);
+//			} catch (IOException e) {
+////				publishProgress("Network problem...");			
+//				e.printStackTrace();
+//			} catch (JSONException e) {
+//
+//				e.printStackTrace();
+//			}System.out.println("Login, return token : "+token);
+//			return token;
+//		}
+//
+//		@Override
+//		protected void onPreExecute() {
+//			super.onPreExecute();
+////			dialog = new ProgressDialog(getApplicationContext());
+////			dialog.setTitle("SMART Login");
+////			dialog.setMessage("Connection...");
+////			dialog.setIndeterminate(false);
+////			dialog.setCancelable(true);
+////			dialog.show();
+//		}
+//
+//		@Override
+//		protected void onPostExecute(String result) {
+//			super.onPostExecute(result);
+//			Log.e("Async", "done - onPostExecute stuff...."+result);
+////			SmartAuth.setToken(result);
+//			token=result;
+//			SmartAuth.setStatToken(result);
+//			
+////			dialog.dismiss();
+//		}
+//
+////		@Override
+////		protected void onProgressUpdate(String... msg) {
+////			super.onProgressUpdate(msg);
+////			dialog.setMessage(msg[0]);
+////			
+////		}
+//		
+//	}
+
+//}
 
 	
 

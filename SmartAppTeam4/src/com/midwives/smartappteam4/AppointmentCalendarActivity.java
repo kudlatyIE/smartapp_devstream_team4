@@ -4,24 +4,32 @@
  */
 package com.midwives.smartappteam4;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
+
+
+import org.json.JSONException;
+
 import com.midwives.parsers.*;
 import com.midwives.classes.*;
-import com.midwives.smartappteam4.ClinicDatesActivity.ViewHolder;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,7 +45,8 @@ public class AppointmentCalendarActivity extends Activity {
 	private TextView tvTitle, tvSubtitle,tvDate;
 	private Button btnPrev, btnNext, btnBack, btnBook,btnHome;
 	private ListView lv;
-	private String hint,clinicName, appointmentDate,weekDay, jsonString, token; 
+	private String hint,clinicName, appointmentDate,weekDay, jsonString, token, tableUrl, apiKey; 
+	private Appointment appointment;
 	
 	private ArrayList<Appointment> myList;
 //	private ArrayList<ServiceOptions> service;
@@ -49,11 +58,21 @@ public class AppointmentCalendarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_appointment_calendar);
 		
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+	      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	      StrictMode.setThreadPolicy(policy);
+	    }
+		
+
 		//Receive selected appointment date/clinic name and week day from previous activity... TEST STUFF
 		extras = getIntent().getExtras();
-		clinicName = extras.getString("clinic_name");
-		appointmentDate = extras.getString("appointment_date");
-		weekDay = extras.getString("week_day");
+		clinicName = DataManager.getClinicDates().getClinicName();
+		appointmentDate = DataManager.getClinicDates().getAppointmentDate();
+		weekDay = DataManager.getClinicDates().getWeekDay();		
+		
+		
+		this.tableUrl=getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_appointment));
+		
 				
 		btnBack = (Button) findViewById(R.id.app_calendar_header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_btn_home);
@@ -77,34 +96,35 @@ public class AppointmentCalendarActivity extends Activity {
 		btnPrev.setOnClickListener(button);
 		btnNext.setOnClickListener(button);
 		
-		// generate testing data only - test json...........
-		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),SmartAuth.getTableUrl());
 		
-		this.token=SmartAuth.getToken(); // get TOKEN
+		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),tableUrl);
 		
-		jsonString=smart.accessTheDBTable(token); // get json String
-		
+		this.token=SmartAuth.getToken();
+		jsonString=smart.accessTheDBTable(token); 
+
 		myList = AppointmentParser.parseAppointment(jsonString); // parse json String into ArrayList
 		
 		//populate listView
-		ListView lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
+		lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
 		lv.setAdapter(new MyAdapter(getApplicationContext(),R.layout.app_calendar_full_adapter,myList));
 		
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
+										
+				// send links to service user activity
 				intent = new Intent(getApplicationContext(),ServiceUserActivity.class);
-				intent.putExtra("service option", myList.get(position).getLinks().getServiceOptions());
-				intent.putExtra("service provider", myList.get(position).getLinks().getServiceProviders());
-				intent.putExtra("service user", myList.get(position).getLinks().getServiceUsers());
+				DataManager.setAppointment(myList.get(position));
+				DataManager.setLinks(new Links(myList.get(position).getLinks().getServiceOptions(),
+												myList.get(position).getLinks().getServiceProviders(),
+												myList.get(position).getLinks().getServiceUsers()));
 				startActivity(intent);
 				
 			}
 		});
 		
-	}
+	}//end onCreate
 	private class MyButtons implements OnClickListener{
 
 		@Override
@@ -167,6 +187,55 @@ public class AppointmentCalendarActivity extends Activity {
 		TextView tvTime, tvName, tvGestation;	
 	}
 	
+	//-----------async class----------------------
+	
+		private class DataTable extends AsyncTask<String, String, String>{
+
+			@Override
+			protected String doInBackground(String... params) {
+				String token = params[0];
+				String key = params[1];
+				String url = params[2];
+				System.out.println("AppCalendar inBackground URL: "+url);
+				System.out.println("AppCalendar inBackground KEY: "+key);
+				System.out.println("AppCalendar inBackground TOKEN: "+token);
+				
+				
+				SmartAuth smart = new SmartAuth(token, key, url);
+				jsonString=smart.accessTheDBTable(token); // get json String
+				System.out.println("return json from end AsymcTask: "+jsonString);
+				return jsonString;
+			}
+
+//			@Override
+//			protected void onPreExecute() {
+//				super.onPreExecute();
+//				dialog = new ProgressDialog(getApplicationContext());
+//				dialog.setTitle("SMART Login");
+//				dialog.setMessage("Connection...");
+//				dialog.setIndeterminate(false);
+//				dialog.setCancelable(true);
+//				dialog.show();
+//			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				super.onPostExecute(result);
+				Log.e("Async", "done - onPostExecute stuff...."+result);
+//				System.out.println("jsson from onPostExecute: "+result);
+				jsonString = result;
+				
+//				dialog.dismiss();
+			}
+
+//			@Override
+//			protected void onProgressUpdate(String... msg) {
+//				super.onProgressUpdate(msg);
+//				dialog.setMessage(msg[0]);
+//				
+//			}
+			
+		}
 }
 
 //Nick

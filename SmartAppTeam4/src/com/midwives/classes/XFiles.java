@@ -1,8 +1,11 @@
 package com.midwives.classes;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class XFiles {
@@ -47,6 +50,27 @@ public class XFiles {
 			cal.add(Calendar.DATE, 7);
 		}
 		return dayList;
+	}
+    
+    /**
+     * return age in years, for dob (PersonalFields class)
+     * @param stringDate (DOB) yyyy-MM-dd 
+     * @return int age years
+     */
+    public static int getAge(String stringDate){
+		int age=0;
+		Calendar cal = Calendar.getInstance();
+		age = cal.get(Calendar.YEAR);
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = df.parse(stringDate);
+			cal.setTime(date);
+			age=age-cal.get(Calendar.YEAR);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return age;
 	}
 
 }

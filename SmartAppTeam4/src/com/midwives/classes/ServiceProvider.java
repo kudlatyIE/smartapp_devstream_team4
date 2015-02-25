@@ -1,15 +1,20 @@
 package com.midwives.classes;
 
-public class ServiceProvider {
+import java.io.Serializable;
+
+public class ServiceProvider implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4964762144329275003L;
 	private int providerId;
 	private String providerName, providerUserName, prividerEmail,jobOcupation,jobLevel, providerPrimaryPhone, providerSecondatPhone;
 	private String providerPassword; // will chars array... or something
 	private boolean activeStatus, adminRight;
 	
-	ServiceProvider(int id, String name, String userName, String email, String password,
-			boolean active, boolean admin, String occupation, String jobLewel,
-			String primaryPhone, String secondaryPhone){
+	public ServiceProvider(boolean active,boolean admin, String email, int id, String jobLewel,
+			String occupation, String name, String password, String primaryPhone,  String secondaryPhone,String userName){
 		
 		this.providerId=id;
 		this.providerName=name;
@@ -22,8 +27,6 @@ public class ServiceProvider {
 		this.jobLevel=jobLewel;
 		this.providerPrimaryPhone=primaryPhone;
 		this.providerSecondatPhone=secondaryPhone;
-		 
-		
 		
 	}
 

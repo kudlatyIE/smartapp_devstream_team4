@@ -1,37 +1,35 @@
 package com.midwives.classes;
 
-import java.util.Date;
+import java.util.Date;  //Chris 
 
 public class Clinics {
 	
 	private int clinicId, appointmentInterval;
 	private String clinicName, clinicAddress, type;
-	private Date openingTime, closingTime;
-	private Days openDays;
+
+	private String  openingTime, closingTime;	   //changed from type Date to type string  - chris
+	private String[] openDays = new String[7];     // changed  from type Days to type String array of type Days.name -chris
 	private Recurrence recurrence;
-	private int[] serviceOptionIds;
+	private int [] serviceOptionIds;
 	private Announcements announcement;
+	private String week;//test stuff
 	
 	Clinics(){}
-	/**
-	 * Contractor for test only
-	 * @param id
-	 * @param name
-	 * @param address
-	 * @param reccurence
-	 * @param days
-	 */
-	public Clinics (int id, String name, String address, Recurrence reccurence, Days days){ // short, for test only!
-		this.clinicId=id;
-		this.clinicName=name;
-		this.clinicAddress=address;
-		this.openDays=days;
-		this.recurrence=reccurence;
-		
-	}
-	public Clinics(int id, String name, String address, Date openTime, Date closeTime,Recurrence recurrence,
-			String type, int appointmentInterval, Days day, int [] serviceOption){
-		
+
+//	// midwives constructor display just clinic name, clinic address, recurrence, and open days
+//	public Clinics (int id, String name, String address, Recurrence reccurence, String[] days){ 
+//
+//		this.clinicId=id;
+//		this.clinicName=name;
+//		this.clinicAddress=address;
+//		this.openDays=days;
+//		this.recurrence=reccurence;
+//		
+//	}
+
+	//constructor used for parsing data!!!
+	public Clinics(int id, String name, String address, String openTime, String closeTime,Recurrence recurrence,
+			String type, int appointmentInterval, String[] day, int [] serviceOption){		
 		this.clinicId=id;
 		this.clinicName=name;
 		this.clinicAddress=address;
@@ -75,22 +73,22 @@ public class Clinics {
 	public void setRecurrence(Recurrence recurrence) {
 		this.recurrence = recurrence;
 	}
-	public Date getOpeningTime() {
+	public String getOpeningTime() {
 		return this.openingTime;
 	}
-	public void setOpeningTime(Date openingTime) {
+	public void setOpeningTime(String openingTime) {
 		this.openingTime = openingTime;
 	}
-	public Date getClosingTime() {
+	public String getClosingTime() {
 		return this.closingTime;
 	}
-	public void setClosingTime(Date closingTime) {
+	public void setClosingTime(String closingTime) {
 		this.closingTime = closingTime;
 	}
-	public Days getOpenDays() {
+	public String[] getOpenDays() {
 		return this.openDays;
 	}
-	public void setOpenDays(Days openDays) {
+	public void setOpenDays(String[] openDays) {
 		this.openDays = openDays;
 	}
 	public int[] getServiceOptionIds() {
@@ -105,10 +103,12 @@ public class Clinics {
 	public void setAnnouncement(Announcements announcement) {
 		this.announcement = announcement;
 	}
-	
-	
-	
-	
-	
+	public String getType() {
+		return type;
+	}
 
-}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+} //close class clinics

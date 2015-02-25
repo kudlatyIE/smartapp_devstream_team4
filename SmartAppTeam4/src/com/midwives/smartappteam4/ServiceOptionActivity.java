@@ -3,13 +3,13 @@ package com.midwives.smartappteam4;
 import java.util.ArrayList;
 
 import com.midwives.classes.*;
+import com.midwives.parsers.ServiceOptionsParser;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -23,15 +23,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ServiceOptionActivity extends Activity {
+	
+	private Bundle extras;
 	private Intent intent;
 	private Button btnBack, btnHome, btnBook;
 	private TextView tvTitle, tvSubtitle;
-	private ArrayList<ServiceOptions> myList; //array just for test
+	private ArrayList<ServiceOptions> myList;
+	private String token, apiKey, url, jsonString;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_service_option);
+		
+
+		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_service_options));
+		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_btn_home);
 		btnBook = (Button) findViewById(R.id.footer_btn_book);
@@ -48,7 +55,15 @@ public class ServiceOptionActivity extends Activity {
 		btnHome.setOnClickListener(button);
 		btnBook.setOnClickListener(button);
 		
-		myList = ServiceOptions.createServiceList(); //create testing list of Services
+		//get json data
+		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),url);
+		
+		this.token=SmartAuth.getToken();
+		jsonString=smart.accessTheDBTable(token);
+		
+		myList = ServiceOptionsParser.parseServiceOptions(jsonString);
+		// be changed to SmartAuth methods.............................
+//		myList = ServiceOptions.createServiceList(); //create testing list of Services
 		
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		
@@ -61,13 +76,9 @@ public class ServiceOptionActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-//				ServiceOptions item = (ServiceOptions) lv.getSelectedItem();// testing line
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getServiceName(), Toast.LENGTH_SHORT).show();
+				//we'll send all data by static way to DataManager!!!!
+				DataManager.setServiceOptions(new ServiceOptions(myList.get(position).getServiceId(),myList.get(position).getServiceName()));
 				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
-				//send selected Clinic Id to new activity
-				intent.putExtra("ClinicId", String.valueOf(myList.get(position).getServiceId()));
-				intent.putExtra("clinicName", myList.get(position).getServiceName().toString());
-				//prevent to open too many same activity
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}
@@ -114,7 +125,6 @@ public class ServiceOptionActivity extends Activity {
 			convertView = inflater.inflate(R.layout.serviceoption_adapter, parent, false); //layout adapter HERE!
 			
 			vHolder.tView1 = (TextView) convertView.findViewById(R.id.serviceoption_adapter_textitem);
-		
 			vHolder.tView1.setText(myList.get(position).getServiceName());
 			
 			return convertView;

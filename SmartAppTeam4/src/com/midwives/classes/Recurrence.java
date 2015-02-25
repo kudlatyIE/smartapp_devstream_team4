@@ -1,5 +1,7 @@
 package com.midwives.classes;
 
+//not used, will be deleted.....
+
 public enum Recurrence {
 	DAILY("daily", false),
 	WEEKLY("weekly",false),

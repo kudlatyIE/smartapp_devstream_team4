@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -94,12 +93,25 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_splash_screen" >
         </activity>
+        <activity
+            android:name=".PostNatalActivity"
+            android:label="@string/title_activity_splash_screen" >
+        </activity>
+        <activity
+            android:name=".ObstreticHistoryActivity"
+            android:label="@string/title_activity_obstretic_history" >
+        </activity>
+        <activity
+            android:name=".ParityActivity"
+            android:label="@string/title_activity_parity" >
+        </activity>
     </application>
 
 </manifest><!--
              <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
-        </activity>
+        </activity>
 -->
+
 

@@ -20,6 +20,8 @@ public class LoginGetAuthToken {
 	}
 	
 	// get the auth key
+	//this note  be removed : at mo the null return is due to an exception being thrown after passing through the catch block 
+	//would be stabler code if this was managed before exception see note at line  'getInputStream() below
 	public String getTheAuthKey(String loginURL, String userName, String passWord) {
 		try {
 			httpcon = (HttpURLConnection) ((new URL(loginURL).openConnection()));
@@ -38,7 +40,7 @@ public class LoginGetAuthToken {
 						os.close();
 			
 			// grab the response
-			InputStream is = httpcon.getInputStream();
+			InputStream is = httpcon.getInputStream(); //at this point if wrong username / password throws IOexception a http 422 error.
 		    int ch;
 		    StringBuffer sb = new StringBuffer();
 		    while ((ch = is.read()) != -1) {

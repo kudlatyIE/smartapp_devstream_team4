@@ -9,7 +9,7 @@ public class Baby {
 	private int pregnancyId;
 	private String hospitalNumber;
 	private String gender;
-	private double weight;
+	private int weight;
 	private String deliveryDateTime;
 	private String vitaminK;
 	private String hearingTest;
@@ -17,8 +17,9 @@ public class Baby {
 	
 	public Baby(){}// used if no babies....
 	
+	
 	public Baby(String birthOutcome, String deliveryDateTime, String gender, String hearing, String hospitalNumber,
-				int id, String name, String screeaningTest, int pregnacyId, String vitaminK, double weight){
+				int id, String name, String screeaningTest, int pregnacyId, String vitaminK, int weight){
 		this.birthOutcome=birthOutcome;
 		this.deliveryDateTime=deliveryDateTime;
 		this.gender=gender;
@@ -66,11 +67,11 @@ public class Baby {
 		this.gender = gender;
 	}
 
-	public double getWeight() {
+	public int getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 
@@ -106,8 +107,39 @@ public class Baby {
 		this.newBornScreeningTest = newBornScreeningTest;
 	}
 
+	public String getBirthOutcome() {
+		return birthOutcome;
+	}
+
+	public void setBirthOutcome(String birthOutcome) {
+		this.birthOutcome = birthOutcome;
+	}
+
+	public String getScreeningTest() {
+		return screeningTest;
+	}
+
+	public void setScreeningTest(String screeningTest) {
+		this.screeningTest = screeningTest;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 } //Close class  - test push3 working
 // test comment
 
 //ano ssdfjhsdjhdf	
-//wsdfhj

@@ -13,6 +13,8 @@ public class Appointment {
 	private ServiceUser serviceUser;
 	private String[] visitLogs;
 	
+	private static Appointment appointment;
+	
 	private Links links;
 	
 	public Appointment(){} //used when is empty slot
@@ -211,6 +213,14 @@ public class Appointment {
 
 	public void setVisitLogs(String[] visitLogs) {
 		this.visitLogs = visitLogs;
+	}
+
+	public static Appointment getAppointment() {
+		return appointment;
+	}
+
+	public static void setAppointment(Appointment appointment) {
+		Appointment.appointment = appointment;
 	}
 
 	

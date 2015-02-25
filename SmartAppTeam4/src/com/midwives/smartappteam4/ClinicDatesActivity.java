@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.midwives.classes.ClinicDates;
+import com.midwives.classes.DataManager;
 import com.midwives.classes.ServiceOptions;
 import com.midwives.classes.XFiles;
 import com.midwives.smartappteam4.ClinicsActivity.ViewHolder;
@@ -36,7 +38,8 @@ public class ClinicDatesActivity extends Activity {
 	private Date date;
 	private Button btnBack, btnHome, btnBook,btnCalendar;
 	private TextView tvTitle, tvSubtitle;
-	private String hint,clinicName, weekDay; 
+	private String hint,clinicName, token, apiKey, url; 
+	private String[] weekDays;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,8 @@ public class ClinicDatesActivity extends Activity {
 		setContentView(R.layout.activity_clinic_dates);
 		
 		//Receive data from previous activity...
-		extras = getIntent().getExtras();
-		clinicName = extras.getString("clinicName");
-		weekDay = extras.getString("weekDay");
+		clinicName = DataManager.getClinics().getClinicName();
+		weekDays = DataManager.getClinics().getOpenDays();
 		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_clinicdates_btn_home);
@@ -66,8 +68,8 @@ public class ClinicDatesActivity extends Activity {
 //		hint=getResources().getString(R.string......)
 		tvSubtitle.setText("Select "+ clinicName+ "\'s calendar");
 		
-		//create fake data list for test only...
-		myList = XFiles.getDateList(weekDay);
+		//create dataList for only one day... will be fixed to return more days...............................................
+		myList = XFiles.getDateList(weekDays[0]);
 		//populate listView content
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		
@@ -80,13 +82,14 @@ public class ClinicDatesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString()+"\n"+
+									token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
 				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
-				
+				DataManager.setClinicdates(new ClinicDates(myList.get(position),weekDays[0], clinicName));
 				//send selected date and clinic name to next activity
-				intent.putExtra("appointment_date", myList.get(position).toString());
-				intent.putExtra("week_day", weekDay);
-				intent.putExtra("clinic_name", clinicName);
+//				intent.putExtra("appointment_date", myList.get(position).toString());
+//				intent.putExtra("week_day", weekDay);
+//				intent.putExtra("clinic_name", clinicName);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}	
@@ -139,7 +142,8 @@ public class ClinicDatesActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
 			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
 		
-			vHolder.tvName.setText((position+1) + " - ID: "+weekDay); //add value from previous Activity for test only!
+			vHolder.tvName.setText((position+1) + " - ID: "+weekDays[0]); //add value from previous Activity for test only!
+			//need to hold more than one day, when click on!!!!!!!!!!!!!!!!
 			vHolder.tvDays.setText(myList.get(position).toString());// Available data for test only
 			
 			return convertView;
@@ -148,6 +152,13 @@ public class ClinicDatesActivity extends Activity {
 	
 	class ViewHolder{
 		TextView tvName,tvDays;	
+	}
+	private String makeString(String[] days){
+		String result="";
+		for(String arr:days){
+			result=result.concat(arr+", ");
+		}
+		return result;
 	}
 	
 

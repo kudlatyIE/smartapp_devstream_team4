@@ -1,11 +1,17 @@
 package com.midwives.smartappteam4;
 
-import java.util.ArrayList;
+import java.util.ArrayList;  //// Chris
 
 import com.midwives.classes.Clinics;
 import com.midwives.classes.DataManager;
 import com.midwives.classes.Days;
 import com.midwives.classes.Recurrence;
+
+
+
+import com.midwives.classes.SmartAuth;
+import com.midwives.parsers.AppointmentParser;
+import com.midwives.parsers.ClinicsParser;
 
 import android.app.Activity;
 import android.content.Context;
@@ -31,10 +37,10 @@ public class ClinicsActivity extends Activity {
 	private Button btnBack, btnHome,btnBook;
 	private TextView tvTitle, tvSubtitle;
 	private ArrayList<Clinics> myList; 
-	private String token, apiKey, url;
-	
+	private String token, apiKey, url;	
 	private int id;
 	private String hint,clinicName;
+	private String jsonString;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,8 +70,12 @@ public class ClinicsActivity extends Activity {
 		btnHome.setOnClickListener(button);
 		btnBook.setOnClickListener(button);
 		
-		//create clinics list for testing....
-		myList=createClinicList();
+		//get the list of clinics 
+		//myList=createClinicList(); //switch to hard coded array see below for populate method 
+		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),"http://54.72.7.91:8888/clinics");
+		this.token=SmartAuth.getToken(); //get token needed to get the table 
+		jsonString=smart.accessTheDBTable(token); //get the clinics table as a json formatted string
+		myList = ClinicsParser.parseClinics(jsonString);  //parse json format of clinics table into array which will populate widgets
 		
 		//populate list of clinics...
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
@@ -82,8 +92,17 @@ public class ClinicsActivity extends Activity {
 													token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
 				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				DataManager.setClinics(new Clinics(myList.get(position).getClinicName(),myList.get(position).getOpenDays().getDayName()));// test shit only!!!
-				
+
+//				DataManager.setClinics(new Clinics(myList.get(position).getClinicName(),myList.get(position).getOpenDays().getDayName()));// test shit only!!!
+				DataManager.setClinics(new Clinics(myList.get(position).getClinicId(),myList.get(position).getClinicName(), myList.get(position).getClinicAddress(),
+													myList.get(position).getOpeningTime(),myList.get(position).getClosingTime(),myList.get(position).getRecurrence(),
+													myList.get(position).getType(),myList.get(position).getAppointmentInterval(),
+													myList.get(position).getOpenDays(),myList.get(position).getServiceOptionIds()));
+
+//				intent.putExtra("clinicId", myList.get(position).getClinicId());
+//				intent.putExtra("clinicName", myList.get(position).getClinicName());// to be handle by clinicID in the future...
+//				intent.putExtra("weekDay", getOpenDays(myList, position));
+
 				startActivity(intent);
 				
 			}
@@ -135,15 +154,15 @@ public class ClinicsActivity extends Activity {
 			convertView = inflater.inflate(R.layout.clinicsoption_adapter, parent, false); //layout adapter HERE!
 			
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicname);
-			vHolder.tvAddress = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicaddress);
+			//vHolder.tvAddress = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_clinicaddress);
 			vHolder.tvRecurrence = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_reccurence);
 			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicsoption_adapter_text_bookongday);
-			
-			
-			vHolder.tvName.setText((myList.get(position).getClinicName() + " - ID:"+String.valueOf(id))); //add value from previous Activity for test only!
-			vHolder.tvAddress.setText(myList.get(position).getClinicAddress());
+						
+			vHolder.tvName.setText((myList.get(position).getClinicName()));     // + " - ID:"+String.valueOf(id))); //add value from previous Activity for test only!
+			//vHolder.tvAddress.setText(myList.get(position).getClinicAddress());
 			vHolder.tvRecurrence.setText(myList.get(position).getRecurrence().getReccName());
-			vHolder.tvDays.setText(myList.get(position).getOpenDays().getDayName());
+			//vHolder.tvDays.setText(myList.get(position).getOpenDays().getDayName()); //when switch to hard coded test array
+			vHolder.tvDays.setText(makeString(openDays(myList,position))); //get the open days for the clinic from the list
 			
 			return convertView; } }
 
@@ -152,6 +171,35 @@ public class ClinicsActivity extends Activity {
 		TextView tvName, tvAddress, tvRecurrence,tvDays;	
 	}
 	
+//	private String getOpenDays(ArrayList<Clinics> listOfClinics, int position) {		
+//		String daysOpen = "";
+//		String[] temp = listOfClinics.get(position).getOpenDays();
+//		int length = temp.length;
+//		for(int i = 0; i < length; i++){
+//			if(temp[i] != null)
+//				 daysOpen += temp[i] + " ";
+//		}
+//		return daysOpen;
+//	}
+	
+	private String[] openDays(ArrayList<Clinics> clinicList, int position){
+		ArrayList<String> days = new ArrayList<String>();
+		String [] temp = clinicList.get(position).getOpenDays();
+		for(int i=0;i<temp.length;i++){
+			if(temp[i]!=null) days.add(temp[i]);
+		}
+		String[] result = days.toArray(new String[days.size()]);
+		return result;
+	}
+	private String makeString(String[] days){
+		String result="";
+		for(String arr:days){
+			result=result.concat(arr+", ");
+		}
+		return result;
+	}
+	
+	/*//note the clinics constructor has changes to suit the dynamic array 
 	private ArrayList<Clinics> createClinicList(){
 		ArrayList<Clinics> myList = new ArrayList<Clinics>();
 		
@@ -164,7 +212,8 @@ public class ClinicsActivity extends Activity {
 		
 		return myList;
 	}
+	*/
 	
 }
 
-// Nick
+// Chris

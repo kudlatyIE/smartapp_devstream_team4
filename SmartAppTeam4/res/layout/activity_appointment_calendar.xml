@@ -8,5 +8,5 @@
    <include layout="@layout/smart_appointment_calendar_header" />
    <include layout="@layout/smart_footer" />
    <include layout="@layout/smart_appoitment_calendar_listview" />
-
+   
 </RelativeLayout>

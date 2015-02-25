@@ -37,7 +37,8 @@ public class ClinicDatesActivity extends Activity {
 	private Date date;
 	private Button btnBack, btnHome, btnBook,btnCalendar;
 	private TextView tvTitle, tvSubtitle;
-	private String hint,clinicName, weekDay, token, apiKey, url; 
+	private String hint,clinicName, token, apiKey, url; 
+	private String[] weekDays;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class ClinicDatesActivity extends Activity {
 		
 		//Receive data from previous activity...
 		clinicName = DataManager.getClinics().getClinicName();
-		weekDay = DataManager.getClinics().getWeek();
+		weekDays = DataManager.getClinics().getOpenDays();
 		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_clinicdates_btn_home);
@@ -66,8 +67,8 @@ public class ClinicDatesActivity extends Activity {
 //		hint=getResources().getString(R.string......)
 		tvSubtitle.setText("Select "+ clinicName+ "\'s calendar");
 		
-		//create fake data list for test only...
-		myList = XFiles.getDateList(weekDay);
+		//create dataList for only one day... will be fixed to return more days...............................................
+		myList = XFiles.getDateList(weekDays[0]);
 		//populate listView content
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		

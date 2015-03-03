@@ -35,14 +35,6 @@ public class Baby {
 	}
 	
 
-	public int getBabyId() {
-		return id;
-	}
-
-	public void setBabyId(int babyId) {
-		this.id = babyId;
-	}
-
 	public int getPregnancyId() {
 		return pregnancyId;
 	}

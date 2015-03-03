@@ -8,10 +8,7 @@
     <string name="auth_url_server">http://54.72.7.91:8888/</string>
     <string name="auth_url_login">login</string>
     <string name="auth_url_service_options">service_options</string>
-    <string name="auth_ur_clinics">clinics</string>
-    
-    
-    
+    <string name="auth_url_clinics">clinics</string>
     <string name="auth_url_appointment">appointments</string>
     
     

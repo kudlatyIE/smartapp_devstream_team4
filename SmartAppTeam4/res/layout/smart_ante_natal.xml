@@ -2,62 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
    		android:id="@+id/smart_layout_ante_natal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/smart_layout_header"
+        android:layout_below="@+id/serviceuser_header_edit"
         android:layout_above="@+id/smart_layout_footer"
         
-    	 >
-    	 
-       	<LinearLayout
-            		android:layout_width="match_parent"
-           		    android:layout_height="wrap_content"
-            		android:orientation="vertical"
-            		>
-    
-             		    	<TextView
-         		    	    android:id="@+id/antenatal_textview_userdetail"
-         		    	    android:layout_width="match_parent"
-         		    	    android:layout_height="wrap_content"
-         		    	    android:gravity="center"
-         		    	    android:layout_weight="1"
-         		    	    android:padding="10dp"
-         		    	    android:text="@string/ante_natal_userdetail"        		    	    
-         		    	    />
-             		    	
-    			</LinearLayout>
-    				
+    	 >	
             	
-            	<LinearLayout
-            	    android:id="@+id/antenatal_layout_middle"
-            	    android:layout_width="match_parent"
-            	    android:layout_height="wrap_content"
-            	    android:orientation="horizontal"
-            	    >
-             		    	
-            	    	<Button 
-            	    	    android:id="@+id/antenatal_btn_antenatal"
-            	    	    android:layout_width="wrap_content"
-            	    	    android:layout_height="wrap_content"
-            	    	    android:text="@string/btn_ante_natal"
-            	    	    />
+        <LinearLayout
+        	android:id="@+id/antenatal_layout_middle"
+        	android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            		    	
+            <Button 
+            	android:id="@+id/antenatal_btn_antenatal"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/btn_ante_natal"
+            />
             	    	
-            	    	<Button 
-            	    	    android:id="@+id/antenatal_btn_personal"
-            	    	    android:layout_width="wrap_content"
-            	    	    android:layout_height="wrap_content"
-            	    	    android:text="@string/btn_personal"
-            	    	    />
+            <Button 
+            	android:id="@+id/antenatal_btn_personal"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/btn_personal"
+            />
             	    	
-            	    	<Button 
-            	    	    android:id="@+id/antenatal_btn_postnatal"
-            	    	    android:layout_width="wrap_content"
-            	    	    android:layout_height="wrap_content"
-            	    	    android:text="@string/btn_postnatal"
-            	    	    />
+            <Button 
+            	android:id="@+id/antenatal_btn_postnatal"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/btn_postnatal"
+            />
             	    
-            	</LinearLayout>
+         </LinearLayout>
             	
  		<LinearLayout
  		    android:layout_width="match_parent"
@@ -66,50 +46,46 @@
  		    android:orientation="horizontal"
  		    >
  		    
- 		    	<TextView 
- 		    	    android:id="@+id/antenatal_textView_date_edd"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="start"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="18 Oct 2014" 		    	    
- 		    	    />
+ 		    <TextView 
+ 		    	android:id="@+id/antenatal_text_edd"
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="start"
+ 		    	android:layout_weight="1" 		    	    
+ 		    />
  		    	
- 		    	<TextView 
- 		    	    android:id="@+id/antenatal_textView_edd"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content" 		    	    
- 		    	    android:gravity="end"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="@string/textview_edd" 		    	    
- 		    	    />
+ 		    <TextView
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content" 		    	    
+ 		    	android:gravity="end"
+ 		    	android:layout_weight="1"
+ 		    	android:hint="@string/textview_edd" 		    	    
+ 		    />
  		    	
- 	</LinearLayout>		    	
+ 		</LinearLayout>		    	
  		    
- 	<LinearLayout
+ 		<LinearLayout
  		    android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
  		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <TextView 
- 		    	    android:id="@+id/antenatal_textView_gestation_weeks"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="start"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="25 - 5" 		    	    
- 		    	    />
+ 		   <TextView 
+ 		   		android:id="@+id/antenatal_text_gestation_weeks"
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="start"
+ 		    	android:layout_weight="1"
+ 		    />
  		    	
- 		    	<TextView 
- 		    	    android:id="@+id/antenatal_textView_gestatiom"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="end"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="@string/textview_gestation" 		    	    
- 		    	    />
+ 		    <TextView 
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="end"
+ 		    	android:layout_weight="1"
+ 		    	android:hint="@string/textview_gestation" 		    	    
+ 		    />
  		    		    
  		</LinearLayout>  
  		
@@ -120,50 +96,46 @@
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <TextView 
- 		    	    android:id="@+id/antenatal_textView_bloodgroup_type"
+ 		   <TextView 
+ 		    	    android:id="@+id/antenatal_text_bloodgroup_type"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"	    	    
  		    	    android:gravity="start"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="A" 		    	    
- 		    	    />
+ 		    	    android:layout_weight="1"		    	    
+ 		   />
  		    	
- 		    	<TextView 
- 		    	    android:id="@+id/antenatal_textView_bloodgroup"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="end"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="@string/textview_bloodgroup" 		    	    
- 		    	    />
+ 		   <TextView 
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="end"
+ 		    	android:layout_weight="1"
+ 		    	android:hint="@string/textview_bloodgroup" 		    	    
+ 		    />
  		    		    
  		</LinearLayout> 	
  		
- 	 	 <LinearLayout
- 		    android:layout_width="match_parent"
+ 	 	<LinearLayout
+ 			android:layout_width="match_parent"
  		    android:layout_height="wrap_content"
  		    android:layout_margin="10dp"
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <TextView 
- 		    	    android:id="@+id/antenatal_textView_rhesus_value"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"	    	    
- 		    	    android:gravity="start"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="Negative" 		    	    
- 		    	    />
+ 		   <TextView 
+ 		   		android:id="@+id/antenatal_text_rhesus_value"
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"	    	    
+ 		    	android:gravity="start"
+ 		    	android:layout_weight="1" 		    	    
+ 		   />
  		    	
- 		    	<TextView 
- 		    	    android:id="@+id/antenatal_textView_rhesus"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="end"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="@string/textview_rhesus" 		    	    
- 		    	    />
+ 		   <TextView 
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="end"
+ 		    	android:layout_weight="1"
+ 		    	android:hint="@string/textview_rhesus" 		    	    
+ 		    />
  		    		    
  		</LinearLayout> 
  		
@@ -174,22 +146,21 @@
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <TextView 
- 		    	    android:id="@+id/antenatal_textview_parity"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"	    	    
- 		    	    android:gravity="start"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="0 + 1" 		    	    
- 		    	    />
+ 		   <TextView 
+ 		   		android:id="@+id/antenatal_text_parity"
+ 		    	android:layout_width="0dp"
+ 		    	android:layout_height="wrap_content"	    	    
+ 		    	android:gravity="start"
+ 		    	android:layout_weight="1"		    	    
+ 		    />
  		    	
- 		    	<Button
- 		    	    android:id="@+id/antenatal_btn_parity"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="center"		    	    
- 		    	    android:hint="@string/btn_parity" 		    	    
- 		    	    />
+ 		    <Button
+ 		    	android:id="@+id/antenatal_btn_parity"
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="center"		    	    
+ 		    	android:hint="@string/btn_parity" 		    	    
+ 		    />
  		    		    
  		</LinearLayout> 
  		
@@ -200,22 +171,21 @@
  		    android:orientation="horizontal"
  		    >
  		    	
- 		    	 <TextView 
- 		    	    android:id="@+id/antenatal_textview_obstretic_history"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"	    	    
- 		    	    android:gravity="start"
- 		    	    android:layout_weight="1"
- 		    	    android:hint="Yes" 		    	    
- 		    	    />
+ 		    <TextView 
+ 		    	android:id="@+id/antenatal_text_obstretic_history"
+ 		    	android:layout_width="0dp"
+ 		    	android:layout_height="wrap_content"	    	    
+ 		    	android:gravity="start"
+ 		    	android:layout_weight="1" 		    	    
+ 		    />
  		    	
- 		    	<Button
- 		    	    android:id="@+id/antenatal_btn_obstretic_history"
- 		    	    android:layout_width="wrap_content"
- 		    	    android:layout_height="wrap_content"		    	    
- 		    	    android:gravity="center"		    	    
- 		    	    android:hint="@string/btn_obstretic_history" 		    	    
- 		    	    />
+ 		    <Button
+ 		    	android:id="@+id/antenatal_btn_obstretic_history"
+ 		    	android:layout_width="wrap_content"
+ 		    	android:layout_height="wrap_content"		    	    
+ 		    	android:gravity="center"		    	    
+ 		    	android:hint="@string/btn_obstretic_history" 		    	    
+ 		    />
  		    		    
  		</LinearLayout> 
  		

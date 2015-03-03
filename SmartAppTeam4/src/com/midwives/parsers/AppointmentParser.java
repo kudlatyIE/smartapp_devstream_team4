@@ -62,9 +62,6 @@ public class AppointmentParser implements Serializable{
 				 //
 				 String priority = json.getString(TAG_PRIORITY);
 				 //---------------------------------------------------------
-				 //how to parse  String array from json???
-				 
-//				 int[] serviceOptionIDs = null;//{11,222,333,444};
 				 
 				 String[] visitLogs;
 				 JSONArray arrstr = json.getJSONArray(TAG_VISIT_LOGS);
@@ -98,7 +95,7 @@ public class AppointmentParser implements Serializable{
 
 				 String gestation;  
 				 try{
-					 if(json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION).equals(null)) gestation =  " ---- ";
+					 if(json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION).equals(null)) gestation =  " ---- ";//delete this line.....
 					 else gestation =  json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION);  
 				 }catch(Exception e){
 					 gestation =  " ---- "; // return when gestation is NULL
@@ -107,19 +104,16 @@ public class AppointmentParser implements Serializable{
 				 String name = json.getJSONObject(TAG_USER).getString(TAG_USER_NAME);
 				 int userId= json.getJSONObject(TAG_USER).getInt(TAG_USER_ID);
 				 String time = json.getString(TAG_TIME);
-				 //to do: parse visit_logs Array.....
-//				 String[] visitLogs;
+
 				 String visitType = json.getString(TAG_VISIT_TYPE);
 				 
-//				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),
-//						 	priority,serviceProviderID,new ServiceUser(new Pregnancies(gestation),userId,new PersonalFields(name))
-//				 			,serviceUserID,time,visitType));
-				 //cant parse [] from json yet, will be fixed.....
+				 //try change ServiceUser constructor for more simple one.......
+//				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
+//						 					serviceOptionIDs,serviceProviderID,new ServiceUser(new Pregnancies(gestation),userId,
+//						 					new PersonalFields(name)),serviceUserID,time,visitLogs,visitType));	 
+				 
 				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
-						 					serviceOptionIDs,serviceProviderID,new ServiceUser(new Pregnancies(gestation),userId,
-						 					new PersonalFields(name)),serviceUserID,time,visitLogs,visitType));
-				 
-				 
+		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));	 
 			 }
 			
 			

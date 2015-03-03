@@ -1,12 +1,89 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:orientation="vertical"
+    >
+    <include layout="@layout/parity_header" />
 
-    <TextView
-        android:layout_width="wrap_content"
+   <ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="vertical"
+        >
+    
+    
+    <TextView 
+        android:id="@+id/parity_tab_title_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TableLayout 
+        android:id="@+id/parity_table_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        ></TableLayout>
+    
+    <TextView 
+        android:id="@+id/parity_tab_title_gestation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TableLayout 
+        android:id="@+id/parity_table_gestation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        ></TableLayout>
 
-</RelativeLayout>
+    <TextView 
+        android:id="@+id/parity_tab_title_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TableLayout 
+        android:id="@+id/parity_table_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        ></TableLayout>
+    
+    <TextView 
+        android:id="@+id/parity_tab_title_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TableLayout 
+        android:id="@+id/parity_table_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        ></TableLayout>
+
+    <TextView 
+        android:id="@+id/parity_tab_title_birthmode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TableLayout 
+        android:id="@+id/parity_table_birthmode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey"
+        ></TableLayout>
+
+    </LinearLayout>
+	</ScrollView>
+</LinearLayout>
+
+
+<!-- 
+android:stretchColumns="*"
+ -->

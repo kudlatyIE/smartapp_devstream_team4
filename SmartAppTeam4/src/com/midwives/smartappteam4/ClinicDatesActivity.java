@@ -82,14 +82,9 @@ public class ClinicDatesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).toString()+"\n"+
-									token+"\n"+ apiKey, Toast.LENGTH_SHORT).show();
-				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
 				DataManager.setClinicdates(new ClinicDates(myList.get(position),weekDays[0], clinicName));
-				//send selected date and clinic name to next activity
-//				intent.putExtra("appointment_date", myList.get(position).toString());
-//				intent.putExtra("week_day", weekDay);
-//				intent.putExtra("clinic_name", clinicName);
+				
+				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 			}	

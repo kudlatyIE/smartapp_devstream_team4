@@ -51,11 +51,7 @@ public class ServiceUserActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_service_user);
 		
-		//get links from Appointments json - no, we dont use this way, we pass data by static method: create new Links object, stored in ServiceUser class
-//		extras = getIntent().getExtras();
-//		serviceOptionUrl = extras.getString("service option");
-//		serviceProviderUrl = extras.getString("service provider");
-//		serviceUserUrl = extras.getString("service user");
+
 		links = DataManager.getLinks();
 		
 		serviceOptionUrl = getResources().getString(R.string.auth_url_server).concat(links.getServiceOptions());
@@ -100,18 +96,27 @@ public class ServiceUserActivity extends Activity {
 		//lets get DB data!
 		token = SmartAuth.getToken();
 		apiKey = SmartAuth.getApiKey();
-		SmartAuth smart = new SmartAuth(token, apiKey,serviceOptionUrl);
-		jsonString = smart.accessTheDBTable(token);
-		serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
-		
-		smart = new SmartAuth(token, apiKey,serviceProviderUrl);
-		jsonString = smart.accessTheDBTable(token);
-//		serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
-		serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
-		
-		smart = new SmartAuth(token,apiKey,serviceUserUrl);
-		jsonString = smart.accessTheDBTable(token);
-		serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
+		SmartAuth smart;
+
+			smart = new SmartAuth(token, apiKey,serviceOptionUrl);
+			jsonString = smart.accessTheDBTable(token);
+			System.out.println(jsonString);
+			serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
+			DataManager.setServiceOptionsList(serviceOptionsList);
+
+			smart = new SmartAuth(token, apiKey,serviceProviderUrl);
+			jsonString = smart.accessTheDBTable(token);
+			System.out.println(jsonString);
+//			serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
+			serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
+			DataManager.setServiceProvider(serviceProvider);
+
+			smart = new SmartAuth(token,apiKey,serviceUserUrl);
+			jsonString = smart.accessTheDBTable(token);
+			System.out.println(jsonString);
+			serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
+			DataManager.setServiceUser(serviceUser);
+
 		
 		//display data in textViews....
 		tvTitle.setText(getResources().getString(R.string.title_activity_service_user));
@@ -120,7 +125,8 @@ public class ServiceUserActivity extends Activity {
 		tvSubtitle1.setText(serviceUserName);
 		// need to find what is "P"
 		age = XFiles.getAge(serviceUser.getPersonalFields().getDob());
-		serviceUserDetails = String.valueOf(age).concat("yrs, ").concat("G:"+appointment.getServiceUser().getPregnancy().getGestation().concat(", P:WHAT??"));//hm......
+		serviceUserDetails = String.valueOf(age).concat("yrs, ").concat("G:"+appointment.getServiceUser().getGestation()
+				.concat(", P:").concat(serviceUser.getClinicalFields().getParity()));//hm......
 		tvSubtitle2.setText(serviceUserDetails);
 		
 		contact = serviceUser.getHospitalNumber()+"\n"+serviceUser.getPersonalFields().getEmail()+"\n"+serviceUser.getPersonalFields().getMobilePhone();

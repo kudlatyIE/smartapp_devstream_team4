@@ -9,9 +9,10 @@
     >
     
     
-   <include layout="@layout/smart_header" /> 
-   <include layout="@layout/smart_footer" />
+   <include layout="@layout/serviceuser_header" /> 
    <include layout="@layout/smart_ante_natal"/>
+   <include layout="@layout/smart_footer" />
+   
    
    
    

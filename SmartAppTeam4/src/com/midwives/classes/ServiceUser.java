@@ -11,23 +11,31 @@ public class ServiceUser implements Serializable{
 	private ClinicalFields clinicalFields;
 	private int id;
 	private String hospitalNumber;
-	private PersonalFields personalFields;
+	
 	private ArrayList<Baby> babies;
 	private ArrayList<Pregnancies> pregnancies;
 	
 	private int [] pregnencyIds, babyIds;
 	
 	private Pregnancies pregnancy;
+	private String gestation;
+	private PersonalFields personalFields;
+	private String name;
 	
 	private static ServiceUser serviceUser;
 	private static Links links;
 	
-	//test - used with Appointment class
-	public ServiceUser(Pregnancies gestation, int id, PersonalFields name){
-		this.pregnancy=gestation;
+	//used by AppointmentParser class
+	public ServiceUser(String gestation, int id, String name){
+		this.gestation=gestation;
 		this.id=id;
-		this.personalFields=name;
+		this.name=name;
 	}
+//	public ServiceUser(Pregnancies gestation, int id, PersonalFields name){
+//		this.pregnancy=gestation;
+//		this.id=id;
+//		this.personalFields=name;
+//	}
 	
 	public ServiceUser(ArrayList<Baby> baby, ArrayList<Pregnancies> pregnancies,int[] babyIds, ClinicalFields clinicalFields,String hospitalNumber,
 						int id, PersonalFields personalFields, int[] pregnanciesIds){
@@ -127,6 +135,22 @@ public class ServiceUser implements Serializable{
 		this.babyIds = babyIds;
 	}
 
+	public String getGestation() {
+		return gestation;
+	}
+
+	public void setGestation(String gestation) {
+		this.gestation = gestation;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Pregnancies getPregnancy() {
 		return pregnancy;
 	}
@@ -135,27 +159,6 @@ public class ServiceUser implements Serializable{
 	public void setPregnancy(Pregnancies gestation) {
 		this.pregnancy = gestation;
 	}
-	//----------------------------------storage area----------------------------
-	//------------------------for parsed data... or may be not------------------
-	//...well, i think we will use it - data for ServiceUser, AnteNatal, PostNatal...
-
-	public static ServiceUser getServiceUser() {
-		return serviceUser;
-	}
-
-	public static void setServiceUser(ServiceUser serviceUser) {
-		ServiceUser.serviceUser = serviceUser;
-	}
-
-	public static Links getLinks() {
-		return links;
-	}
-
-	public static void setLinks(Links links) {
-		ServiceUser.links = links;
-	}
-	
-	
 	
 	
 }

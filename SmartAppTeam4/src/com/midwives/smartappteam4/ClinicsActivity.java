@@ -70,13 +70,13 @@ public class ClinicsActivity extends Activity {
 		btnHome.setOnClickListener(button);
 		btnBook.setOnClickListener(button);
 		
-		//get the list of clinics 
-		//myList=createClinicList(); //switch to hard coded array see below for populate method 
+		//get Auth resources.....
+		token = SmartAuth.getToken();
+		apiKey = SmartAuth.getApiKey();
+		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_clinics));
 		
 		//to be fixed: if clinic list doesn't exist in DataManager then run code below, if exist, just populate listView!!!!!!!.....................
-		
-		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),"http://54.72.7.91:8888/clinics");
-		this.token=SmartAuth.getToken(); //get token needed to get the table 
+		SmartAuth smart = new SmartAuth(token,apiKey,url);
 		jsonString=smart.accessTheDBTable(token); //get the clinics table as a json formatted string
 		myList = ClinicsParser.parseClinics(jsonString);  //parse json format of clinics table into array which will populate widgets
 		

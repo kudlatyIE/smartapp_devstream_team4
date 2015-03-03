@@ -1,5 +1,7 @@
 package com.midwives.classes;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,6 +74,21 @@ public class XFiles {
 		}
 		return age;
 	}
+    
+    public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+    
+    public static String getShortDate(String date){
+    	Date d = new Date();
+    	SimpleDateFormat shortDate = new SimpleDateFormat("dd MMM yyyy");
+    	
+    	return shortDate.format(d);
+    }
 
 }
 //Nick

@@ -5,7 +5,7 @@
     android:orientation="vertical" >
     
     <LinearLayout
-        android:id="@+id/antenatal_edit_layout_top"
+        android:id="@+id/antenataledit_edit_layout_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -13,7 +13,7 @@
         >
         
         <Button 
-            android:id="@+id/antenatal_edit_btn_back"
+            android:id="@+id/antenataledit_btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_back"
@@ -28,7 +28,7 @@
             />
         
          <Button 
-            android:id="@+id/antenatal_btn_edit"
+            android:id="@+id/antenataledit_btn_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_done"
@@ -63,7 +63,7 @@
  		    >
  		    
  		    	<EditText
- 		    	    android:id="@+id/antenatal_textView_editdate_edd"
+ 		    	    android:id="@+id/antenataledit_edit_edd"
  		    	    android:layout_width="wrap_content"
  		    	    android:layout_height="wrap_content"		    	    
  		    	    android:gravity="start"

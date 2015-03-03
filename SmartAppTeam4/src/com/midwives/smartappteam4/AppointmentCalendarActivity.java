@@ -176,8 +176,8 @@ public class AppointmentCalendarActivity extends Activity {
 			vHolder.tvGestation = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_data);
 		
 			vHolder.tvTime.setText(myList.get(position).getAppTime());
-			vHolder.tvName.setText(myList.get(position).getServiceUser().getPersonalFields().getName());
-			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getPregnancy().getGestation()); 
+			vHolder.tvName.setText(myList.get(position).getServiceUser().getName());
+			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getGestation()); 
 			
 			return convertView;
 		} 

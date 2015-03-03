@@ -19,24 +19,10 @@ public class Appointment {
 	
 	public Appointment(){} //used when is empty slot
 	
-	public Appointment(int clinicId, String date, int id, Links links, String priority , int serviceProviderId,
-			ServiceUser serviceUser, int serviceUserId, String time, String visitType){
-		this.clinicId=clinicId;
-		this.date=date;
-		this.id=id;
-		this.links=links;
-		this.priority=priority;
-		this.serviceProviderId=serviceProviderId;
-		this.serviceUser=serviceUser;
-		this.serviceProviderId=serviceUserId;
-		this.time=time;
-		this.visitType=visitType;
-
-	}
 	
 	
 	/**
-	 * I can't parse int[] from json yet.... Dont use for now
+	 * full constructor for parsing data
 	 * @param clinicId
 	 * @param date
 	 * @param id
@@ -66,23 +52,7 @@ public class Appointment {
 		this.visitType=visitType;
 		
 	}
-	
-	//a new constructor with Links class
-	public Appointment(String date, int appId, int serviceId, int userId, String priority, String time, 
-			String visitType, int clinicId, Links links){
-		this.date=date;
-		this.id=appId;
-		this.serviceProviderId=serviceId;
-		this.serviceUserId=userId;
-		this.priority=priority;
-		this.time=time;
-		this.visitType=visitType;
-		this.clinicId=clinicId;
-		this.links=links;
-	}
-	
-	
-	
+
 	public int getId() {
 		return id;
 	}

@@ -101,7 +101,7 @@ public class AnteNatalActivity extends Activity {
 							.concat(", P:").concat(serviceUser.getClinicalFields().getParity()));//hm......
 		tvSubtitle2.setText(serviceUserDetails);
 		
-		tvEDD.setText(serviceUser.getPregnancies().get(0).getEstDeliveryDate());
+		tvEDD.setText(serviceUser.getPregnancies().get(0).getEstDeliveryDate());// to be fixed: what this EDD came from?
 		tvGestation.setText(serviceUser.getPregnancies().get(0).getGestation());
 		tvBlood.setText(serviceUser.getClinicalFields().getBloodType());
 		

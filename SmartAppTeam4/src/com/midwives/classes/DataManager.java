@@ -29,6 +29,7 @@ public class DataManager {
 	private static ArrayList<ServiceOptions>  serviceOptionsList = null;
 	private static ArrayList<ServiceProvider> serviceProviderList = null;
 	private static ArrayList<ServiceUser> serviceUserList = null;
+	private static ArrayList<VisitLogs> visitLogs = null;
 	
 	public static ArrayList<Appointment> getAppointmentList() {
 		return appointmentList;
@@ -213,6 +214,14 @@ public class DataManager {
 
 	public static void setClinicdates(ClinicDates clinicDates) {
 		DataManager.clinicDates = clinicDates;
+	}
+
+	public static ArrayList<VisitLogs> getVisitLogs() {
+		return visitLogs;
+	}
+
+	public static void setVisitLogs(ArrayList<VisitLogs> visitLogs) {
+		DataManager.visitLogs = visitLogs;
 	}
 
 }

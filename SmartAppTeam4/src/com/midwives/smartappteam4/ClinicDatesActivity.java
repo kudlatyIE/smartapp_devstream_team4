@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
+import com.midwives.classes.ProcessClinicWeeklyOpenDates;
 import com.midwives.classes.ClinicDates;
 import com.midwives.classes.DataManager;
 import com.midwives.classes.ServiceOptions;
@@ -31,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ClinicDatesActivity extends Activity {
-	
+	private static Calendar calendar;
 	private ArrayList<String> myList; //list of clinic's opening data
 	private Intent intent;
 	private Bundle extras;
@@ -39,7 +41,7 @@ public class ClinicDatesActivity extends Activity {
 	private Button btnBack, btnHome, btnBook,btnCalendar;
 	private TextView tvTitle, tvSubtitle;
 	private String hint,clinicName, token, apiKey, url; 
-	private String[] weekDays;
+	private String[] weekDays; // = new String[] {"Thursday", "tuesDaY"}; //list of weekly recurring day/days
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +70,25 @@ public class ClinicDatesActivity extends Activity {
 //		hint=getResources().getString(R.string......)
 		tvSubtitle.setText("Select "+ clinicName+ "\'s calendar");
 		
-		//create dataList for only one day... will be fixed to return more days...............................................
-		myList = XFiles.getDateList(weekDays[0]);
+		//************************create list of a clinics open days************************start
+			//myList = XFiles.getDateList(weekDays[0]); //********swappped out here *********
+			
+			calendar = Calendar.getInstance(TimeZone.getDefault());  //current month  clinic open dates
+			ProcessClinicWeeklyOpenDates p1 = new ProcessClinicWeeklyOpenDates(calendar);			             
+			myList = p1.getClinicWeeklyOpenDatesArray(p1, weekDays);
+		
+			calendar.add(Calendar.MONTH, 1);                         //current month plus 1 clinic open  dates
+			calendar.set(Calendar.DAY_OF_MONTH, 1);
+			ProcessClinicWeeklyOpenDates p2 = new ProcessClinicWeeklyOpenDates(calendar);
+			myList.addAll(p2.getClinicWeeklyOpenDatesArray(p2, weekDays));
+		
+			calendar.add(Calendar.MONTH, 1);                        //current month plus 2 open dates
+			calendar.set(Calendar.DAY_OF_MONTH, 1);
+			ProcessClinicWeeklyOpenDates p3 = new ProcessClinicWeeklyOpenDates(calendar);
+			myList.addAll(p3.getClinicWeeklyOpenDatesArray(p3, weekDays));
+		
+		
+		//************************create list of a clinics open days************************end
 		//populate listView content
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		

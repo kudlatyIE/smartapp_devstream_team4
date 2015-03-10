@@ -106,12 +106,12 @@ public class AnteNatalActivity extends Activity {
 		tvBlood.setText(serviceUser.getClinicalFields().getBloodType());
 		
 		//rhesus - get msg
-		if(serviceUser.getClinicalFields().getRhesus()) rhesus="Negaive";
-		else rhesus="Positive";
+		if(serviceUser.getClinicalFields().getRhesus()) rhesus="Positive";
+		else rhesus="Negaive";
 		tvRhesus.setText(rhesus);
 		
 		tvParity.setText(serviceUser.getClinicalFields().getParity());
-		tvObstretic.setText(serviceUser.getClinicalFields().getObstetricHistory());
+		tvObstretic.setText(serviceUser.getClinicalFields().getObsteticHistory());
 		
 		
 	}
@@ -127,7 +127,7 @@ public class AnteNatalActivity extends Activity {
 				break;
 			case R.id.serviceuser_header_imgbtn_edit:
 				intent = new Intent(getApplicationContext(),AnteNatalEditActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				break;
 			case R.id.antenatal_btn_postnatal:

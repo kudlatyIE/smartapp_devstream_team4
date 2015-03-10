@@ -33,7 +33,6 @@ import android.widget.Toast;
 public class ClinicsActivity extends Activity {
 
 	private Intent intent;
-	private Bundle extras;
 	private Button btnBack, btnHome,btnBook;
 	private TextView tvTitle, tvSubtitle;
 	private ArrayList<Clinics> myList; 
@@ -70,16 +69,17 @@ public class ClinicsActivity extends Activity {
 		btnHome.setOnClickListener(button);
 		btnBook.setOnClickListener(button);
 		
-		//get Auth resources.....
-		token = SmartAuth.getToken();
-		apiKey = SmartAuth.getApiKey();
-		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_clinics));
+		//get Auth resources..... old way - replacet by AsyncDownload
+//		token = SmartAuth.getToken();
+//		apiKey = SmartAuth.getApiKey();
+//		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_clinics));
 		
 		//to be fixed: if clinic list doesn't exist in DataManager then run code below, if exist, just populate listView!!!!!!!.....................
-		SmartAuth smart = new SmartAuth(token,apiKey,url);
-		jsonString=smart.accessTheDBTable(token); //get the clinics table as a json formatted string
-		myList = ClinicsParser.parseClinics(jsonString);  //parse json format of clinics table into array which will populate widgets
+//		SmartAuth smart = new SmartAuth(token,apiKey,url);
+//		jsonString=smart.accessTheDBTable(token); //get the clinics table as a json formatted string
+//		myList = ClinicsParser.parseClinics(jsonString);  //parse json format of clinics table into array which will populate widgets
 		
+		myList = DataManager.getClinicList();//all clinic, need to be filter to match to specific ServiceProvider (selected in previous activity)
 		//populate list of clinics...
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
 		MyAdapter clinicsAdapter = new MyAdapter(getApplicationContext(),R.layout.clinicsoption_adapter,myList);
@@ -159,8 +159,7 @@ public class ClinicsActivity extends Activity {
 			//vHolder.tvAddress.setText(myList.get(position).getClinicAddress());
 			vHolder.tvRecurrence.setText(myList.get(position).getRecurrence().getReccName());
 			//vHolder.tvDays.setText(myList.get(position).getOpenDays().getDayName()); //when switch to hard coded test array
-			vHolder.tvDays.setText(myList.get(position).getOpenDays()[0]); //get the open days for the clinic from the list
-			// need to fix how hold click on more than one day.............!!!!!!!!!!!!!!!
+			vHolder.tvDays.setText(daysToString(myList.get(position).getOpenDays())); //get the open days for the clinic from the list
 			
 			return convertView; } }
 
@@ -169,16 +168,14 @@ public class ClinicsActivity extends Activity {
 		TextView tvName, tvAddress, tvRecurrence,tvDays;	
 	}
 	
-//	private String getOpenDays(ArrayList<Clinics> listOfClinics, int position) {		
-//		String daysOpen = "";
-//		String[] temp = listOfClinics.get(position).getOpenDays();
-//		int length = temp.length;
-//		for(int i = 0; i < length; i++){
-//			if(temp[i] != null)
-//				 daysOpen += temp[i] + " ";
-//		}
-//		return daysOpen;
-//	}
+	private String daysToString(String [] listOfClinics) {		
+		String daysOpen = "";
+		for(int i = 0; i < listOfClinics.length; i++){
+			if(listOfClinics[i] != null)
+				 daysOpen += listOfClinics[i] + ", ";
+		}
+		return daysOpen;
+	}
 	
 //	private String[] openDays(ArrayList<Clinics> clinicList, int position){
 //		ArrayList<String> days = new ArrayList<String>();

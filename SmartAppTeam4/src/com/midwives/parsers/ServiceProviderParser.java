@@ -25,7 +25,7 @@ public class ServiceProviderParser {
 	
 	
 	public static ArrayList<ServiceProvider> parseServiceProviders(String data){
-		
+		myList= new ArrayList<ServiceProvider>();
 		try{
 			json = new JSONObject(data);
 			jArray = json.getJSONArray(TAG_ARRAY);

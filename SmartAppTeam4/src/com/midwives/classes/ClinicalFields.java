@@ -5,16 +5,16 @@ public class ClinicalFields{
 	private String bloodType;
 	private String bmi;
 	private String parity;
-	private String obstetricHistory;
+	private String obsteticHistory;
 	private boolean rhesus;
 //	private String estimatedDeliveryDate;
 	
 	public ClinicalFields(String bloodType, String bmi, String parity,
-			String obstetricHistory, boolean rhesus) {
+			String obsteticHistory, boolean rhesus) {
 		this.bloodType = bloodType;
 		this.bmi = bmi;
 		this.parity = parity;
-		this.obstetricHistory = obstetricHistory;
+		this.obsteticHistory = obsteticHistory;
 		this.rhesus = rhesus;
 	}
 
@@ -42,12 +42,12 @@ public class ClinicalFields{
 		this.parity = parity;
 	}
 
-	public String getObstetricHistory() {
-		return obstetricHistory;
+	public String getObsteticHistory() {
+		return obsteticHistory;
 	}
 
-	public void setObstetricHistory(String obstetricHistory) {
-		this.obstetricHistory = obstetricHistory;
+	public void setObstetricHistory(String obsteticHistory) {
+		this.obsteticHistory = obsteticHistory;
 	}
 
 	public boolean getRhesus() {

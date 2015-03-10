@@ -15,7 +15,8 @@ public class DataManager {
 	private static ClinicalFields clinicalFields = null;
 	private static Clinics clinics = null;
 	private static ClinicDates clinicDates=null;
-	private static Links links = null;
+	private static Links links = null;//hold only URLs as a string
+	
 	private static PersonalFields personalFields = null;
 	private static Pregnancies pregnancies = null;
 	private static ServiceOptions serviceOptions = null;
@@ -23,6 +24,7 @@ public class DataManager {
 	private static ServiceUser serviceUser = null;
 	
 	private static ArrayList<Appointment> appointmentList = null;
+	private static ArrayList<Appointment> appointmentShortList = null;
 	private static ArrayList<Baby> babyList = null;
 	private static ArrayList<Clinics> clinicList = null;
 	private static ArrayList<Pregnancies> pregnanciesList = null;
@@ -31,63 +33,11 @@ public class DataManager {
 	private static ArrayList<ServiceUser> serviceUserList = null;
 	private static ArrayList<VisitLogs> visitLogs = null;
 	
-	public static ArrayList<Appointment> getAppointmentList() {
-		return appointmentList;
-	}
-
-	public static void setAppointmentList(ArrayList<Appointment> appointmentList) {
-		DataManager.appointmentList = appointmentList;
-	}
-
-	public static ArrayList<Baby> getBabyList() {
-		return babyList;
-	}
-
-	public static void setBabyList(ArrayList<Baby> babyList) {
-		DataManager.babyList = babyList;
-	}
-
-	public static ArrayList<Clinics> getClinicList() {
-		return clinicList;
-	}
-
-	public static void setClinicList(ArrayList<Clinics> clinicList) {
-		DataManager.clinicList = clinicList;
-	}
-
-	public static ArrayList<Pregnancies> getPregnanciesList() {
-		return pregnanciesList;
-	}
-
-	public static void setPregnanciesList(ArrayList<Pregnancies> pregnanciesList) {
-		DataManager.pregnanciesList = pregnanciesList;
-	}
-
-	public static ArrayList<ServiceOptions> getServiceOptionsList() {
-		return serviceOptionsList;
-	}
-
-	public static void setServiceOptionsList(
-			ArrayList<ServiceOptions> serviceOptionsList) {
-		DataManager.serviceOptionsList = serviceOptionsList;
-	}
-
-	public static ArrayList<ServiceProvider> getServiceProviderList() {
-		return serviceProviderList;
-	}
-
-	public static void setServiceProviderList(
-			ArrayList<ServiceProvider> serviceProviderList) {
-		DataManager.serviceProviderList = serviceProviderList;
-	}
-
-	public static ArrayList<ServiceUser> getServiceUserList() {
-		return serviceUserList;
-	}
-
-	public static void setServiceUserList(ArrayList<ServiceUser> serviceUserList) {
-		DataManager.serviceUserList = serviceUserList;
-	}
+	//I don't need this linksURLsList - get access by appointmentsList!
+	private static ArrayList<Links> linksURLsList = null;//belongs to specific appointment (by Appointment ID), holds 3 URLs
+	private static ArrayList<Links> linksDataList = null;//belongs to specific appointment (by Appointment ID), holds 3 class objects
+	private static ArrayList<Announcements> announcementslist=null;
+	
 
 	private static JSONArray jArray;
 	private static JSONObject jObject;
@@ -222,6 +172,98 @@ public class DataManager {
 
 	public static void setVisitLogs(ArrayList<VisitLogs> visitLogs) {
 		DataManager.visitLogs = visitLogs;
+	}
+	public static ArrayList<Appointment> getAppointmentList() {
+		return appointmentList;
+	}
+
+	public static void setAppointmentList(ArrayList<Appointment> appointmentList) {
+		DataManager.appointmentList = appointmentList;
+	}
+
+	public static ArrayList<Baby> getBabyList() {
+		return babyList;
+	}
+
+	public static void setBabyList(ArrayList<Baby> babyList) {
+		DataManager.babyList = babyList;
+	}
+
+	public static ArrayList<Clinics> getClinicList() {
+		return clinicList;
+	}
+
+	public static void setClinicList(ArrayList<Clinics> clinicList) {
+		DataManager.clinicList = clinicList;
+	}
+
+	public static ArrayList<Pregnancies> getPregnanciesList() {
+		return pregnanciesList;
+	}
+
+	public static void setPregnanciesList(ArrayList<Pregnancies> pregnanciesList) {
+		DataManager.pregnanciesList = pregnanciesList;
+	}
+
+	public static ArrayList<ServiceOptions> getServiceOptionsList() {
+		return serviceOptionsList;
+	}
+
+	public static void setServiceOptionsList(
+			ArrayList<ServiceOptions> serviceOptionsList) {
+		DataManager.serviceOptionsList = serviceOptionsList;
+	}
+
+	public static ArrayList<ServiceProvider> getServiceProviderList() {
+		return serviceProviderList;
+	}
+
+	public static void setServiceProviderList(
+			ArrayList<ServiceProvider> serviceProviderList) {
+		DataManager.serviceProviderList = serviceProviderList;
+	}
+
+	public static ArrayList<ServiceUser> getServiceUserList() {
+		return serviceUserList;
+	}
+
+	public static void setServiceUserList(ArrayList<ServiceUser> serviceUserList) {
+		DataManager.serviceUserList = serviceUserList;
+	}
+
+
+	public static ArrayList<Links> getLinksDataList() {
+		return linksDataList;
+	}
+
+	public static void setLinksDataList(ArrayList<Links> linksDataList) {
+		DataManager.linksDataList = linksDataList;
+	}
+
+	public static ArrayList<Announcements> getAnnouncementslist() {
+		return announcementslist;
+	}
+
+	public static void setAnnouncementslist(
+			ArrayList<Announcements> announcementslist) {
+		DataManager.announcementslist = announcementslist;
+	}
+
+	public static ArrayList<Appointment> getAppointmentShortList() {
+		return appointmentShortList;
+	}
+
+	public static void setAppointmentShortList(
+			ArrayList<Appointment> appointmentShortList) {
+		DataManager.appointmentShortList = appointmentShortList;
+	}
+
+	public static ArrayList<Links> getLinksURLsList() {
+		return linksURLsList;
+	}
+
+	public static void setLinksURLsList(ArrayList<Links> linksURLsList) {
+		DataManager.linksURLsList = linksURLsList;
 	}
 
 }

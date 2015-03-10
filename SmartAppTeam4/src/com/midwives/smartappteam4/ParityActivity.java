@@ -121,22 +121,6 @@ public class ParityActivity extends Activity {
 		
 		//myList test only! 
 		myList = Tab.getList();
-
-		
-//		for(Tab t:myList){
-//			TableRow row = (TableRow) LayoutInflater.from(getApplicationContext()).inflate(R.layout.parity_row, null);
-//			((TextView) row.findViewById(R.id.parity_row_text_value)).setText(t.getValue());
-//			((TextView) row.findViewById(R.id.parity_row_text_index)).setText(t.getIndex());
-//			tbDOB.addView(row);
-//		}
-//		for(Tab t:myList){
-//			TableRow row = (TableRow) LayoutInflater.from(getApplicationContext()).inflate(R.layout.parity_row, null);
-//			((TextView) row.findViewById(R.id.parity_row_text_value)).setText(t.getValue());
-//			((TextView) row.findViewById(R.id.parity_row_text_index)).setText(t.getIndex());
-//			tbGestation.addView(row);
-//		}
-
-		
 		
 	
 	}//end onCreate
@@ -178,7 +162,6 @@ public class ParityActivity extends Activity {
 			tvRowValue = (TextView) rowView.findViewById(R.id.parity_row_text_value);
 			tvRowIndex = (TextView) rowView.findViewById(R.id.parity_row_text_index);
 
-//			int index=pregnanciesList.indexOf(babyList.get(i).getPregnancyId());
 			String gestation="";
 			for(Pregnancies p:pregnanciesList){
 				if(p.getId()==babyList.get(i).getPregnancyId()) {

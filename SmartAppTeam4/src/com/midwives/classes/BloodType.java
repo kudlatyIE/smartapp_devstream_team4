@@ -1,18 +1,14 @@
 package com.midwives.classes;
 
-//not used, will be deleted... I think.
+//used with spinner list: AnteNatalEdit
 
 public enum BloodType {
 	
-	A_POSITIVE ("A+"),
-	A_NEGATIVE ("A-"),
-	B_POSITIVE ("B+"),
-	B_NEGATIVE ("B-"),
-	AB_POSITIVE ("AB+"),
-	AB_NEGATIVE ("AB-"),
-	ZERO_POSITIVE ("0+"),
-	ZERO_NEGATIVE ("0-");
-	
+	EMPTY("N/A"),
+	A ("A"),
+	B ("B"),
+	AB ("AB"),
+	ZERO ("O");
 	
 	//to be continue....................
 	

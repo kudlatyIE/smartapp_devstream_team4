@@ -13,12 +13,26 @@ public class Appointment {
 	private ServiceUser serviceUser;
 	private String[] visitLogs;
 	
-	private static Appointment appointment;
+	private Appointment appointment;
 	
 	private Links links;
 	
 	public Appointment(){} //used when is empty slot
 	
+	/**
+	 * short constructor to hold short data - displayed in AppointmentsActivity and provides all IDs to other....
+	 * @param id appointment ID - share with Links data list
+	 * @param date
+	 * @param time
+	 * @param serviceProviderId
+	 * @param serviceUserId
+	 * @param proirity
+	 * @param visitType
+	 * @param serviceOptionsIds
+	 */
+	public Appointment(int id, String date, String time, int serviceProviderId, int serviceUserId,  String proirity, String visitType, int[] serviceOptionsIds){
+		
+	}
 	
 	
 	/**
@@ -185,12 +199,12 @@ public class Appointment {
 		this.visitLogs = visitLogs;
 	}
 
-	public static Appointment getAppointment() {
+	public  Appointment getAppointment() {
 		return appointment;
 	}
 
-	public static void setAppointment(Appointment appointment) {
-		Appointment.appointment = appointment;
+	public  void setAppointment(Appointment appointment) {
+		this.appointment = appointment;
 	}
 
 	

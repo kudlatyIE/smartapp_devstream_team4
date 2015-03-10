@@ -64,8 +64,8 @@ public class AppointmentCalendarActivity extends Activity {
 	    }
 		
 
-		//Receive selected appointment date/clinic name and week day from previous activity... TEST STUFF
-		extras = getIntent().getExtras();
+		//Receive selected appointment date/clinic name and week day from dataManager
+
 		clinicName = DataManager.getClinicDates().getClinicName();
 		appointmentDate = DataManager.getClinicDates().getAppointmentDate();
 		weekDay = DataManager.getClinicDates().getWeekDay();		
@@ -103,7 +103,7 @@ public class AppointmentCalendarActivity extends Activity {
 		jsonString=smart.accessTheDBTable(token); 
 
 		myList = AppointmentParser.parseAppointment(jsonString); // parse json String into ArrayList
-		
+		DataManager.setAppointmentList(myList);// save appointmentsList into DataManager... 
 		//populate listView
 		lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
 		lv.setAdapter(new MyAdapter(getApplicationContext(),R.layout.app_calendar_full_adapter,myList));

@@ -3,11 +3,13 @@ package com.midwives.smartappteam4;
 
 
 import com.midwives.classes.SmartAuth;
+import com.midwives.classes.SmartDownloader;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 
 
 
@@ -63,12 +65,16 @@ public class LoginActivity extends Activity {
 		smartAuth = new SmartAuth(user,loginUrl, null,null,pass);
 		this.token = smartAuth.getToken();
 		
+		//run my Async Downloadaer here!
+		new SmartDownloader(LoginActivity.this);
+		
 		
 		btnLogin = (Button) findViewById(R.id.login_btn_login);
 		btnLogin.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
+				
 				intent = new Intent(getApplicationContext(), MainViewActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);	

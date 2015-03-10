@@ -36,11 +36,10 @@ public class ClinicDatesActivity extends Activity {
 	private static Calendar calendar;
 	private ArrayList<String> myList; //list of clinic's opening data
 	private Intent intent;
-	private Bundle extras;
 	private Date date;
 	private Button btnBack, btnHome, btnBook,btnCalendar;
 	private TextView tvTitle, tvSubtitle;
-	private String hint,clinicName, token, apiKey, url; 
+	private String clinicName; 
 	private String[] weekDays; // = new String[] {"Thursday", "tuesDaY"}; //list of weekly recurring day/days
 
 	@Override
@@ -90,7 +89,7 @@ public class ClinicDatesActivity extends Activity {
 		
 		//************************create list of a clinics open days************************end
 		//populate listView content
-		ListView lv = (ListView) findViewById(R.id.smart_listview);
+		ListView lv = (ListView) findViewById(R.id.smart_clinicdates_listview);
 		
 		MyAdapter customAdapter = new MyAdapter(getApplicationContext(),R.layout.clinic_dates_adapter,myList);
 		lv.setAdapter(customAdapter);

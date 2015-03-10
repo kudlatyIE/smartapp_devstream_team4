@@ -6,7 +6,7 @@
     >
     
    <include layout="@layout/smart_header" />
-   <include layout="@layout/smart_listview" />
+   <include layout="@layout/smart_clinicdates_body" />
    <include layout="@layout/smart_footer_clinicdates"/>
  
 

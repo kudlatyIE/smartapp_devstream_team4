@@ -77,7 +77,6 @@ public class SmartDownloader {
 //		announcmentsTask.execute(urlAnnouncments,TAG_ANNOUNCEMNTS);//not sure this task is ready to run.. need be call in ClinicTask? Or just like a LinksTask?
 		serviceUserTask.execute(urlServiceUser,TAG_USER);
 		serviceProviderTask.execute(urlServiceProviders,TAG_SERVICE_PROVIDER);
-//		new AsyncSmartDownloader().execute(urlPregnancies,TAG_PREGNANCIES);//need own Parser !!!!
 		pregnanciesTask.execute(urlPregnancies,TAG_PREGNANCIES);
 		babiesTask.execute(urlBabies,TAG_BABY);
 	}
@@ -101,7 +100,6 @@ public class SmartDownloader {
 			jsonString = smart.accessTheDBTable(token);
 			if (jsonString.isEmpty())return null;
 			setJsonString(jsonString);
-//			System.out.println(jsonString);
 			
 			switch(tag){
 			
@@ -168,7 +166,6 @@ public class SmartDownloader {
 					DataManager.setPregnanciesList(pregnanciesList);
 					break;
 				case TAG_SERVICE_OPTIONS:
-					System.out.println(getJsonServiceOptions());
 					serviceOptionsList = new ArrayList<ServiceOptions>();
 					serviceOptionsList = ServiceOptionsParser.parseServiceOptions(getJsonServiceOptions());
 					DataManager.setServiceOptionsList(serviceOptionsList);

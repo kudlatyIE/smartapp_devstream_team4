@@ -17,6 +17,7 @@ public class ServiceOptionsParser implements Serializable {
 	private final static String TAG_ARRAY = "service_options";// array title
 	private final static String TAG_SERVICE_NAME = "name";
 	private final static String TAG_SERVICE_ID = "id";
+	private final static String TAG_CLINIC_IDS="clinic_ids";
 
 	private static JSONObject json,jObject;
 	private static JSONArray jArray;
@@ -24,7 +25,7 @@ public class ServiceOptionsParser implements Serializable {
 	/**
 	 * parse service_options
 	 * @param data - json String
-	 * @return ArrayList of service_options objects
+	 * @return ArrayList of all service_options 
 	 */
 	public static ArrayList<ServiceOptions> parseServiceOptions(String data) {
 
@@ -37,7 +38,18 @@ public class ServiceOptionsParser implements Serializable {
 				json=jArray.getJSONObject(i);
 				int serviceId = json.getInt(TAG_SERVICE_ID);
 				String serviceName = json.getString(TAG_SERVICE_NAME);
-				myList.add(new ServiceOptions(serviceId, serviceName));
+				JSONArray arr = json.getJSONArray(TAG_CLINIC_IDS);
+				int[] clinicsIDs;
+				if(arr.length()>0){
+					clinicsIDs = new int[arr.length()];
+					for(int j=0;j<arr.length();j++){
+						clinicsIDs[j]=arr.getInt(j);
+					}
+				}else {
+					clinicsIDs = new int[1];
+					clinicsIDs[0]=0;//if clinics list is empty return 0 - may be null better?
+				}
+				myList.add(new ServiceOptions(serviceId, serviceName,clinicsIDs));
 			}
 			
 		}
@@ -64,7 +76,18 @@ public class ServiceOptionsParser implements Serializable {
 			jObject = json.getJSONObject(TAG_OBJECT);
 			serviceId = jObject.getInt(TAG_SERVICE_ID);
 			serviceName = jObject.getString(TAG_SERVICE_NAME);
-			serviceOptionId = new ServiceOptions(serviceId, serviceName);
+			JSONArray arr = json.getJSONArray(TAG_CLINIC_IDS);
+			int[] clinicsIDs;
+			if(arr.length()>0){
+				clinicsIDs = new int[arr.length()];
+				for(int j=0;j<arr.length();j++){
+					clinicsIDs[j]=arr.getInt(j);
+				}
+			}else {
+				clinicsIDs = new int[1];
+				clinicsIDs[0]=0;//if clinics list is empty return 0 - may be null better?
+			}
+			serviceOptionId = new ServiceOptions(serviceId, serviceName,clinicsIDs);
 		}
 		catch (JSONException e) {
 			e.printStackTrace();

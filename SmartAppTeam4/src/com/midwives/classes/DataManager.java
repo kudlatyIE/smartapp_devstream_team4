@@ -15,6 +15,7 @@ public class DataManager {
 	private static ClinicalFields clinicalFields = null;
 	private static Clinics clinics = null;
 	private static ClinicDates clinicDates=null;
+	private static ClinicCalendar clinicCalendar=null;//hold specific date for current Appointment!
 	private static Links links = null;//hold only URLs as a string
 	
 	private static PersonalFields personalFields = null;
@@ -23,6 +24,7 @@ public class DataManager {
 	private static ServiceProvider serviceProvider = null;
 	private static ServiceUser serviceUser = null;
 	
+	private static ArrayList<ClinicCalendar> clinicCalendarList=null;//hold full calendar for Appointments: Next/Previous
 	private static ArrayList<Appointment> appointmentList = null;
 	private static ArrayList<Appointment> appointmentShortList = null;
 	private static ArrayList<Baby> babyList = null;
@@ -264,6 +266,23 @@ public class DataManager {
 
 	public static void setLinksURLsList(ArrayList<Links> linksURLsList) {
 		DataManager.linksURLsList = linksURLsList;
+	}
+
+	public static ClinicCalendar getClinicCalendar() {
+		return clinicCalendar;
+	}
+
+	public static void setClinicCalendar(ClinicCalendar clinicCalendar) {
+		DataManager.clinicCalendar = clinicCalendar;
+	}
+
+	public static ArrayList<ClinicCalendar> getClinicCalendarList() {
+		return clinicCalendarList;
+	}
+
+	public static void setClinicCalendarList(
+			ArrayList<ClinicCalendar> clinicCalendarList) {
+		DataManager.clinicCalendarList = clinicCalendarList;
 	}
 
 }

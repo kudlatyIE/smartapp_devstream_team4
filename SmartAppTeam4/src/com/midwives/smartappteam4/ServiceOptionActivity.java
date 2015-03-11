@@ -77,7 +77,7 @@ public class ServiceOptionActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				//we'll send selected ServiceOption data by static way to DataManager - ClinicActivity wll display all clinics match to selected Provider.
-				DataManager.setServiceOptions(new ServiceOptions(myList.get(position).getServiceId(),myList.get(position).getServiceName()));
+				DataManager.setServiceOptions(new ServiceOptions(myList.get(position).getServiceId(),myList.get(position).getServiceName(),myList.get(position).getClinicsIDs()));
 				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);

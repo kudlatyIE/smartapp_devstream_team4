@@ -2,10 +2,11 @@ package com.midwives.classes;
 
 public class ClinicDates {
 	
-	private String appointmentDate, weekDay, clinicName;
+	private String appointmentDate, clinicName;
+	private String[] weekDay;
 	
-	//temporary constructor, uset to pass data from ClinicDate to AppointmentCalendar
-	public ClinicDates(String date, String day, String name){
+	//constructor, used to pass data from ClinicDate to AppointmentCalendar
+	public ClinicDates(String date, String[] day, String name){
 		this.appointmentDate=date;
 		this.weekDay=day;
 		this.clinicName=name;
@@ -19,11 +20,11 @@ public class ClinicDates {
 		this.appointmentDate = appointmentDate;
 	}
 
-	public String getWeekDay() {
+	public String[] getWeekDay() {
 		return weekDay;
 	}
 
-	public void setWeekDay(String weekDay) {
+	public void setWeekDay(String[] weekDay) {
 		this.weekDay = weekDay;
 	}
 

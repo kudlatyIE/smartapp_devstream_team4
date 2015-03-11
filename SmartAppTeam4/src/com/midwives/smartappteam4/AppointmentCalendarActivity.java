@@ -58,17 +58,12 @@ public class AppointmentCalendarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_appointment_calendar);
 		
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-	      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-	      StrictMode.setThreadPolicy(policy);
-	    }
-		
-
 		//Receive selected appointment date/clinic name and week day from dataManager
 
 		clinicName = DataManager.getClinicDates().getClinicName();
 		appointmentDate = DataManager.getClinicDates().getAppointmentDate();
-		weekDay = DataManager.getClinicDates().getWeekDay();		
+//		weekDay = DataManager.getClinicDates().getWeekDay();	
+		weekDay = DataManager.getClinicCalendar().getDateString();
 		
 		
 		this.tableUrl=getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_appointment));
@@ -187,55 +182,6 @@ public class AppointmentCalendarActivity extends Activity {
 		TextView tvTime, tvName, tvGestation;	
 	}
 	
-	//-----------async class----------------------
-	
-		private class DataTable extends AsyncTask<String, String, String>{
-
-			@Override
-			protected String doInBackground(String... params) {
-				String token = params[0];
-				String key = params[1];
-				String url = params[2];
-				System.out.println("AppCalendar inBackground URL: "+url);
-				System.out.println("AppCalendar inBackground KEY: "+key);
-				System.out.println("AppCalendar inBackground TOKEN: "+token);
-				
-				
-				SmartAuth smart = new SmartAuth(token, key, url);
-				jsonString=smart.accessTheDBTable(token); // get json String
-				System.out.println("return json from end AsymcTask: "+jsonString);
-				return jsonString;
-			}
-
-//			@Override
-//			protected void onPreExecute() {
-//				super.onPreExecute();
-//				dialog = new ProgressDialog(getApplicationContext());
-//				dialog.setTitle("SMART Login");
-//				dialog.setMessage("Connection...");
-//				dialog.setIndeterminate(false);
-//				dialog.setCancelable(true);
-//				dialog.show();
-//			}
-
-			@Override
-			protected void onPostExecute(String result) {
-				super.onPostExecute(result);
-				Log.e("Async", "done - onPostExecute stuff...."+result);
-//				System.out.println("jsson from onPostExecute: "+result);
-				jsonString = result;
-				
-//				dialog.dismiss();
-			}
-
-//			@Override
-//			protected void onProgressUpdate(String... msg) {
-//				super.onProgressUpdate(msg);
-//				dialog.setMessage(msg[0]);
-//				
-//			}
-			
-		}
 }
 
 //Nick

@@ -118,8 +118,8 @@ public class ClinicsActivity extends Activity {
 				break;
 			case R.id.footer_btn_home:
 				intent = new Intent(getApplicationContext(),MainViewActivity.class);
-				intent.putExtra("token", token);
-				intent.putExtra("apiKey", apiKey);
+//				intent.putExtra("token", token);
+//				intent.putExtra("apiKey", apiKey);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				break;

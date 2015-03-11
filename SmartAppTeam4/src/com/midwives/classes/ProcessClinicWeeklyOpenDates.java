@@ -1,3 +1,7 @@
+/**
+ * class not used, functionality holds by method XFiles.getAllOpenDaysList()
+ */
+
 package com.midwives.classes;
 
 import java.util.ArrayList;

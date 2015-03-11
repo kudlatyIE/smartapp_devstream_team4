@@ -6,12 +6,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.midwives.classes.Clinics;
+import com.midwives.classes.DataManager;
 import com.midwives.classes.Days;
 import com.midwives.classes.Recurrence;
 
@@ -29,10 +31,13 @@ public class ClinicsParser implements Serializable {
 	private static JSONObject json;
 	private static JSONArray  jArray;
 	
+	
+	
 
 
 	public static ArrayList<Clinics> parseClinics(String jsonString) {
 		ArrayList<Clinics> listOfClinics = new ArrayList<Clinics>();
+		HashMap<Integer,Clinics> clinicsMap = new HashMap<Integer,Clinics>();
 		int[] service_option_ids = null;
 		
 		
@@ -91,13 +96,16 @@ public class ClinicsParser implements Serializable {
 						}
 					}
 					
-					listOfClinics.add(new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, type, appointmentInterval, dayNames, service_option_ids ));
+					listOfClinics.add(new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
+												type, appointmentInterval, dayNames, service_option_ids ));
+					clinicsMap.put(clinicId, new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
+												type, appointmentInterval, dayNames, service_option_ids ));
 				} // close for iteration loop
 							
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-				
+		DataManager.setClinicsMap(clinicsMap);		
 		return listOfClinics;    //returns an array list of clinics
 	}
 	

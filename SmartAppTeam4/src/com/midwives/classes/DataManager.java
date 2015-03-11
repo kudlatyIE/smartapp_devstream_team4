@@ -1,6 +1,7 @@
 package com.midwives.classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,6 +35,10 @@ public class DataManager {
 	private static ArrayList<ServiceProvider> serviceProviderList = null;
 	private static ArrayList<ServiceUser> serviceUserList = null;
 	private static ArrayList<VisitLogs> visitLogs = null;
+	
+	//try switch core datas from ArrayList into HashMap
+	private static HashMap<Integer,ServiceOptions> serviceOptionsMap = null;
+	private static HashMap<Integer,Clinics> clinicsMap=null;
 	
 	//I don't need this linksURLsList - get access by appointmentsList!
 	private static ArrayList<Links> linksURLsList = null;//belongs to specific appointment (by Appointment ID), holds 3 URLs
@@ -283,6 +288,23 @@ public class DataManager {
 	public static void setClinicCalendarList(
 			ArrayList<ClinicCalendar> clinicCalendarList) {
 		DataManager.clinicCalendarList = clinicCalendarList;
+	}
+
+	public static HashMap<Integer, ServiceOptions> getServiceOptionsMap() {
+		return serviceOptionsMap;
+	}
+
+	public static void setServiceOptionsMap(
+			HashMap<Integer, ServiceOptions> serviceOptionsMap) {
+		DataManager.serviceOptionsMap = serviceOptionsMap;
+	}
+
+	public static HashMap<Integer, Clinics> getClinicsMap() {
+		return clinicsMap;
+	}
+
+	public static void setClinicsMap(HashMap<Integer, Clinics> clinicsMap) {
+		DataManager.clinicsMap = clinicsMap;
 	}
 
 }

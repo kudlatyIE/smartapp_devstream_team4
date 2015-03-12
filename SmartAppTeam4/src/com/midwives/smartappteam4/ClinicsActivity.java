@@ -3,6 +3,7 @@ package com.midwives.smartappteam4;
 import java.util.ArrayList;  //// Chris
 import java.util.HashMap;
 
+import com.midwives.classes.Appointment;
 import com.midwives.classes.Clinics;
 import com.midwives.classes.DataManager;
 import com.midwives.classes.Days;
@@ -37,8 +38,10 @@ public class ClinicsActivity extends Activity {
 	private Button btnBack, btnHome,btnBook;
 	private TextView tvTitle, tvSubtitle;
 	private ArrayList<Clinics> myList,fullList; 	
+	private HashMap<Integer,Appointment>appointmentClinicMap;//get map of all appointments(clinicID is a key)
+	private HashMap<Integer,Appointment>appointmentDateMap;//set a new appointments Map (appointment clinicID is a key)
 	private int [] clinicsIds;
-	private int id;
+	private int id,clinicID;
 	private String hint,clinicName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,8 @@ public class ClinicsActivity extends Activity {
 		btnBook.setOnClickListener(button);
 		
 
+		appointmentClinicMap = DataManager.getAppointmentFullMap();
+		
 //		myList = ClinicsParser.parseClinics(jsonString);  //parse json format of clinics table into array which will populate widgets
 		myList = new ArrayList<Clinics>();
 		
@@ -111,9 +116,21 @@ public class ClinicsActivity extends Activity {
 		lv.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Toast.makeText(getApplicationContext(), "Click on: "+myList.get(position).getClinicName()+"-"+ myList.get(position).getOpenDays()[0], Toast.LENGTH_SHORT).show();
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				appointmentDateMap = new HashMap<Integer,Appointment>();
+				clinicID = myList.get(position).getClinicId();
+				//set a new appointment list matched for specific clinic only
+				for(Appointment app: appointmentClinicMap.values()){
+					if(app.getClinicId()==clinicID) {
+						appointmentDateMap.put(Integer.valueOf(app.getId()), app);
+						System.out.println("appoint: "+app.getServiceUser().getName()+" in CL: "+app.getClinicId()+" at: "+app.getAppDate());
+						
+					}
+				}
+				//if new appointment list is empty, then AppointmentCalendar Activity shows Free Slots only ;)
+				//set all appointment for selected clinic
+				DataManager.setAppointmentDateMap(appointmentDateMap);
+				
 				intent = new Intent(getApplicationContext(),ClinicDatesActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

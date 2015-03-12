@@ -5,6 +5,7 @@ package com.midwives.parsers;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.midwives.classes.Appointment;
+import com.midwives.classes.DataManager;
 import com.midwives.classes.Links;
 import com.midwives.classes.PersonalFields;
 import com.midwives.classes.Pregnancies;
@@ -27,9 +29,11 @@ public class AppointmentParser implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private final static String TAG_ARRAY="appointments";
 	private final static String TAG_CLINIC_ID="clinic_id", TAG_DATE="date", TAG_ID="id";
-	private final static String TAG_PRIORITY="priority",TAG_SERVICE_OPTION_IDS="service_option_ids",TAG_SERVICE_PROVIDER_ID="service_provider_id";
-	private final static String TAG_SERVCE_USER_ID="service_user_id",TAG_TIME="time", TAG_VISIT_LOGS="visit_logs", TAG_VISIT_TYPE="visit_type";
-	private final static String TAG_LINKS="links",TAG_SERVICE_USER_ID="service_user_id";
+	private final static String TAG_PRIORITY="priority",TAG_SERVICE_OPTION_IDS="service_option_ids",
+								TAG_SERVICE_PROVIDER_ID="service_provider_id";
+	private final static String TAG_SERVCE_USER_ID="service_user_id",TAG_TIME="time", 
+								TAG_VISIT_LOGS="visit_logs", TAG_VISIT_TYPE="visit_type";
+	private final static String TAG_LINKS="links";
 	
 	private final static String TAG_USER = "service_user";
 	private final static String TAG_USER_GESTATION="gestation", TAG_USER_ID="id", TAG_USER_NAME="name";
@@ -40,9 +44,11 @@ public class AppointmentParser implements Serializable{
 	private static JSONArray jArray;
 	private static JSONObject json;
 	
-	public static ArrayList<Appointment> parseAppointment(String data){
+//	public static ArrayList<Appointment> parseAppointment(String data){
+	public static HashMap<Integer,Appointment> parseAppointment(String data){
 		
 		 ArrayList<Appointment> myList = new ArrayList<Appointment>();
+		 HashMap<Integer,Appointment>appointmentsMap = new HashMap<Integer,Appointment>();
  
 		 
 		 try {
@@ -106,23 +112,23 @@ public class AppointmentParser implements Serializable{
 				 String time = json.getString(TAG_TIME);
 
 				 String visitType = json.getString(TAG_VISIT_TYPE);
-				 
-				 //try change ServiceUser constructor for more simple one.......
-//				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
-//						 					serviceOptionIDs,serviceProviderID,new ServiceUser(new Pregnancies(gestation),userId,
-//						 					new PersonalFields(name)),serviceUserID,time,visitLogs,visitType));	 
+				  
+				 //
+				 //lets HashMap!!!
+				 appointmentsMap.put(id, new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
+		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));
 				 
 				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
 		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));	 
 			 }
-			
+//			DataManager.setAppointmentFullMap(appointmentsMap);//will be handle by SmartDownloader class...
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		 
 		 
-		 return myList;
+		 return appointmentsMap;
 	}
 
 }

@@ -24,7 +24,7 @@ public class DataManager {
 	private static ServiceOptions serviceOptions = null;
 	private static ServiceProvider serviceProvider = null;
 	private static ServiceUser serviceUser = null;
-	
+	//-------------ArrayyLists will be repalced by HashMaps--------------------------------
 	private static ArrayList<ClinicCalendar> clinicCalendarList=null;//hold full calendar for Appointments: Next/Previous
 	private static ArrayList<Appointment> appointmentList = null;
 	private static ArrayList<Appointment> appointmentShortList = null;
@@ -36,16 +36,30 @@ public class DataManager {
 	private static ArrayList<ServiceUser> serviceUserList = null;
 	private static ArrayList<VisitLogs> visitLogs = null;
 	
-	//try switch core datas from ArrayList into HashMap
-	private static HashMap<Integer,ServiceOptions> serviceOptionsMap = null;
-	private static HashMap<Integer,Clinics> clinicsMap=null;
-	
 	//I don't need this linksURLsList - get access by appointmentsList!
 	private static ArrayList<Links> linksURLsList = null;//belongs to specific appointment (by Appointment ID), holds 3 URLs
 	private static ArrayList<Links> linksDataList = null;//belongs to specific appointment (by Appointment ID), holds 3 class objects
 	private static ArrayList<Announcements> announcementslist=null;
+	//-------------------------------------------------------------------------------------
 	
-
+	//try switch core data from ArrayList into HashMap
+	private static HashMap<Integer,ServiceOptions> serviceOptionsMap = null;
+	private static HashMap<Integer,ServiceProvider> serviceProviderMap = null;
+	private static HashMap<Integer,ServiceUser> serviceUserMap = null;
+	private static HashMap<Integer,Clinics> clinicsMap=null;
+	private static HashMap<Integer,Appointment> appointmentFullMap = null;//appointment DATE String is a key!
+	private static HashMap<Integer,Appointment> appointmentDateMap = null;//appointment DATE String is a key!
+	private static HashMap<Integer,Appointment> appointmentShortMap = null;
+	private static HashMap<Integer,Baby> babyMap = null;
+	private static HashMap<Integer,Pregnancies> pregnanciesMap = null;
+	private static HashMap<Integer,VisitLogs> visitLogsMap = null;
+	
+	private static HashMap<Integer,Links> linksURLsMap = null;//belongs to specific appointment (by Appointment ID), holds 3 URLs
+	private static HashMap<Integer,Links> linksDataMap = null;//belongs to specific appointment (by Appointment ID), holds 3 class objects
+	private static HashMap<Integer,Announcements> announcementsMap=null;
+	
+	
+	
 	private static JSONArray jArray;
 	private static JSONObject jObject;
 	private static DataManager dataManager;
@@ -305,6 +319,103 @@ public class DataManager {
 
 	public static void setClinicsMap(HashMap<Integer, Clinics> clinicsMap) {
 		DataManager.clinicsMap = clinicsMap;
+	}
+
+	public static HashMap<Integer, ServiceProvider> getServiceProviderMap() {
+		return serviceProviderMap;
+	}
+
+	public static void setServiceProviderMap(
+			HashMap<Integer, ServiceProvider> serviceProviderMap) {
+		DataManager.serviceProviderMap = serviceProviderMap;
+	}
+
+	public static HashMap<Integer, ServiceUser> getServiceUserMap() {
+		return serviceUserMap;
+	}
+
+	public static void setServiceUserMap(
+			HashMap<Integer, ServiceUser> serviceUserMap) {
+		DataManager.serviceUserMap = serviceUserMap;
+	}
+
+
+
+	public static HashMap<Integer, Appointment> getAppointmentDateMap() {
+		return appointmentDateMap;
+	}
+
+	public static void setAppointmentDateMap(
+			HashMap<Integer, Appointment> appointmentDateMap) {
+		DataManager.appointmentDateMap = appointmentDateMap;
+	}
+
+	public static HashMap<Integer, Appointment> getAppointmentShortMap() {
+		return appointmentShortMap;
+	}
+
+	public static void setAppointmentShortMap(
+			HashMap<Integer, Appointment> appointmentShortMap) {
+		DataManager.appointmentShortMap = appointmentShortMap;
+	}
+
+	public static HashMap<Integer, Baby> getBabyMap() {
+		return babyMap;
+	}
+
+	public static void setBabyMap(HashMap<Integer, Baby> babyMap) {
+		DataManager.babyMap = babyMap;
+	}
+
+	public static HashMap<Integer, Pregnancies> getPregnanciesMap() {
+		return pregnanciesMap;
+	}
+
+	public static void setPregnanciesMap(
+			HashMap<Integer, Pregnancies> pregnanciesMap) {
+		DataManager.pregnanciesMap = pregnanciesMap;
+	}
+
+	public static HashMap<Integer, Links> getLinksURLsMap() {
+		return linksURLsMap;
+	}
+
+	public static void setLinksURLsMap(HashMap<Integer, Links> linksURLsMap) {
+		DataManager.linksURLsMap = linksURLsMap;
+	}
+
+	public static HashMap<Integer, Links> getLinksDataMap() {
+		return linksDataMap;
+	}
+
+	public static void setLinksDataMap(HashMap<Integer, Links> linksDataMap) {
+		DataManager.linksDataMap = linksDataMap;
+	}
+
+	public static HashMap<Integer, Appointment> getAppointmentFullMap() {
+		return appointmentFullMap;
+	}
+
+	public static void setAppointmentFullMap(
+			HashMap<Integer, Appointment> appointmentFullMap) {
+		DataManager.appointmentFullMap = appointmentFullMap;
+	}
+
+	public static HashMap<Integer, Announcements> getAnnouncementsMap() {
+		return announcementsMap;
+	}
+
+	public static void setAnnouncementsMap(
+			HashMap<Integer, Announcements> announcementsMap) {
+		DataManager.announcementsMap = announcementsMap;
+	}
+
+	public static HashMap<Integer, VisitLogs> getVisitLogsMap() {
+		return visitLogsMap;
+	}
+
+	public static void setVisitLogsMap(HashMap<Integer, VisitLogs> visitLogsMap) {
+		DataManager.visitLogsMap = visitLogsMap;
 	}
 
 }

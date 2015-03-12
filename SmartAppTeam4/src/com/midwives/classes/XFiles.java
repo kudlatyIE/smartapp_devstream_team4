@@ -46,7 +46,7 @@ public class XFiles {
     	    		sortedList.add(cal.getTime());
     	    		
     	    		cal.add(Calendar.DAY_OF_YEAR, 7);
-        			System.out.println("cal.add.week: "+formatter.format(cal.getTime()));
+//        			System.out.println("cal.add.week: "+formatter.format(cal.getTime()));
     			}
     		}
     		Comparator<Date> comp = new CompareIt();
@@ -54,7 +54,7 @@ public class XFiles {
     		Calendar c = Calendar.getInstance();
     		for(Date d: sortedList){
     			c.setTime(d);
-    			daysList.add(new ClinicCalendar(c,formatter.format(c.getTime())));
+    			daysList.add(new ClinicCalendar(d,formatter.format(c.getTime())));
     		}
     	
 		return daysList;

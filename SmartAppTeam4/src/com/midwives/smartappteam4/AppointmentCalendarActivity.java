@@ -4,15 +4,11 @@
  */
 package com.midwives.smartappteam4;
 
-import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-
-
-
-
-
-import org.json.JSONException;
+import java.util.HashMap;
 
 import com.midwives.parsers.*;
 import com.midwives.classes.*;
@@ -20,10 +16,7 @@ import com.midwives.classes.*;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,20 +31,21 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class AppointmentCalendarActivity extends Activity {
 	
-//	private ArrayList<String> myList; //list of clinic's opening data
 	private Intent intent;
-	private Bundle extras;
-	private Date date;
 	private TextView tvTitle, tvSubtitle,tvDate;
 	private Button btnPrev, btnNext, btnBack, btnBook,btnHome;
 	private ListView lv;
-	private String hint,clinicName, appointmentDate,weekDay, jsonString, token, tableUrl, apiKey; 
-	private Appointment appointment;
+	private String clinicName, appointmentDay,weekDay, jsonString, token, tableUrl; 
+	private String openTime, closeTime;
+	private int interval;
 	
-	private ArrayList<Appointment> myList;
-//	private ArrayList<ServiceOptions> service;
-//	private ArrayList<ServiceUser> user;
-//	private ArrayList<Clinics> clinic;
+	private Clinics clinic;
+	private ClinicCalendar clinicDay;
+//	private Appointment appointment;
+	private Date dateDay;
+	
+	private ArrayList<Appointment> appointmentList;//list of appointments for specific clinic and day
+	private HashMap<Integer,Appointment> appointmentDateMap;//full list of appointments for specific clinic
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +54,21 @@ public class AppointmentCalendarActivity extends Activity {
 		
 		//Receive selected appointment date/clinic name and week day from dataManager
 
-		clinicName = DataManager.getClinicDates().getClinicName();
-		appointmentDate = DataManager.getClinicDates().getAppointmentDate();
-//		weekDay = DataManager.getClinicDates().getWeekDay();	
-		weekDay = DataManager.getClinicCalendar().getDateString();
+		clinic = DataManager.getClinics();
+		clinicDay = DataManager.getClinicCalendar();
+		dateDay=clinicDay.getDate();//get selected day
+		System.out.println("calendarDay from DM: cal: "+clinicDay.getDate()+" | string: "+clinicDay.getDateString());
+		
+		clinicName = clinic.getClinicName();
+		//for display only - will be handle by getAppointmentsForDay(Calendar cal,HashMap<Integer,Appointment> fullMap) method also	
+		//need change appointment date for NEXT/PREV buttons
+		appointmentDay = clinicDay.getDateString();
+		
+		openTime = clinic.getOpeningTime();
+		closeTime = clinic.getClosingTime();
+		interval = clinic.getAppointmentInterval();
 		
 		
-		this.tableUrl=getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_appointment));
 		
 				
 		btnBack = (Button) findViewById(R.id.app_calendar_header_btn_back);
@@ -81,7 +83,7 @@ public class AppointmentCalendarActivity extends Activity {
 		//set text for header
 		tvTitle.setText(R.string.title_activity_appointment_calendar);
 		tvSubtitle.setText(clinicName);
-		tvDate.setText(appointmentDate);
+		tvDate.setText(appointmentDay);
 		
 		//buttons listener:
 		MyButtons button = new MyButtons();
@@ -90,18 +92,41 @@ public class AppointmentCalendarActivity extends Activity {
 		btnBook.setOnClickListener(button);
 		btnPrev.setOnClickListener(button);
 		btnNext.setOnClickListener(button);
-		
-		
-		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),tableUrl);
-		
-		this.token=SmartAuth.getToken();
-		jsonString=smart.accessTheDBTable(token); 
 
-		myList = AppointmentParser.parseAppointment(jsonString); // parse json String into ArrayList
-		DataManager.setAppointmentList(myList);// save appointmentsList into DataManager... 
+/*
+ * get a list
+ * getAppointmentsForDay(Calendar cal,HashMap<Integer,Appointment> fullMap) return appointment list for specific day
+ */
+		appointmentDateMap = DataManager.getAppointmentDateMap();
+		appointmentList=getAppointmentsForDay(dateDay,appointmentDateMap);
+		System.out.println("AppCL: appointmentDateMap size: "+appointmentDateMap.size());
+		System.out.println("AppCL: appointmentList size: "+appointmentList.size());
+		for(Appointment a:appointmentDateMap.values()){
+			System.out.println("AppCALL-appointmentDateMap stuff: "+a.getAppDate()+"|"+a.getAppTime()+" "+a.getServiceUser().getName());
+		}
+		
+		
+		//get data List for selected appointment - will be handle by other way... soon..........................................................
+		//-----------------------------------------------------------------------------
+//		this.tableUrl=getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_appointment));
+//		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),tableUrl);
+//		this.token=SmartAuth.getToken();
+//		jsonString=smart.accessTheDBTable(token); 
+//		myList = AppointmentParser.parseAppointment(jsonString); // parse json String into ArrayList
+//		DataManager.setAppointmentList(myList);// save appointmentsList into DataManager...
+		//---------------------------------------------
 		//populate listView
+		setListView(appointmentList);
+		
+	}//end onCreate
+	
+	
+	//---------------------------------------------------------------------------------------------
+	private void setListView(ArrayList<Appointment> list){
+		final ArrayList<Appointment> myList =list;
 		lv = (ListView) findViewById(R.id.smart_appointment_calendar_listview);
 		lv.setAdapter(new MyAdapter(getApplicationContext(),R.layout.app_calendar_full_adapter,myList));
+		System.out.println("AppCL: setListView: list size: "+list.size());
 		
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
@@ -118,8 +143,7 @@ public class AppointmentCalendarActivity extends Activity {
 				
 			}
 		});
-		
-	}//end onCreate
+	}
 	private class MyButtons implements OnClickListener{
 
 		@Override
@@ -148,9 +172,10 @@ public class AppointmentCalendarActivity extends Activity {
 	}
 	
 	public class MyAdapter extends ArrayAdapter<Appointment> { 
-		
+		ArrayList<Appointment> list;
 		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<Appointment> objects) { 
 			super(ctx, txtViewResourceId, objects); 
+			this.list=objects;
 		} 
 		@Override 
 		public View getDropDownView(int position, View cnvtView, ViewGroup prnt) { 
@@ -170,9 +195,9 @@ public class AppointmentCalendarActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_user);
 			vHolder.tvGestation = (TextView) convertView.findViewById(R.id.app_calendar_adapter_text_data);
 		
-			vHolder.tvTime.setText(myList.get(position).getAppTime());
-			vHolder.tvName.setText(myList.get(position).getServiceUser().getName());
-			vHolder.tvGestation.setText(myList.get(position).getServiceUser().getGestation()); 
+			vHolder.tvTime.setText(list.get(position).getAppTime());
+			vHolder.tvName.setText(list.get(position).getServiceUser().getName());
+			vHolder.tvGestation.setText(list.get(position).getServiceUser().getGestation()); 
 			
 			return convertView;
 		} 
@@ -182,6 +207,31 @@ public class AppointmentCalendarActivity extends Activity {
 		TextView tvTime, tvName, tvGestation;	
 	}
 	
+	/**
+	 * use to parse selected date into string and compare with appointmentDates value (string date is a key in appointment HashMap) 
+	 * @param cal
+	 * @return
+	 */
+	private String getStringFromCalendar(Calendar cal){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		return formatter.format(cal.getTime());
+	}
+	
+	//filter appointments matched for specific day
+	private ArrayList<Appointment> getAppointmentsForDay(Date day, HashMap<Integer,Appointment> fullMap){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(day);
+		ArrayList<Appointment> resultList = new ArrayList<Appointment>();
+		String date = getStringFromCalendar(cal);
+		
+		for(Appointment app:fullMap.values()){
+			if(date.equals(app.getAppDate())) resultList.add(app);
+//			System.out.println("AppCal: date:"+date+" time: "+app.getAppTime());
+//			System.out.println("AppCal: clinicID: "+app.getClinicId()+" user: "+app.getServiceUser().getName());
+		}
+		
+		return resultList;
+	}
 }
 
 //Nick

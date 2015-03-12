@@ -1,6 +1,7 @@
 package com.midwives.parsers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,9 +30,10 @@ public class BabiesParser {
 	private static JSONObject json;
 	
 	
-	public static ArrayList<Baby> parseBabiesList(String data){
-		ArrayList<Baby> babyList = new ArrayList<Baby>();
-		
+//	public static ArrayList<Baby> parseBabiesList(String data){
+//		ArrayList<Baby> babyList = new ArrayList<Baby>();
+		public static HashMap<Integer,Baby> parseBabyMap(String data){
+			HashMap<Integer,Baby> babyMap = new HashMap<Integer,Baby>();
 		try{
 			json = new JSONObject(data);
 			 
@@ -50,13 +52,14 @@ public class BabiesParser {
 				 int pregnancyId = json.getInt(TAG_PREGNANCY_ID);
 				 int id = json.getInt(TAG_ID);
 				 
-				 babyList.add(new Baby(birthOutcome,deliveryDate,gender, hearing,hospitalNo,id,name,screeningTest,pregnancyId,vitaminK,weight));
+//				 babyList.add(new Baby(birthOutcome,deliveryDate,gender, hearing,hospitalNo,id,name,screeningTest,pregnancyId,vitaminK,weight));
+				 babyMap.put(Integer.valueOf(id), new Baby(birthOutcome,deliveryDate,gender, hearing,hospitalNo,id,name,screeningTest,pregnancyId,vitaminK,weight));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		return babyList;
+		return babyMap;
 		
 	}
 }

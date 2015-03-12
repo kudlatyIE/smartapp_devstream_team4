@@ -4,6 +4,7 @@
 package com.midwives.classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.midwives.parsers.*;
 import com.midwives.smartappteam4.R;
@@ -35,6 +36,17 @@ public class SmartDownloader {
 	private  ArrayList<VisitLogs> visitLogs = null;
 	private  ArrayList<Links> linksDataList = null;//belongs to specific appointment (by Appointment ID)
 	private  ArrayList<Announcements> announcementslist=null;
+	
+	//lets HashMap
+	private HashMap<Integer,Appointment> appointmentMap= null;
+	private HashMap<Integer,Baby> babyMap= null;
+	private HashMap<Integer,Clinics> clinicMap= null;
+	private HashMap<Integer,Pregnancies> pregnanciesMap= null;
+	private HashMap<Integer,ServiceProvider> serviceProviderMap= null;
+	private HashMap<Integer,ServiceUser> serviceUserMap= null;
+	private HashMap<Integer,Announcements> announcementsMap= null;
+	private HashMap<Integer,Links> linksMap= null;//key is userId...?
+	
 	
 	/**
 	 * load all URLs, when LogIn success, then run: new SmartDownloader();
@@ -146,14 +158,16 @@ public class SmartDownloader {
 			switch(tag){
 			
 				case TAG_BABY:
-					babyList= new ArrayList<Baby>();
-					babyList = BabiesParser.parseBabiesList(getJsonBabies());
-					DataManager.setBabyList(babyList);
+//					babyList= new ArrayList<Baby>();
+					babyMap = new HashMap<Integer, Baby>();
+					babyMap = BabiesParser.parseBabyMap(getJsonBabies());
+					DataManager.setBabyMap(babyMap);
 					break;
 				case TAG_APPOINTMENTS:
-					appointmentList = new ArrayList<Appointment>();
-					appointmentList = AppointmentParser.parseAppointment(getJsonAppointments());
-					DataManager.setAppointmentList(appointmentList);
+//					appointmentList = new ArrayList<Appointment>();
+					appointmentMap = new HashMap<Integer,Appointment>();
+					appointmentMap = AppointmentParser.parseAppointment(getJsonAppointments());
+					DataManager.setAppointmentFullMap(appointmentMap);
 					break;
 				case TAG_CLINIC:
 					clinicList = new ArrayList<Clinics>();
@@ -294,6 +308,71 @@ public class SmartDownloader {
 
 	public void setLinkServiceUsersURL(String linkServiceUsersURL) {
 		this.linkServiceUsersURL = linkServiceUsersURL;
+	}
+
+	public HashMap<Integer, Appointment> getAppointmentMap() {
+		return appointmentMap;
+	}
+
+	public void setAppointmentMap(HashMap<Integer, Appointment> appointmentMap) {
+		this.appointmentMap = appointmentMap;
+	}
+
+	public HashMap<Integer, Baby> getBabyMap() {
+		return babyMap;
+	}
+
+	public void setBabyMap(HashMap<Integer, Baby> babyMap) {
+		this.babyMap = babyMap;
+	}
+
+	public HashMap<Integer, Clinics> getClinicMap() {
+		return clinicMap;
+	}
+
+	public void setClinicMap(HashMap<Integer, Clinics> clinicMap) {
+		this.clinicMap = clinicMap;
+	}
+
+	public HashMap<Integer, Pregnancies> getPregnanciesMap() {
+		return pregnanciesMap;
+	}
+
+	public void setPregnanciesMap(HashMap<Integer, Pregnancies> pregnanciesMap) {
+		this.pregnanciesMap = pregnanciesMap;
+	}
+
+	public HashMap<Integer, ServiceProvider> getServiceProviderMap() {
+		return serviceProviderMap;
+	}
+
+	public void setServiceProviderMap(
+			HashMap<Integer, ServiceProvider> serviceProviderMap) {
+		this.serviceProviderMap = serviceProviderMap;
+	}
+
+	public HashMap<Integer, ServiceUser> getServiceUserMap() {
+		return serviceUserMap;
+	}
+
+	public void setServiceUserMap(HashMap<Integer, ServiceUser> serviceUserMap) {
+		this.serviceUserMap = serviceUserMap;
+	}
+
+	public HashMap<Integer, Announcements> getAnnouncementsMap() {
+		return announcementsMap;
+	}
+
+	public void setAnnouncementsMap(HashMap<Integer, Announcements> announcementsMap) {
+		this.announcementsMap = announcementsMap;
+	}
+
+	public HashMap<Integer, Links> getLinksMap() {
+		return linksMap;
+	}
+
+	public void setLinksMap(HashMap<Integer, Links> linksMap) {
+		this.linksMap = linksMap;
 	}
 	
 

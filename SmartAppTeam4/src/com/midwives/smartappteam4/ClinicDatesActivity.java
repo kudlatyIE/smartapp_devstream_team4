@@ -1,11 +1,14 @@
 package com.midwives.smartappteam4;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.TimeZone;
 
+import com.midwives.classes.Appointment;
 import com.midwives.classes.ClinicCalendar;
 import com.midwives.classes.ProcessClinicWeeklyOpenDates;
 import com.midwives.classes.ClinicDates;
@@ -69,25 +72,11 @@ public class ClinicDatesActivity extends Activity {
 //		hint=getResources().getString(R.string......)
 		tvSubtitle.setText("Select "+ clinicName+ "\'s calendar");
 		
-		//************************create list of a clinics open days************************start
-			//myList = XFiles.getDateList(weekDays[0]); //********swappped out here *********
+		//************************create list of a clinics open days******
 		
 		myList = XFiles.getAllOpenDaysList(weekDays, 10);
 		DataManager.setClinicCalendarList(myList);
 			
-//			calendar = Calendar.getInstance(TimeZone.getDefault());  //current month  clinic open dates
-//			ProcessClinicWeeklyOpenDates p1 = new ProcessClinicWeeklyOpenDates(calendar);			             
-//			myList = p1.getClinicWeeklyOpenDatesArray(p1, weekDays);
-//		
-//			calendar.add(Calendar.MONTH, 1);                         //current month plus 1 clinic open  dates
-//			calendar.set(Calendar.DAY_OF_MONTH, 1);
-//			ProcessClinicWeeklyOpenDates p2 = new ProcessClinicWeeklyOpenDates(calendar);
-//			myList.addAll(p2.getClinicWeeklyOpenDatesArray(p2, weekDays));
-//		
-//			calendar.add(Calendar.MONTH, 1);                        //current month plus 2 open dates
-//			calendar.set(Calendar.DAY_OF_MONTH, 1);
-//			ProcessClinicWeeklyOpenDates p3 = new ProcessClinicWeeklyOpenDates(calendar);
-//			myList.addAll(p3.getClinicWeeklyOpenDatesArray(p3, weekDays));
 		
 		
 		//************************create list of a clinics open days************************end
@@ -101,12 +90,13 @@ public class ClinicDatesActivity extends Activity {
 		lv.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			
 				//need change to store real Calendar value! from myOpenDays.getCalendar();
-				DataManager.setClinicdates(new ClinicDates(myList.get(position).getDateString(),weekDays, clinicName));
-				DataManager.setClinicCalendar(myList.get(position));
+//				DataManager.setClinicdates(new ClinicDates(myList.get(position).getDateString(),weekDays, clinicName));
+//				DataManager.setClinicCalendar(myList.get(position));
+				DataManager.setClinicCalendar(new ClinicCalendar(myList.get(position).getDate(),myList.get(position).getDateString()));
+				System.out.println();
 				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
@@ -160,7 +150,7 @@ public class ClinicDatesActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
 			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
 		
-			vHolder.tvName.setText((position+1) + " - ID of Week: "); //add value from previous Activity for test only!
+			vHolder.tvName.setText((position+1) + "Calendar date: "+myList.get(position).getDate()); //add value from previous Activity for test only!
 			//need to hold more than one day, when click on!!!!!!!!!!!!!!!!
 			vHolder.tvDays.setText(myList.get(position).getDateString());// Available data for test only
 			
@@ -178,6 +168,7 @@ public class ClinicDatesActivity extends Activity {
 		}
 		return result;
 	}
+	
 	
 
 }

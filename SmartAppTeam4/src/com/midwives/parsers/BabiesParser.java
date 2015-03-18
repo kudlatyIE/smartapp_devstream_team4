@@ -46,7 +46,12 @@ public class BabiesParser {
 				 String hearing = json.getString(TAG_HEARNG);
 				 String vitaminK = json.getString(TAG_VITAMIN_K);
 				 String deliveryDate = json.getString(TAG_DELIVERY_DATE_TIME);
-				 int weight = json.getInt(TAG_WEIGHT);
+				 int weight;
+				 try{
+					 weight = json.getInt(TAG_WEIGHT);
+				 }catch(Exception ex){
+					 weight=0;
+				 }
 				 String gender = json.getString(TAG_GENDER);
 				 String hospitalNo = json.getString(TAG_HOSPITAL_NO);
 				 int pregnancyId = json.getInt(TAG_PREGNANCY_ID);

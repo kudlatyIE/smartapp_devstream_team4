@@ -46,17 +46,18 @@ public class PregnanciesParser {
 				 String info = json.getString(TAG_INFO);
 				 
 				 String[] birthMode;
-				 JSONArray arrstr = json.getJSONArray(TAG_BIRTH_MODE);
-				 if (arrstr.length()!=0){
+				 try{
+					 JSONArray arrstr = json.getJSONArray(TAG_BIRTH_MODE);
 					 birthMode = new String[arrstr.length()];
 					 for(int j=0;j<arrstr.length();j++){
 						 birthMode[j]= arrstr.getString(j);
 						 Log.e("birthMode[+"+j+"]= ", birthMode[j]);
 					 }
-				 }else {
+				 }catch(Exception ex){
 					 birthMode= new String[1];
-					 birthMode[0]="no logs";
+					 birthMode[0]="N/A";
 				 }
+				 
 				 String perineum = json.getString(TAG_PERINEUM);
 				 String antiD = json.getString(TAG_ANTI_D);
 				 String feeding = json.getString(TAG_FEEDING);

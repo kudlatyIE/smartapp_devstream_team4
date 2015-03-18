@@ -169,7 +169,7 @@ public class AppointmentCalendarActivity extends Activity {
 				if(currentDay<=lastDay){
 					setDayId(currentDay);
 					setListView(appointmentFullMap, clinic, keysList,clinicCalendarList,currentDay);
-				}else Toast.makeText(getApplicationContext(), "There is nothing NEXT..."+, Toast.LENGTH_SHORT).show();
+				}else Toast.makeText(getApplicationContext(), "There is nothing NEXT...", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.app_calendar_header_btn_back:
 				finish();

@@ -1,36 +1,22 @@
 package com.midwives.smartappteam4;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.TimeZone;
 
-import com.midwives.classes.Appointment;
+import java.util.ArrayList;
 import com.midwives.classes.ClinicCalendar;
-import com.midwives.classes.ProcessClinicWeeklyOpenDates;
-import com.midwives.classes.ClinicDates;
 import com.midwives.classes.DataManager;
-import com.midwives.classes.ServiceOptions;
 import com.midwives.classes.XFiles;
-import com.midwives.smartappteam4.ClinicsActivity.ViewHolder;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;

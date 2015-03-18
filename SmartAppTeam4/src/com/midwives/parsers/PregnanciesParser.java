@@ -1,6 +1,7 @@
 package com.midwives.parsers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,9 +29,10 @@ public class PregnanciesParser {
 	private static JSONObject json;
 	
 	
-	public static ArrayList<Pregnancies> parsePregnancies(String data){
-		
-		ArrayList<Pregnancies> myList = new ArrayList<Pregnancies>();
+//	public static ArrayList<Pregnancies> parsePregnancies(String data){
+	public static HashMap<Integer, Pregnancies> parsePregnancies(String data){
+		HashMap<Integer, Pregnancies> myMap = new HashMap<Integer, Pregnancies>();
+//		ArrayList<Pregnancies> myList = new ArrayList<Pregnancies>();
 		
 		try{
 			json = new JSONObject(data);
@@ -47,7 +49,7 @@ public class PregnanciesParser {
 				 JSONArray arrstr = json.getJSONArray(TAG_BIRTH_MODE);
 				 if (arrstr.length()!=0){
 					 birthMode = new String[arrstr.length()];
-					 for(int j=0;i<arrstr.length();j++){
+					 for(int j=0;j<arrstr.length();j++){
 						 birthMode[j]= arrstr.getString(j);
 						 Log.e("birthMode[+"+j+"]= ", birthMode[j]);
 					 }
@@ -74,15 +76,14 @@ public class PregnanciesParser {
 //					 babyIds = null;
 				 }
 				 
-				 myList.add(new Pregnancies(id,userId,edd,info,birthMode,perineum,antiD,feeding,period,babyIds,gestation));
+//				 myList.add(new Pregnancies(id,userId,edd,info,birthMode,perineum,antiD,feeding,period,babyIds,gestation));
+				 myMap.put(id, new Pregnancies(id,userId,edd,info,birthMode,perineum,antiD,feeding,period,babyIds,gestation));
 				 
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		
-		return myList;
+		return myMap;
 	}
 	
 

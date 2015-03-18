@@ -1,6 +1,8 @@
+//Essentials data will parse into hash map, not in array list as before......
 package com.midwives.parsers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,8 +26,10 @@ public class ServiceProviderParser {
 	private static JSONArray jArray;
 	
 	
-	public static ArrayList<ServiceProvider> parseServiceProviders(String data){
-		myList= new ArrayList<ServiceProvider>();
+//	public static ArrayList<ServiceProvider> parseServiceProviders(String data){
+	public static HashMap<Integer,ServiceProvider> parseServiceProvider(String data){
+//		myList= new ArrayList<ServiceProvider>();
+		HashMap<Integer,ServiceProvider> myMap = new HashMap<Integer, ServiceProvider>();
 		try{
 			json = new JSONObject(data);
 			jArray = json.getJSONArray(TAG_ARRAY);
@@ -44,13 +48,15 @@ public class ServiceProviderParser {
 				String secondary = json.getString(TAG_SECONDARY_PHONE);
 				String username = json.getString(TAG_USERNAME);
 				
-				myList.add(new ServiceProvider(active,admin,email,id,level,occupation,name,
+//				myList.add(new ServiceProvider(active,admin,email,id,level,occupation,name,
+//									pass,primary, secondary,username));
+				myMap.put(id, new ServiceProvider(active,admin,email,id,level,occupation,name,
 									pass,primary, secondary,username));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return myList;
+		return myMap;
 	}
 	
 	public static ServiceProvider parseServiceProviderID(String data){

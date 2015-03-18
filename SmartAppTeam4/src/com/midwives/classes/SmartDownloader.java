@@ -170,29 +170,33 @@ public class SmartDownloader {
 					DataManager.setAppointmentFullMap(appointmentMap);
 					break;
 				case TAG_CLINIC:
-					clinicList = new ArrayList<Clinics>();
-					clinicList = ClinicsParser.parseClinics(getJsonClinics());
-					DataManager.setClinicList(clinicList);
+//					clinicList = new ArrayList<Clinics>();
+					clinicMap = new HashMap<Integer,Clinics>();
+					clinicMap = ClinicsParser.parseClinic(getJsonClinics());
+					DataManager.setClinicsMap(clinicMap);
 					break;
 				case TAG_PREGNANCIES:
-					pregnanciesList = new ArrayList<Pregnancies>();
-					pregnanciesList = PregnanciesParser.parsePregnancies(getJsonPregnancies());
-					DataManager.setPregnanciesList(pregnanciesList);
+//					pregnanciesList = new ArrayList<Pregnancies>();
+					pregnanciesMap = new HashMap<Integer,Pregnancies>();
+					pregnanciesMap = PregnanciesParser.parsePregnancies(getJsonPregnancies());
+					DataManager.setPregnanciesMap(pregnanciesMap);
 					break;
-				case TAG_SERVICE_OPTIONS:
+				case TAG_SERVICE_OPTIONS:// only this is still saved in arrayList
 					serviceOptionsList = new ArrayList<ServiceOptions>();
 					serviceOptionsList = ServiceOptionsParser.parseServiceOptions(getJsonServiceOptions());
 					DataManager.setServiceOptionsList(serviceOptionsList);
 					break;
 				case TAG_USER:
-					serviceUserList = new ArrayList<ServiceUser>();
-					serviceUserList = ServiceUserParser.parseServiceUser(getJsonServiceUser());
-					DataManager.setServiceUserList(serviceUserList);
+//					serviceUserList = new ArrayList<ServiceUser>();
+					serviceUserMap = new HashMap<Integer,ServiceUser>();
+					serviceUserMap = ServiceUserParser.parseServiceUser(getJsonServiceUser());
+					DataManager.setServiceUserMap(serviceUserMap);
 					break;
 				case TAG_SERVICE_PROVIDER:
-					serviceProviderList = new ArrayList<ServiceProvider>();
-					serviceProviderList = ServiceProviderParser.parseServiceProviders(getJsonServiceProviders());
-					DataManager.setServiceProviderList(serviceProviderList);					
+//					serviceProviderList = new ArrayList<ServiceProvider>();
+					serviceProviderMap = new HashMap<Integer,ServiceProvider>();
+					serviceProviderMap = ServiceProviderParser.parseServiceProvider(getJsonServiceProviders());
+					DataManager.setServiceProviderMap(serviceProviderMap);					
 					break;
 				
 				}

@@ -47,7 +47,7 @@ public class AppointmentParser implements Serializable{
 //	public static ArrayList<Appointment> parseAppointment(String data){
 	public static HashMap<Integer,Appointment> parseAppointment(String data){
 		
-		 ArrayList<Appointment> myList = new ArrayList<Appointment>();
+//		 ArrayList<Appointment> myList = new ArrayList<Appointment>();
 		 HashMap<Integer,Appointment>appointmentsMap = new HashMap<Integer,Appointment>();
  
 		 
@@ -116,10 +116,10 @@ public class AppointmentParser implements Serializable{
 				 //
 				 //lets HashMap!!!
 				 appointmentsMap.put(id, new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
-		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));
+		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType, true));
 				 
-				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
-		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));	 
+//				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
+//		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));	 
 			 }
 //			DataManager.setAppointmentFullMap(appointmentsMap);//will be handle by SmartDownloader class...
 			

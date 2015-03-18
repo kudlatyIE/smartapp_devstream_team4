@@ -2,6 +2,7 @@ package com.midwives.classes;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.Collator;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +11,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class XFiles {
@@ -141,8 +145,113 @@ public class XFiles {
     	
     	return shortDate.format(d);
     }
+    
+    /**
+     * method used to sort appointment map by appointment time....
+     * @param map HashMap(K,V)
+     * @return HashMap - sorted by key(string)
+     */
+    public static <K extends Comparable, V extends Comparable> HashMap<K,V> sortHashMapByKey(HashMap<K,V> map){
+    	List<K> keys = new LinkedList<K>(map.keySet());
+    	Collections.sort(keys, (Comparator<? super K>) new Comparator<String>(){
 
-}
+			@Override
+			public int compare(String o1, String o2) {
+				Collator collator = Collator.getInstance(Locale.getDefault());
+				return collator.compare(o1, o2);
+			}
+    	});
+    	HashMap<K,V> sortedMap = new HashMap<K,V>();
+    	for(K key: keys){
+    		sortedMap.put(key, map.get(key));
+    	}
+    	return sortedMap;
+    }
+
+    
+    /**
+     * create Time Array from openTime until CloseTime with set interval in minutes
+     * @param open String (HH:mm:ss)
+     * @param close String (HH:mm:ss)
+     * @param interval int (time in minutes)
+     * @return String[]
+     */
+    public static String[] getTimeList(String open, String close, int interval){
+//    	HashMap<String,String> myMap = new HashMap<String, String>();
+    	String[] myList;
+    	SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+    	long difference;
+    	try {
+			Date startTime = df.parse(open);
+			Date closeTime = df.parse(close);
+			difference = closeTime.getTime()-startTime.getTime();
+			double converter = 60*1000*interval;
+			int result = (int) (difference/converter); //get quarters
+//			System.out.println("difference: "+result);
+			myList = new String[result];
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(startTime);
+			for(int i=0;i<result;i++){
+				myList[i] = open;
+				cal.add(Calendar.MINUTE, interval);
+				open = df.format(cal.getTime());
+			}
+			
+			return myList;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    
+    /**
+	 * use to parse selected date into string and compare with appointmentDates value (string date is a key in appointment HashMap) 
+	 * @param cal
+	 * @return
+	 */
+	public static String getStringFromCalendar(Calendar cal){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		return formatter.format(cal.getTime());
+	}
+	
+	
+	//filter appointments matched for specific day - return Map with Time as a KEY------------------------------------------
+//	private ArrayList<Appointment> getAppointmentsForDay(Date day, HashMap<Integer,Appointment> fullMap){
+	public static HashMap<String,Appointment> getAppointmentsForDay(Date day, HashMap<Integer,Appointment> fullMap){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(day);
+		HashMap<String,Appointment> resultList = new HashMap<String,Appointment>();
+		String date = getStringFromCalendar(cal);
+		
+		for(Appointment app:fullMap.values()){
+//			if(date.equals(app.getAppDate())) resultList.add(app);
+			if(date.equals(app.getAppDate())) resultList.put(app.getAppTime(),app);
+		}
+		
+		return resultList;
+	}
+	/**
+	 * create full time list with all appointments and free slots
+	 * @param timeList String[] HH:m:ss
+	 * @param fullMap all Appointments HashMap<String, Appointment>
+	 * @return full ArrayList<Appointment>
+	 */
+	public static ArrayList<Appointment> getAppointmentsTimeList(String[] timeList, HashMap<String,Appointment> fullMap, String appointmentDay, Clinics clinic){
+		ArrayList<Appointment> resultList = new ArrayList<Appointment>();
+		
+		for(String s:timeList){
+			if(fullMap.containsKey(s)) {
+				resultList.add(fullMap.get(s));
+				System.out.println("method test: "+fullMap.get(s).getServiceUser().getName());
+			}
+			else resultList.add(new Appointment(clinic.getClinicId(),appointmentDay,s, false));
+		}
+		
+		return resultList;
+	}
+
+}   
+
 class CompareIt implements Comparator<Date>{
 
 	@Override
@@ -155,4 +264,5 @@ class CompareIt implements Comparator<Date>{
 	}
 	
 }
+
 //Nick

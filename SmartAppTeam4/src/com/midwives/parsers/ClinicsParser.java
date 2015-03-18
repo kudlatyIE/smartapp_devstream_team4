@@ -30,19 +30,15 @@ public class ClinicsParser implements Serializable {
 	private static int[] service_option_ids;
 	private static JSONObject json;
 	private static JSONArray  jArray;
-	
-	
-	
 
 
-	public static ArrayList<Clinics> parseClinics(String jsonString) {
-		ArrayList<Clinics> listOfClinics = new ArrayList<Clinics>();
-		HashMap<Integer,Clinics> clinicsMap = new HashMap<Integer,Clinics>();
-		int[] service_option_ids = null;
-		
+//	public static ArrayList<Clinics> parseClinics(String jsonString) {
+	public static HashMap<Integer, Clinics> parseClinic(String data){
+//		ArrayList<Clinics> listOfClinics = new ArrayList<Clinics>();
+		HashMap<Integer,Clinics> myMap = new HashMap<Integer,Clinics>();
 		
 		try{
-			json = new JSONObject(jsonString);
+			json = new JSONObject(data);
 			jArray = json.getJSONArray(TAG_ARRAY);
 				for(int i = 0; i < jArray.length(); i++){
 					json = jArray.getJSONObject(i);
@@ -96,17 +92,19 @@ public class ClinicsParser implements Serializable {
 						}
 					}
 					
-					listOfClinics.add(new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
+//					listOfClinics.add(new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
+//												type, appointmentInterval, dayNames, service_option_ids ));
+//					clinicsMap.put(clinicId, new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
+//												type, appointmentInterval, dayNames, service_option_ids ));
+					myMap.put(clinicId, new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
 												type, appointmentInterval, dayNames, service_option_ids ));
-					clinicsMap.put(clinicId, new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
-												type, appointmentInterval, dayNames, service_option_ids ));
+					
 				} // close for iteration loop
 							
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
-		DataManager.setClinicsMap(clinicsMap);		
-		return listOfClinics;    //returns an array list of clinics
+		}		
+		return myMap;    //returns an array list of clinics
 	}
 	
 }//close class Clinicsparser

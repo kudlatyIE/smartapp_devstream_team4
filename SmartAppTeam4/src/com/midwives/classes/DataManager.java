@@ -12,6 +12,7 @@ public class DataManager {
 	
 	private static Announcements announcments = null;
 	private static Appointment appointment = null;
+	private static Appointment appointmentFreeSlot = null;
 	private static Baby baby = null;
 	private static ClinicalFields clinicalFields = null;
 	private static Clinics clinics = null;
@@ -47,8 +48,8 @@ public class DataManager {
 	private static HashMap<Integer,ServiceProvider> serviceProviderMap = null;
 	private static HashMap<Integer,ServiceUser> serviceUserMap = null;
 	private static HashMap<Integer,Clinics> clinicsMap=null;
-	private static HashMap<Integer,Appointment> appointmentFullMap = null;//appointment DATE String is a key!
-	private static HashMap<Integer,Appointment> appointmentDateMap = null;//appointment DATE String is a key!
+	private static HashMap<Integer,Appointment> appointmentFullMap = null;//all Appointments
+	private static HashMap<Integer,Appointment> appointmentDateMap = null;//appointment for selected day - may be not used.....
 	private static HashMap<Integer,Appointment> appointmentShortMap = null;
 	private static HashMap<Integer,Baby> babyMap = null;
 	private static HashMap<Integer,Pregnancies> pregnanciesMap = null;
@@ -85,6 +86,14 @@ public class DataManager {
 
 	public static void setAppointment(Appointment appointment) {
 		DataManager.appointment = appointment;
+	}
+
+	public static Appointment getAppointmentFreeSlot() {
+		return appointmentFreeSlot;
+	}
+
+	public static void setAppointmentFreeSlot(Appointment appointmentFreeSlot) {
+		DataManager.appointmentFreeSlot = appointmentFreeSlot;
 	}
 
 	public static Baby getBaby() {

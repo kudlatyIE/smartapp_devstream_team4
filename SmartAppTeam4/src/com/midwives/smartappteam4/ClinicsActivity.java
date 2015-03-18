@@ -80,23 +80,25 @@ public class ClinicsActivity extends Activity {
 		
 		HashMap<Integer,Clinics> clinicMap = DataManager.getClinicsMap();
 		
+		
 		fullList = DataManager.getClinicList();//all clinic, need to be filter to match to specific ServiceProvider (selected in previous activity)
 		clinicsIds = DataManager.getServiceOptions().getClinicsIDs();
 		
 		boolean flag = false;
 		for(int i:clinicsIds){
-			if(clinicMap.containsKey(Integer.valueOf(i))){
-				myList.add(clinicMap.get(Integer.valueOf(i)));
-				flag=true;
+			try{
+				if(clinicMap.containsKey(Integer.valueOf(i))){
+					System.out.println("clinics IDS: "+i);
+					myList.add(clinicMap.get(Integer.valueOf(i)));
+					flag=true;
+				}
+			}catch(NullPointerException ex){
+				ex.printStackTrace();
+				flag=false;
 			}
 			
 		}
-		//get list of clinics from selected serviceOption only!
-//		for(Clinics fl:fullList){
-//			for(int cl:clinicsIds){
-//				if(cl==fl.getClinicId()) myList.add(fl);
-//			}
-//		}
+
 		
 		//populate list of clinics...
 		if(true==flag) setListView();

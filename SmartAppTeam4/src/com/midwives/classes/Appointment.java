@@ -12,12 +12,29 @@ public class Appointment {
 	private int [] serviceOptionIds;
 	private ServiceUser serviceUser;
 	private String[] visitLogs;
+	private boolean appointmentExist;
 	
 	private Appointment appointment;
+	
+	private Appointment [] freeSlotsList;//to holds list of empty appointments: use constructor for FreeSlots
 	
 	private Links links;
 	
 	public Appointment(){} //used when is empty slot
+	
+	/**
+	 * for FreeSlot - null appointment, hold just date, time, clinicID!
+	 * @param clinicId
+	 * @param date
+	 * @param time
+	 * @param exist boolean: false if slot is free, true if appointment exist
+	 */
+	public Appointment(int clinicId, String date, String time, boolean exist){
+		this.clinicId=clinicId;
+		this.date=date;
+		this.time=time;
+		this.appointmentExist=exist;
+	}
 	
 	/**
 	 * short constructor to hold short data - displayed in AppointmentsActivity and provides all IDs to other....
@@ -49,9 +66,10 @@ public class Appointment {
 	 * @param time
 	 * @param visitLogs
 	 * @param visitType
+	 * @param exist boolean: false if slot is free, true if appointment exist
 	 */
 	public Appointment(int clinicId, String date, int id, Links links, String priority, int[] serviceOptionsIds, int serviceProviderId,
-						ServiceUser serviceUser, int serviceUserId, String time, String[] visitLogs, String visitType){
+						ServiceUser serviceUser, int serviceUserId, String time, String[] visitLogs, String visitType, boolean exist){
 		this.clinicId=clinicId;
 		this.date=date;
 		this.id=id;
@@ -64,6 +82,7 @@ public class Appointment {
 		this.time=time;
 		this.visitLogs=visitLogs;
 		this.visitType=visitType;
+		this.appointmentExist=exist;
 		
 	}
 
@@ -191,6 +210,14 @@ public class Appointment {
 		this.visitType = visitType;
 	}
 
+	public boolean isAppointmentExist() {
+		return appointmentExist;
+	}
+
+	public void setAppointmentExist(boolean appointmentExist) {
+		this.appointmentExist = appointmentExist;
+	}
+
 	public String[] getVisitLogs() {
 		return visitLogs;
 	}
@@ -205,6 +232,14 @@ public class Appointment {
 
 	public  void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
+	}
+
+	public Appointment[] getFreeSlotsList() {
+		return freeSlotsList;
+	}
+
+	public void setFreeSlotsList(Appointment[] freeSlotsList) {
+		this.freeSlotsList = freeSlotsList;
 	}
 
 	

@@ -82,25 +82,6 @@ public class XFiles {
 		ArrayList<String> dayList = new ArrayList<String>();
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat formatter = new SimpleDateFormat("EEE dd/MM/yyyy");
-
-//		
-//		switch(day){
-//		case "MONDAY": cal.setTime(nextDayOfWeek(cal.MONDAY).getTime());
-//			break;
-//		case "TUESDAY": cal.setTime(nextDayOfWeek(cal.TUESDAY).getTime());
-//			break;
-//		case "WEDNESDAY": cal.setTime(nextDayOfWeek(cal.WEDNESDAY).getTime());
-//			break;
-//		case "THURSDAY": cal.setTime(nextDayOfWeek(cal.THURSDAY).getTime());
-//			break;
-//		case "FRIDAY": cal.setTime(nextDayOfWeek(cal.FRIDAY).getTime());
-//			break;
-//		case "SATURDAY": cal.setTime(nextDayOfWeek(cal.SATURDAY).getTime());
-//			break;
-//		case "SUNDAY": cal.setTime(nextDayOfWeek(cal.SUNDAY).getTime());
-//			break;
-//		default: break;
-//		}
 		
 		for(int i=0;i<7;i++){
 			cal = getDataOfWeekDay(cal,day);
@@ -130,6 +111,17 @@ public class XFiles {
 		}
 		return age;
 	}
+    
+    public static boolean isDeliveryComing(String edd){
+    	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	Calendar calNow = Calendar.getInstance();
+    	try {
+    		return (df.parse(edd)).after(calNow.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return false;
+		}
+    }
     
     public static double round(double value, int places) {
 	    if (places < 0) throw new IllegalArgumentException();

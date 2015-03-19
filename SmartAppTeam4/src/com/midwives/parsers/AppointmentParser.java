@@ -70,30 +70,31 @@ public class AppointmentParser implements Serializable{
 				 //---------------------------------------------------------
 				 
 				 String[] visitLogs;
-				 JSONArray arrstr = json.getJSONArray(TAG_VISIT_LOGS);
-				 if (arrstr.length()!=0){
+				 try{
+					 JSONArray arrstr = json.getJSONArray(TAG_VISIT_LOGS);
 					 visitLogs = new String[arrstr.length()];
 					 for(int j=0;i<arrstr.length();j++){
 						 visitLogs[j]= arrstr.getString(j);
 						 Log.e("String[j]= ", visitLogs[j]);
 					 }
-				 }else {
+				 }catch(Exception ex){
 					 visitLogs= new String[1];
-					 visitLogs[0]="no logs";
+					 visitLogs[0]="N/A";
 				 }
 				 //---------------------------------
 				 int[]serviceOptionIDs;
-				 JSONArray arrint = json.getJSONArray(TAG_SERVICE_OPTION_IDS);
-				 if(arrint.length()!=0){
+				 try{
+					 JSONArray arrint = json.getJSONArray(TAG_SERVICE_OPTION_IDS);
 					 serviceOptionIDs = new int[arrint.length()];
 					 for(int j=0;i<arrint.length();j++){
 						 serviceOptionIDs[j]=arrint.getInt(j);
 						 Log.e("int[j]= ", String.valueOf(serviceOptionIDs[j]));
 					 }
-				 }else {
+				 }catch(Exception ex){
 					 serviceOptionIDs = new int[1];
-					 serviceOptionIDs[0]=99999;
+					 serviceOptionIDs[0]=0;
 				 }
+				 
 				 //-------------------------------------------------
 				 
 				 int serviceProviderID = json.getInt(TAG_SERVICE_PROVIDER_ID);
@@ -104,7 +105,7 @@ public class AppointmentParser implements Serializable{
 					 if(json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION).equals(null)) gestation =  " ---- ";//delete this line.....
 					 else gestation =  json.getJSONObject(TAG_USER).getString(TAG_USER_GESTATION);  
 				 }catch(Exception e){
-					 gestation =  " ---- "; // return when gestation is NULL
+					 gestation =  "N/A"; // return when gestation is NULL
 				 }
 				 
 				 String name = json.getJSONObject(TAG_USER).getString(TAG_USER_NAME);
@@ -121,13 +122,11 @@ public class AppointmentParser implements Serializable{
 //				 myList.add(new Appointment(clinicID,date,id,new Links(serviceOptionsLink,serviceProviderLink,serviceUserLink),priority,
 //		 					serviceOptionIDs,serviceProviderID,new ServiceUser(gestation,userId,name),serviceUserID,time,visitLogs,visitType));	 
 			 }
-//			DataManager.setAppointmentFullMap(appointmentsMap);//will be handle by SmartDownloader class...
 			
 		} catch (JSONException e) {
+			appointmentsMap.put(0, null);
 			e.printStackTrace();
 		}
-		 
-		 
 		 return appointmentsMap;
 	}
 

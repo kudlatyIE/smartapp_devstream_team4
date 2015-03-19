@@ -30,7 +30,7 @@ public class AnteNatalActivity extends Activity {
 	private TextView tvEDD, tvGestation, tvBlood,tvRhesus,tvParity, tvObstretic;//body
 	
 	//handle extras values for AnteNatal Activity
-	private String eed, blood, rhesus, parity, obstretic;
+	private String edd="N/A", blood, rhesus, parity, obstretic;
 	private String[] dob, gestation, gender, birthMode;
 	private int [] weight;
 	//handle extras values for PostNatal Activity
@@ -40,7 +40,9 @@ public class AnteNatalActivity extends Activity {
 					babeVitK, babeHearing, babeFeeding, babeNBST;
 	
 	private String serviceUserName, serviceUserDetails;
-	private int age;
+	private int age, pregnancyId;
+//	private Integer[] pregnancyIDs;
+	private int[] pregnancyIDs;
 	
 	private ServiceUser serviceUser;
 	private ServiceProvider serviceProvider;
@@ -89,6 +91,21 @@ public class AnteNatalActivity extends Activity {
 		serviceProvider = DataManager.getServiceProvider();
 		appointment = DataManager.getAppointment();// I'm not sure will be used here.......
 		serviceOptionsList = DataManager.getServiceOptionsList();
+		//get EDD if is possible, if not: N/A
+//		pregnancyIDs = (Integer[]) DataManager.getPregnanciesMap().keySet().toArray();
+		pregnancyIDs = serviceUser.getPregnencyIds();
+		
+		//temporary we get gestation value from appointment but this is stupid....
+		String tempEdd;
+//		String tempGeststion="N/A";
+//		for(int pre:pregnancyIDs){
+//			tempEdd=DataManager.getPregnanciesMap().get(Integer.valueOf(pre)).getEstDeliveryDate();
+//			if(XFiles.isDeliveryComing(tempEdd)){
+//				edd=tempEdd;
+//				tempGeststion = DataManager.getPregnanciesMap().get(Integer.valueOf(pre)).getGestation();
+//			}
+//		}
+		
 		
 		//populate data in textViews......
 		tvTitle.setText(getResources().getString(R.string.title_activity_service_user));
@@ -101,8 +118,12 @@ public class AnteNatalActivity extends Activity {
 							.concat(", P:").concat(serviceUser.getClinicalFields().getParity()));//hm......
 		tvSubtitle2.setText(serviceUserDetails);
 		
-		tvEDD.setText(serviceUser.getPregnancies().get(0).getEstDeliveryDate());// to be fixed: what this EDD came from?
-		tvGestation.setText(serviceUser.getPregnancies().get(0).getGestation());
+		
+		
+		
+		tvEDD.setText(edd);// to be fixed: what this EDD came from?
+//		tvEDD.setText(serviceUser.getClinicalFields().getEDD()); should be implement in API
+		tvGestation.setText(appointment.getServiceUser().getGestation());
 		tvBlood.setText(serviceUser.getClinicalFields().getBloodType());
 		
 		//rhesus - get msg

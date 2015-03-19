@@ -38,16 +38,16 @@ public class ServiceOptionsParser implements Serializable {
 				json=jArray.getJSONObject(i);
 				int serviceId = json.getInt(TAG_SERVICE_ID);
 				String serviceName = json.getString(TAG_SERVICE_NAME);
-				JSONArray arr = json.getJSONArray(TAG_CLINIC_IDS);
 				int[] clinicsIDs;
-				if(arr.length()>0){
+				try{
+					JSONArray arr = json.getJSONArray(TAG_CLINIC_IDS);
 					clinicsIDs = new int[arr.length()];
 					for(int j=0;j<arr.length();j++){
 						clinicsIDs[j]=arr.getInt(j);
 					}
-				}else {
+				}catch(Exception ex){
 					clinicsIDs = new int[1];
-					clinicsIDs[0]=0;//if clinics list is empty return 0 - may be null better?
+					clinicsIDs[0]=0;
 				}
 				myList.add(new ServiceOptions(serviceId, serviceName,clinicsIDs));
 			}

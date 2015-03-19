@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 public class ServiceUserActivity extends Activity {
 	
-	private Bundle extras;
 	private Intent intent;
 	private TextView tvTitle, tvSubtitle1, tvSubtitle2, tvContact,tvAddress,tvNextOfKin;
 	private Button btnHome, btnBook, btnAnteNatal, btnPostNatal, btnBookAppointment;
@@ -36,6 +35,7 @@ public class ServiceUserActivity extends Activity {
 	private String contact, address, nextOfKin;
 	
 	private int age;
+	private int serviceUserId, serviceProviderId;
 	
 	private ArrayList<ServiceUser> myList;//but we expected only one object by ID...
 	private ServiceUser serviceUser;
@@ -52,6 +52,7 @@ public class ServiceUserActivity extends Activity {
 		setContentView(R.layout.activity_service_user);
 		
 
+		//resources set in AppointmentCalendar activity
 		links = DataManager.getLinks();
 		
 		serviceOptionUrl = getResources().getString(R.string.auth_url_server).concat(links.getServiceOptions());
@@ -104,17 +105,28 @@ public class ServiceUserActivity extends Activity {
 			serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
 			DataManager.setServiceOptionsList(serviceOptionsList);
 
-			smart = new SmartAuth(token, apiKey,serviceProviderUrl);
-			jsonString = smart.accessTheDBTable(token);
-			System.out.println(jsonString);
-//			serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
-			serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
-			DataManager.setServiceProvider(serviceProvider);
+//			smart = new SmartAuth(token, apiKey,serviceProviderUrl);
+//			jsonString = smart.accessTheDBTable(token);
+//			System.out.println(jsonString);
+////			serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
+//			serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
+//			DataManager.setServiceProvider(serviceProvider);
 
-			smart = new SmartAuth(token,apiKey,serviceUserUrl);
-			jsonString = smart.accessTheDBTable(token);
-			System.out.println(jsonString);
-			serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
+//			smart = new SmartAuth(token,apiKey,serviceUserUrl);
+//			jsonString = smart.accessTheDBTable(token);
+//			System.out.println(jsonString);
+//			serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
+//			DataManager.setServiceUser(serviceUser);
+			
+			//get serviceProviderId
+			serviceProviderId = appointment.getServiceProviderId();
+			//get serviceProvider from DM
+			serviceProvider = DataManager.getServiceProviderMap().get(Integer.valueOf(serviceProviderId));
+			DataManager.setServiceProvider(serviceProvider);
+			//get serviceUser ID from appointment
+			serviceUserId = appointment.getServiceUser().getId();
+			//get selected serviceUser from DM
+			serviceUser = DataManager.getServiceUserMap().get(Integer.valueOf(serviceUserId));
 			DataManager.setServiceUser(serviceUser);
 
 		

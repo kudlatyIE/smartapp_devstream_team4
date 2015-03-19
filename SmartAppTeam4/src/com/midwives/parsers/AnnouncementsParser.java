@@ -38,9 +38,8 @@ public class AnnouncementsParser implements Serializable{
 //			mylist.add(new Announcements(id, note ,date, blocking));
 			myMap.put(id, new Announcements(id, note ,date, blocking));
 		
-		
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			myMap.put(0, new Announcements(0, "N/A" ,"", false));
 			e.printStackTrace();
 		}
 		return myMap;

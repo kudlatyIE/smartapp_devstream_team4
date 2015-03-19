@@ -1,6 +1,5 @@
 package com.midwives.parsers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -64,17 +63,16 @@ public class PregnanciesParser {
 				 String period = json.getString(TAG_LAST_PERIOD);
 				 String gestation = json.getString(TAG_GESTSTION);
 				 int [] babyIds;
-				 JSONArray arrInt = json.getJSONArray(TAG_BABY_IDS);
-				 if(arrInt.length()!=0){
+				 try{
+					 JSONArray arrInt = json.getJSONArray(TAG_BABY_IDS);
 					 babyIds = new int[arrInt.length()];
 					 for(int j=0;j<arrInt.length();j++){
 						 babyIds[j] = arrInt.getInt(j);
 						 Log.e("Baby_IDs[+"+j+"]: ", String.valueOf(babyIds[j]));
 					 }
-				 }else {
+				 }catch(Exception ex){
 					 babyIds = new int[1];
-					 babyIds[0]=0;
-//					 babyIds = null;
+					 babyIds[0]=0; 
 				 }
 				 
 //				 myList.add(new Pregnancies(id,userId,edd,info,birthMode,perineum,antiD,feeding,period,babyIds,gestation));

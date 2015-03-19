@@ -9,6 +9,7 @@ import com.midwives.parsers.ServiceUserParser;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ public class ServiceUserActivity extends Activity {
 	
 	private String serviceOptionUrl, serviceProviderUrl,serviceUserUrl,token,apiKey,jsonString;
 	private String serviceUserName,serviceUserDetails; // display in tvSubtitle (name, age, gestation ect..)
-	private String contact, address, nextOfKin;
+	private String contact, address, nextOfKin, nextOfKinPhone;
 	
 	private int age;
 	private int serviceUserId, serviceProviderId;
@@ -93,6 +94,7 @@ public class ServiceUserActivity extends Activity {
 		btnBook.setOnClickListener(button);
 		llContact.setOnClickListener(button);
 		llAddress.setOnClickListener(button);
+		llNextOfKin.setOnClickListener(button);
 	
 		//lets get DB data!
 		token = SmartAuth.getToken();
@@ -104,19 +106,6 @@ public class ServiceUserActivity extends Activity {
 			System.out.println(jsonString);
 			serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
 			DataManager.setServiceOptionsList(serviceOptionsList);
-
-//			smart = new SmartAuth(token, apiKey,serviceProviderUrl);
-//			jsonString = smart.accessTheDBTable(token);
-//			System.out.println(jsonString);
-////			serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
-//			serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
-//			DataManager.setServiceProvider(serviceProvider);
-
-//			smart = new SmartAuth(token,apiKey,serviceUserUrl);
-//			jsonString = smart.accessTheDBTable(token);
-//			System.out.println(jsonString);
-//			serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
-//			DataManager.setServiceUser(serviceUser);
 			
 			//get serviceProviderId
 			serviceProviderId = appointment.getServiceProviderId();
@@ -149,6 +138,8 @@ public class ServiceUserActivity extends Activity {
 		
 		nextOfKin = serviceUser.getPersonalFields().getNextOfKinName()+"\n"+serviceUser.getPersonalFields().getNextOfKinPhone();
 		tvNextOfKin.setText(nextOfKin);
+		
+		nextOfKinPhone = serviceUser.getPersonalFields().getNextOfKinPhone();
 	
 	}//end onCreate
 	
@@ -185,8 +176,10 @@ public class ServiceUserActivity extends Activity {
 					intent = new Intent(getApplicationContext(), ServiceUserAddressActivity.class);
 					startActivity(intent);
 					break;
-				case R.id.serviceuser_body_text_user_nextofkin:
-					Toast.makeText(getApplicationContext(), "nothinh happend here", Toast.LENGTH_SHORT).show();
+				case R.id.serviceuser_body_layout_nextofkin:
+					Intent intent = new Intent(Intent.ACTION_DIAL);
+					intent.setData(Uri.parse("tel:"+nextOfKinPhone));
+					if(intent.resolveActivity(getPackageManager())!=null) startActivity(intent);
 					break;
 				case R.id.footer_btn_home:
 					intent = new Intent(getApplicationContext(),MainViewActivity.class);

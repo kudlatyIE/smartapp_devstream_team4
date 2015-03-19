@@ -148,7 +148,8 @@ public class ServiceUserActivity extends Activity {
 
 			switch(view.getId()){
 				case R.id.serviceuser_header_imgbtn_back:
-					finish();
+					Intent intent_a = new Intent(ServiceUserActivity.this, AppointmentCalendarActivity.class);
+					startActivity(intent_a);
 					break;
 				case R.id.serviceuser_header_imgbtn_edit:
 					intent = new Intent(getApplicationContext(), ServiceUserEditActivity.class);
@@ -165,12 +166,23 @@ public class ServiceUserActivity extends Activity {
 				case R.id.serviceuser_body_book_appointment:
 					Toast.makeText(getApplicationContext(), "go to Ante-Natal BOOKING ????", Toast.LENGTH_SHORT).show();
 					break;
-				case R.id.serviceuser_body_layout_contact:
+				case R.id.serviceuser_body_layout_contact:  //goes to phone and email
 					intent = new Intent(getApplicationContext(), ServiceUserAddressActivity.class);
 					startActivity(intent);
 					break;
-				case R.id.serviceuser_body_layout_address:
+				case R.id.serviceuser_body_layout_address: //goes to google map of address 
 					intent = new Intent(getApplicationContext(), ServiceUserAddressActivity.class);
+					//get location, name,  address, directions
+					String location = serviceUser.getPersonalFields().getHomeAddress() + " " + serviceUser.getPersonalFields().getHomeCounty() + " " + "ireland";
+					String name = serviceUser.getPersonalFields().getName();
+					String address = serviceUser.getPersonalFields().getHomeType() + " - " + location;
+					String directions = serviceUser.getPersonalFields().getDirections();
+					
+					//send over to serviceuseraddressactivity
+					intent.putExtra("location", location); //needed for google maps
+					intent.putExtra("name", name);
+					intent.putExtra("address", address);
+					intent.putExtra("directions", directions);
 					startActivity(intent);
 					break;
 				case R.id.serviceuser_body_text_user_nextofkin:
@@ -188,8 +200,6 @@ public class ServiceUserActivity extends Activity {
 			}
 			
 		}
-
-
 		
 	}//end MyButtons
 }

@@ -2,12 +2,14 @@ package com.midwives.smartappteam4;
 
 
 
+
 import com.midwives.classes.SmartAuth;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 
 
 
@@ -52,15 +54,19 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
-		user = getResources().getString(R.string.auth_login_name);
-		pass = getResources().getString(R.string.auth_password);
+		
+			loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
+			user = getResources().getString(R.string.auth_login_name);			
+		    pass = getResources().getString(R.string.auth_password);
+		    
 		
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		      StrictMode.setThreadPolicy(policy);
 		    }
+		
 		smartAuth = new SmartAuth(user,loginUrl, null,null,pass);
+
 		this.token = smartAuth.getToken();
 		
 		

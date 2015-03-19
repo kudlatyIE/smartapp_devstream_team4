@@ -1,6 +1,7 @@
 package com.midwives.smartappteam4;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.midwives.classes.Appointment;
 import com.midwives.classes.Baby;
@@ -37,12 +38,16 @@ public class ParityActivity extends Activity {
 	
 	private ServiceUser serviceUser;
 	private Appointment appointment;
-	private int age, listSize;
+	private int age;
+	private int[] babiesIDs, pregnancyIDs;
 	private String serviceUserName,serviceUserDetails;
 	
+	private HashMap<Integer,Baby> babyMap;
+	private HashMap<Integer,Pregnancies> pregnancyMap;
 	ArrayList<Tab> myList;//test list only
 	ArrayList<Baby>babyList;
 	ArrayList<Pregnancies> pregnanciesList;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +83,19 @@ public class ParityActivity extends Activity {
 		serviceUser = DataManager.getServiceUser();
 		appointment = DataManager.getAppointment();
 		
-		babyList = serviceUser.getBabies();
-		pregnanciesList = serviceUser.getPregnancies();
-		listSize = babyList.size();
+		babiesIDs = serviceUser.getBabyIds();
+		pregnancyIDs = serviceUser.getPregnencyIds();
+		babyList= new ArrayList<Baby>();
+		babyMap = DataManager.getBabyMap();
+		
+		for(int id:babiesIDs){
+			babyList.add(babyMap.get(Integer.valueOf(id)));
+		}
+		pregnanciesList = new ArrayList<Pregnancies>();
+		pregnancyMap = DataManager.getPregnanciesMap();
+		for(int id: pregnancyIDs){
+			pregnanciesList.add(pregnancyMap.get(Integer.valueOf(id)));
+		}
 		
 
 		System.out.println("DOB size: "+babyList.size());
@@ -121,22 +136,6 @@ public class ParityActivity extends Activity {
 		
 		//myList test only! 
 		myList = Tab.getList();
-
-		
-//		for(Tab t:myList){
-//			TableRow row = (TableRow) LayoutInflater.from(getApplicationContext()).inflate(R.layout.parity_row, null);
-//			((TextView) row.findViewById(R.id.parity_row_text_value)).setText(t.getValue());
-//			((TextView) row.findViewById(R.id.parity_row_text_index)).setText(t.getIndex());
-//			tbDOB.addView(row);
-//		}
-//		for(Tab t:myList){
-//			TableRow row = (TableRow) LayoutInflater.from(getApplicationContext()).inflate(R.layout.parity_row, null);
-//			((TextView) row.findViewById(R.id.parity_row_text_value)).setText(t.getValue());
-//			((TextView) row.findViewById(R.id.parity_row_text_index)).setText(t.getIndex());
-//			tbGestation.addView(row);
-//		}
-
-		
 		
 	
 	}//end onCreate
@@ -178,7 +177,6 @@ public class ParityActivity extends Activity {
 			tvRowValue = (TextView) rowView.findViewById(R.id.parity_row_text_value);
 			tvRowIndex = (TextView) rowView.findViewById(R.id.parity_row_text_index);
 
-//			int index=pregnanciesList.indexOf(babyList.get(i).getPregnancyId());
 			String gestation="";
 			for(Pregnancies p:pregnanciesList){
 				if(p.getId()==babyList.get(i).getPregnancyId()) {

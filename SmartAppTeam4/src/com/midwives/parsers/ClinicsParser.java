@@ -6,12 +6,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.midwives.classes.Clinics;
+import com.midwives.classes.DataManager;
 import com.midwives.classes.Days;
 import com.midwives.classes.Recurrence;
 
@@ -25,19 +27,18 @@ public class ClinicsParser implements Serializable {
 	private final static String TAG_ANNOUNCEMENTS = "announcements", TAG_LINKS = "links"; 
 	private final static String TAG_DAYS = "days", TAG_RECURRENCE = "recurrence"; // enums 
 	private final static String TAG_MONDAY = "monday", TAG_TUESDAY = "tuesday", TAG_WEDNESDAY = "wednesday", TAG_THURSDAY = "thursday", TAG_FRIDAY = "friday", TAG_SATURDAY = "saturday", TAG_SUNDAY = "sunday"; 
-	private static int[] service_option_ids;
+	
 	private static JSONObject json;
 	private static JSONArray  jArray;
-	
 
 
-	public static ArrayList<Clinics> parseClinics(String jsonString) {
-		ArrayList<Clinics> listOfClinics = new ArrayList<Clinics>();
-		int[] service_option_ids = null;
-		
+//	public static ArrayList<Clinics> parseClinics(String jsonString) {
+	public static HashMap<Integer, Clinics> parseClinic(String data){
+//		ArrayList<Clinics> listOfClinics = new ArrayList<Clinics>();
+		HashMap<Integer,Clinics> myMap = new HashMap<Integer,Clinics>();
 		
 		try{
-			json = new JSONObject(jsonString);
+			json = new JSONObject(data);
 			jArray = json.getJSONArray(TAG_ARRAY);
 				for(int i = 0; i < jArray.length(); i++){
 					json = jArray.getJSONObject(i);
@@ -81,24 +82,28 @@ public class ClinicsParser implements Serializable {
 						days.add(Days.SATURDAY.getDayName());
 					}
 					dayNames = days.toArray(new String[days.size()]);
-										
-					JSONArray temp = json.getJSONArray(TAG_SERVICE_OPTION_IDS);
-					int length = temp.length();
-					if(length > 0){
-						service_option_ids = new int[length];
-						for(int k = 0; k < length; k++) {
+					
+					int[] service_option_ids;
+					try{
+						JSONArray temp = json.getJSONArray(TAG_SERVICE_OPTION_IDS);
+						service_option_ids = new int[temp.length()];
+						for(int k = 0; k < temp.length(); k++) {
 							service_option_ids[k] = temp.getInt(k);
-						}
+							}
+					}catch(Exception ex){
+						service_option_ids = new int[1];
+						service_option_ids[0]=0;
 					}
 					
-					listOfClinics.add(new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, type, appointmentInterval, dayNames, service_option_ids ));
+					myMap.put(clinicId, new Clinics(clinicId, clinicName, clinicAddress, openingTime, closingTime, recurrence, 
+												type, appointmentInterval, dayNames, service_option_ids));
+					
 				} // close for iteration loop
 							
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
-				
-		return listOfClinics;    //returns an array list of clinics
+		}		
+		return myMap;    //returns an array list of clinics
 	}
 	
 }//close class Clinicsparser

@@ -21,7 +21,26 @@ public class Pregnancies {
 		this.gestation=gestation;
 	}
 	
-	//constructor for json data
+	//not idea what is it.... except "created_at" but extra "baby_IDs[]
+	//but i use it with my parser!!!!!
+	public Pregnancies(int id,int serviceUserId, String estimatedDeliveryDate, String info, String []birthMode, 
+			String perineum,String antiD, String feeding, String lastPeriod, int[] babyIds,  String gestation){
+		this.additionalInfo=info;
+		this.antiD=antiD;
+		this.babyIds=babyIds;
+		this.birthMode=birthMode;
+		this.estDeliveryDate=estimatedDeliveryDate;
+		this.feeding=feeding;
+		this.gestation=gestation;
+		this.id=id;
+		this.lastMenstrualPeriod=lastPeriod;
+		this.perineum=perineum;
+		this.serviceUserId=serviceUserId;
+
+}
+	
+	
+	//constructor for json data test - not match witch API(?)
 	public Pregnancies(String info,String antiD, int[] babyIds, String []birthMode, String createdAt, String estimatedDeliveryDate, String feeding,
 						String gestation, int id, String lastPeriod, String perineum, int serviceUserId){
 		this.additionalInfo=info;

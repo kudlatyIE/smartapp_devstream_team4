@@ -22,8 +22,6 @@ public class ServiceUser implements Serializable{
 	private PersonalFields personalFields;
 	private String name;
 	
-	private static ServiceUser serviceUser;
-	private static Links links;
 	
 	//used by AppointmentParser class
 	public ServiceUser(String gestation, int id, String name){
@@ -69,6 +67,25 @@ public class ServiceUser implements Serializable{
 		this.pregnancies=pregnancies;
 		this.pregnencyIds=pregancyIds;
 		this.babyIds=babyIds;
+	}
+	/**
+	 * constructor API - I hope.. this one is better
+	 * @param clinicalFields - ClinicalFields class object
+	 * @param id
+	 * @param hospitalName
+	 * @param person - PersonalFields class object
+	 * @param baby - array of Baby class objects
+	 * @param pregnancies - array of Pregnancies class object
+	 * @param pregancyIds - int array
+	 * @param babyIds - int array
+	 */
+	public ServiceUser(ClinicalFields clinicalFields, int id, String hospitalNumber, PersonalFields person, int[] pregancyIds, int[] babyIds){
+		this.clinicalFields=clinicalFields;
+		this.personalFields=person;
+		this.pregnencyIds=pregancyIds;
+		this.babyIds=babyIds;
+		this.id=id;
+		this.hospitalNumber=hospitalNumber;
 	}
 
 	public ClinicalFields getClinicalFields() {

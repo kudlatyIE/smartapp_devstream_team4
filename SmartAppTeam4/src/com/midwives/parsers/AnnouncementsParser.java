@@ -3,6 +3,7 @@ package com.midwives.parsers;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,32 +21,29 @@ public class AnnouncementsParser implements Serializable{
 	private static JSONObject json;
 	private static JSONArray jArray;
 	
-	
 
+//	public static ArrayList<Announcements> parseAnnouncements(String dataList) {
+	public static HashMap<Integer, Announcements> parseAnnouncements(String data){
+//		ArrayList<Announcements> mylist = new ArrayList <Announcements>();
+		HashMap<Integer,Announcements> myMap = new HashMap<Integer, Announcements>();
+		try {
+			json = new JSONObject(data);
+			jArray = json.getJSONArray(TAG_ARRAY);
+			json = jArray.getJSONObject(0);
+			int id = json.getInt(TAG_ID);
+			String note = json.getString(TAG_NOTE);
+			String date = json.getString(TAG_DATE);
+			boolean blocking = json.getBoolean(TAG_BLOCKING);
 
-
-public static ArrayList<Announcements> parseAnnouncements(String dataList) {
-	ArrayList<Announcements> mylist = new ArrayList <Announcements>();
-	try {
-		json = new JSONObject(dataList);
-		jArray = json.getJSONArray(TAG_ARRAY);
-		json = jArray.getJSONObject(0);
-		int id = json.getInt(TAG_ID);
-		String note = json.getString(TAG_NOTE);
-		String date = json.getString(TAG_DATE);
-		boolean blocking = json.getBoolean(TAG_BLOCKING);
-
-		mylist.add(new Announcements(id, note ,date, blocking));
+//			mylist.add(new Announcements(id, note ,date, blocking));
+			myMap.put(id, new Announcements(id, note ,date, blocking));
 		
-		
-	} catch (JSONException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		} catch (JSONException e) {
+			myMap.put(0, new Announcements(0, "N/A" ,"", false));
+			e.printStackTrace();
+		}
+		return myMap;
 	}
-	return mylist;
+
 }
-	
-
-
-}//close class AnnouncementParser
 

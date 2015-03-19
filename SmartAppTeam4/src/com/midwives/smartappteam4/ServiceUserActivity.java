@@ -9,6 +9,7 @@ import com.midwives.parsers.ServiceUserParser;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,6 @@ import android.widget.Toast;
 
 public class ServiceUserActivity extends Activity {
 	
-	private Bundle extras;
 	private Intent intent;
 	private TextView tvTitle, tvSubtitle1, tvSubtitle2, tvContact,tvAddress,tvNextOfKin;
 	private Button btnHome, btnBook, btnAnteNatal, btnPostNatal, btnBookAppointment;
@@ -33,9 +33,10 @@ public class ServiceUserActivity extends Activity {
 	
 	private String serviceOptionUrl, serviceProviderUrl,serviceUserUrl,token,apiKey,jsonString;
 	private String serviceUserName,serviceUserDetails; // display in tvSubtitle (name, age, gestation ect..)
-	private String contact, address, nextOfKin;
+	private String contact, address, nextOfKin, nextOfKinPhone;
 	
 	private int age;
+	private int serviceUserId, serviceProviderId;
 	
 	private ArrayList<ServiceUser> myList;//but we expected only one object by ID...
 	private ServiceUser serviceUser;
@@ -52,6 +53,7 @@ public class ServiceUserActivity extends Activity {
 		setContentView(R.layout.activity_service_user);
 		
 
+		//resources set in AppointmentCalendar activity
 		links = DataManager.getLinks();
 		
 		serviceOptionUrl = getResources().getString(R.string.auth_url_server).concat(links.getServiceOptions());
@@ -92,6 +94,7 @@ public class ServiceUserActivity extends Activity {
 		btnBook.setOnClickListener(button);
 		llContact.setOnClickListener(button);
 		llAddress.setOnClickListener(button);
+		llNextOfKin.setOnClickListener(button);
 	
 		//lets get DB data!
 		token = SmartAuth.getToken();
@@ -103,18 +106,16 @@ public class ServiceUserActivity extends Activity {
 			System.out.println(jsonString);
 			serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
 			DataManager.setServiceOptionsList(serviceOptionsList);
-
-			smart = new SmartAuth(token, apiKey,serviceProviderUrl);
-			jsonString = smart.accessTheDBTable(token);
-			System.out.println(jsonString);
-//			serviceProviderList = ServiceProviderParser.parseServiceProviders(jsonString);// is only one! - to be deleted......
-			serviceProvider = ServiceProviderParser.parseServiceProviderID(jsonString);//thats what we need!
+			
+			//get serviceProviderId
+			serviceProviderId = appointment.getServiceProviderId();
+			//get serviceProvider from DM
+			serviceProvider = DataManager.getServiceProviderMap().get(Integer.valueOf(serviceProviderId));
 			DataManager.setServiceProvider(serviceProvider);
-
-			smart = new SmartAuth(token,apiKey,serviceUserUrl);
-			jsonString = smart.accessTheDBTable(token);
-			System.out.println(jsonString);
-			serviceUser = ServiceUserParser.parseServiceUserId(jsonString);
+			//get serviceUser ID from appointment
+			serviceUserId = appointment.getServiceUser().getId();
+			//get selected serviceUser from DM
+			serviceUser = DataManager.getServiceUserMap().get(Integer.valueOf(serviceUserId));
 			DataManager.setServiceUser(serviceUser);
 
 		
@@ -137,6 +138,8 @@ public class ServiceUserActivity extends Activity {
 		
 		nextOfKin = serviceUser.getPersonalFields().getNextOfKinName()+"\n"+serviceUser.getPersonalFields().getNextOfKinPhone();
 		tvNextOfKin.setText(nextOfKin);
+		
+		nextOfKinPhone = serviceUser.getPersonalFields().getNextOfKinPhone();
 	
 	}//end onCreate
 	
@@ -185,8 +188,10 @@ public class ServiceUserActivity extends Activity {
 					intent.putExtra("directions", directions);
 					startActivity(intent);
 					break;
-				case R.id.serviceuser_body_text_user_nextofkin:
-					Toast.makeText(getApplicationContext(), "nothinh happend here", Toast.LENGTH_SHORT).show();
+				case R.id.serviceuser_body_layout_nextofkin:
+					Intent intent = new Intent(Intent.ACTION_DIAL);
+					intent.setData(Uri.parse("tel:"+nextOfKinPhone));
+					if(intent.resolveActivity(getPackageManager())!=null) startActivity(intent);
 					break;
 				case R.id.footer_btn_home:
 					intent = new Intent(getApplicationContext(),MainViewActivity.class);

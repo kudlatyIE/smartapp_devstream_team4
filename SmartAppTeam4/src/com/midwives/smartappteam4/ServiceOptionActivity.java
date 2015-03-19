@@ -24,12 +24,12 @@ import android.widget.Toast;
 
 public class ServiceOptionActivity extends Activity {
 	
-	private Bundle extras;
+
 	private Intent intent;
 	private Button btnBack, btnHome, btnBook;
 	private TextView tvTitle, tvSubtitle;
 	private ArrayList<ServiceOptions> myList;
-	private String token, apiKey, url, jsonString;
+//	private String token, apiKey, url, jsonString;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class ServiceOptionActivity extends Activity {
 		setContentView(R.layout.activity_service_option);
 		
 
-		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_service_options));
+//		url = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_service_options));
 		
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		btnHome = (Button) findViewById(R.id.footer_btn_home);
@@ -55,18 +55,18 @@ public class ServiceOptionActivity extends Activity {
 		btnHome.setOnClickListener(button);
 		btnBook.setOnClickListener(button);
 		
-		//get json data
-		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),url);
+		//get json data - old way, now try implement asyncTaskDownloader....
 		
-		this.token=SmartAuth.getToken();
-		jsonString=smart.accessTheDBTable(token);
+//		SmartAuth smart = new SmartAuth(SmartAuth.getToken(),SmartAuth.getApiKey(),url);
+//		this.token=SmartAuth.getToken();
+//		jsonString=smart.accessTheDBTable(token);
+//		
+//		myList = ServiceOptionsParser.parseServiceOptions(jsonString);
 		
-		myList = ServiceOptionsParser.parseServiceOptions(jsonString);
-		// be changed to SmartAuth methods.............................
-//		myList = ServiceOptions.createServiceList(); //create testing list of Services
+		//get data from DataManager (created by asyncTask in LoginActivity!)
+		myList = DataManager.getServiceOptionsList();
 		
 		ListView lv = (ListView) findViewById(R.id.smart_listview);
-		
 		MyAdapter serviceAdapter = new MyAdapter(getApplicationContext(),R.layout.serviceoption_adapter,myList);
 		lv.setAdapter(serviceAdapter);
 		lv.setClickable(false);
@@ -76,8 +76,8 @@ public class ServiceOptionActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				//we'll send all data by static way to DataManager!!!!
-				DataManager.setServiceOptions(new ServiceOptions(myList.get(position).getServiceId(),myList.get(position).getServiceName()));
+				//we'll send selected ServiceOption data by static way to DataManager - ClinicActivity wll display all clinics match to selected Provider.
+				DataManager.setServiceOptions(new ServiceOptions(myList.get(position).getServiceId(),myList.get(position).getServiceName(),myList.get(position).getClinicsIDs()));
 				intent = new Intent(getApplicationContext(),ClinicsActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);

@@ -109,5 +109,10 @@
     <string name="serviceuser_btn_book">Book Appointment</string>
     <string name="title_activity_obstretic_history">ObstreticHistoryActivity</string>
     <string name="title_activity_parity">ParityActivity</string>
-
+    
+    <string name="spinner_blood_title">Blood Type</string>
+    <string name="spinner_rhesus_title">Rhesus</string>
+    <string name="spinner_hearing_title">Hearing</string>
+	<string name="spinner_feeding_title">Feeding</string>
+	<string name="spinner_nbst_title">NBST</string>
 </resources>

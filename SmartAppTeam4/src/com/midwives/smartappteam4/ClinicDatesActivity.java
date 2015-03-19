@@ -1,46 +1,34 @@
 package com.midwives.smartappteam4;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
-import com.midwives.classes.ProcessClinicWeeklyOpenDates;
-import com.midwives.classes.ClinicDates;
+import java.util.ArrayList;
+import com.midwives.classes.ClinicCalendar;
 import com.midwives.classes.DataManager;
-import com.midwives.classes.ServiceOptions;
 import com.midwives.classes.XFiles;
-import com.midwives.smartappteam4.ClinicsActivity.ViewHolder;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ClinicDatesActivity extends Activity {
-	private static Calendar calendar;
-	private ArrayList<String> myList; //list of clinic's opening data
+//	private ArrayList<String> myList; //list of clinic's opening data
+	private ArrayList<ClinicCalendar> myList;
 	private Intent intent;
-	private Bundle extras;
-	private Date date;
 	private Button btnBack, btnHome, btnBook,btnCalendar;
 	private TextView tvTitle, tvSubtitle;
-	private String hint,clinicName, token, apiKey, url; 
+	private String clinicName; 
 	private String[] weekDays; // = new String[] {"Thursday", "tuesDaY"}; //list of weekly recurring day/days
 
 	@Override
@@ -70,27 +58,16 @@ public class ClinicDatesActivity extends Activity {
 //		hint=getResources().getString(R.string......)
 		tvSubtitle.setText("Select "+ clinicName+ "\'s calendar");
 		
-		//************************create list of a clinics open days************************start
-			//myList = XFiles.getDateList(weekDays[0]); //********swappped out here *********
+		//************************create list of a clinics open days******
+		
+		myList = XFiles.getAllOpenDaysList(weekDays, 10);
+		DataManager.setClinicCalendarList(myList);
 			
-			calendar = Calendar.getInstance(TimeZone.getDefault());  //current month  clinic open dates
-			ProcessClinicWeeklyOpenDates p1 = new ProcessClinicWeeklyOpenDates(calendar);			             
-			myList = p1.getClinicWeeklyOpenDatesArray(p1, weekDays);
-		
-			calendar.add(Calendar.MONTH, 1);                         //current month plus 1 clinic open  dates
-			calendar.set(Calendar.DAY_OF_MONTH, 1);
-			ProcessClinicWeeklyOpenDates p2 = new ProcessClinicWeeklyOpenDates(calendar);
-			myList.addAll(p2.getClinicWeeklyOpenDatesArray(p2, weekDays));
-		
-			calendar.add(Calendar.MONTH, 1);                        //current month plus 2 open dates
-			calendar.set(Calendar.DAY_OF_MONTH, 1);
-			ProcessClinicWeeklyOpenDates p3 = new ProcessClinicWeeklyOpenDates(calendar);
-			myList.addAll(p3.getClinicWeeklyOpenDatesArray(p3, weekDays));
 		
 		
 		//************************create list of a clinics open days************************end
 		//populate listView content
-		ListView lv = (ListView) findViewById(R.id.smart_listview);
+		ListView lv = (ListView) findViewById(R.id.smart_clinicdates_listview);
 		
 		MyAdapter customAdapter = new MyAdapter(getApplicationContext(),R.layout.clinic_dates_adapter,myList);
 		lv.setAdapter(customAdapter);
@@ -99,10 +76,13 @@ public class ClinicDatesActivity extends Activity {
 		lv.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				DataManager.setClinicdates(new ClinicDates(myList.get(position),weekDays[0], clinicName));
-				
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			
+				//need change to store real Calendar value! from myOpenDays.getCalendar();
+//				DataManager.setClinicdates(new ClinicDates(myList.get(position).getDateString(),weekDays, clinicName));
+//				DataManager.setClinicCalendar(myList.get(position));
+				DataManager.setClinicCalendar(new ClinicCalendar(myList.get(position).getDate(),myList.get(position).getDateString()));
+				System.out.println();
 				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
@@ -134,10 +114,10 @@ public class ClinicDatesActivity extends Activity {
 		}
 	}
 	//---custom adapter------------
-	public class MyAdapter extends ArrayAdapter<String> { 
+	public class MyAdapter extends ArrayAdapter<ClinicCalendar> { 
 		
-		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<String> objects) { 
-			super(ctx, txtViewResourceId, objects); 
+		public MyAdapter(Context ctx, int txtViewResourceId, ArrayList<ClinicCalendar> myList) { 
+			super(ctx, txtViewResourceId, myList); 
 		} 
 		@Override 
 		public View getDropDownView(int position, View cnvtView, ViewGroup prnt) { 
@@ -156,9 +136,9 @@ public class ClinicDatesActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
 			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
 		
-			vHolder.tvName.setText((position+1) + " - ID: "+weekDays[0]); //add value from previous Activity for test only!
+			vHolder.tvName.setText((position+1) + "Calendar date: "+myList.get(position).getDate()); //add value from previous Activity for test only!
 			//need to hold more than one day, when click on!!!!!!!!!!!!!!!!
-			vHolder.tvDays.setText(myList.get(position).toString());// Available data for test only
+			vHolder.tvDays.setText(myList.get(position).getDateString());// Available data for test only
 			
 			return convertView;
 		} 
@@ -174,6 +154,7 @@ public class ClinicDatesActivity extends Activity {
 		}
 		return result;
 	}
+	
 	
 
 }

@@ -10,6 +10,14 @@
     <string name="auth_url_service_options">service_options</string>
     <string name="auth_url_clinics">clinics</string>
     <string name="auth_url_appointment">appointments</string>
+    <string name="auth_url_babies">babies</string>
+    <string name="auth_url_pregnancies">pregnancies</string>
+    <string name="auth_url_service_providers">service_providers</string>
+    <string name="auth_url_service_users">service_users</string>
+    <string name="auth_url_announcements">/announcements</string>
+    <!-- 
+    announcements URL only for specific appointment ID
+     -->
     
     
 </resources>

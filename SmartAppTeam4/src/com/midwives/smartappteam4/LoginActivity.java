@@ -2,6 +2,7 @@ package com.midwives.smartappteam4;
 
 
 
+
 import com.midwives.classes.SmartAuth;
 import com.midwives.classes.SmartDownloader;
 
@@ -55,15 +56,10 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		
 		
-			loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
-			user = getResources().getString(R.string.auth_login_name);			
-		    pass = getResources().getString(R.string.auth_password);
-		
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		      StrictMode.setThreadPolicy(policy);
-		    }
-		
+		loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
+		user = getResources().getString(R.string.auth_login_name);			
+		pass = getResources().getString(R.string.auth_password);
+
 		smartAuth = new SmartAuth(user,loginUrl,pass);
 		
 		//run my Async Downloadaer here!

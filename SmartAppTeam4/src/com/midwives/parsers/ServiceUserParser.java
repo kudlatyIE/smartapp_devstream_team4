@@ -73,7 +73,6 @@ public class ServiceUserParser {
 					babyIds = new int[arr.length()];
 					for(int ii=0;ii<arr.length();ii++){
 						babyIds[ii]= arr.getInt(ii);
-//						Log.e("babies IDs: ",String.valueOf( babyIds[ii]));
 					}
 				}catch(Exception ex){
 					babyIds = new int[1];
@@ -118,9 +117,7 @@ public class ServiceUserParser {
 					pregnanciesIds = new int[1];
 					pregnanciesIds[0]=0;
 				}
-				//uff.. that's last object, so I can return an object or array of objects...
 				serviceUser = new ServiceUser(clinical,id,hospitalNumber,personalFields,pregnanciesIds,babyIds);
-//				myList.add(serviceUser);
 				myMap.put(id, serviceUser);
 			}
 	

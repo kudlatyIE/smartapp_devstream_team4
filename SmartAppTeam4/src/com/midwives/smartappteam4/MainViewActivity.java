@@ -15,7 +15,7 @@ public class MainViewActivity extends Activity {
 	
 	private Bundle extras;
 	private Intent intent;
-	private Button btnClinics,btnVisits,btnBack;
+	private Button btnBack;
 	private TextView tvTitle, tvSubtitle;
 	private LinearLayout anteLayout, postLayout;
 	private String token, apiKey, url;
@@ -28,8 +28,6 @@ public class MainViewActivity extends Activity {
 		
 		anteLayout = (LinearLayout) findViewById(R.id.mainview_Layout_antenatal);
 		postLayout = (LinearLayout) findViewById(R.id.mainview_Layout_postnatal);
-		btnClinics = (Button) findViewById(R.id.mainview_btn_clinics);
-		btnVisits = (Button) findViewById(R.id.mainview_btn_visits);
 		btnBack = (Button) findViewById(R.id.header_btn_back);
 		
 		tvTitle = (TextView) findViewById(R.id.header_text_title);
@@ -39,8 +37,6 @@ public class MainViewActivity extends Activity {
 		tvSubtitle.setText(R.string.mainview_subtitle);
 		
 		MyButtons myButton = new MyButtons();
-		btnClinics.setOnClickListener(myButton);
-		btnVisits.setOnClickListener(myButton);
 		btnBack.setOnClickListener(myButton);
 		anteLayout.setOnClickListener(myButton);
 		postLayout.setOnClickListener(myButton);
@@ -64,16 +60,16 @@ public class MainViewActivity extends Activity {
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 					break;
-				case R.id.mainview_btn_clinics:
-					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(intent);
-					break;
-				case R.id.mainview_btn_visits:
-					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits.......
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(intent);
-					break;
+//				case R.id.mainview_btn_clinics:
+//					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);
+//					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//					startActivity(intent);
+//					break;
+//				case R.id.mainview_btn_visits:
+//					intent = new Intent(getApplicationContext(), ServiceOptionActivity.class);// temporary intent. to be changed to Visits.......
+//					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//					startActivity(intent);
+//					break;
 				case R.id.header_btn_back:
 					finish(); // try it.....
 			}

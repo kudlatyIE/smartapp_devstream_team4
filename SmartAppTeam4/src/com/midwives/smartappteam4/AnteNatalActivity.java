@@ -34,13 +34,13 @@ public class AnteNatalActivity extends Activity {
 	private String[] dob, gestation, gender, birthMode;
 	private int [] weight;
 	//handle extras values for PostNatal Activity
-	private String motherBirthMode, motherPerineum, motherAntiD;
+	private String motherBirthMode, motherPerineum, motherAntiD, age;
 	private String[] motherMidwifeNotes;
 	private String babeDeliveryDate, babeDeliveryTime, babeDaysSindeBirth, babeGender, babeBirthWeight,
 					babeVitK, babeHearing, babeFeeding, babeNBST;
 	
 	private String serviceUserName, serviceUserDetails;
-	private int age, pregnancyId;
+	private int pregnancyId;
 //	private Integer[] pregnancyIDs;
 	private int[] pregnancyIDs;
 	
@@ -114,7 +114,7 @@ public class AnteNatalActivity extends Activity {
 		tvSubtitle1.setText(serviceUserName);
 		// need to find what is "P"
 		age = XFiles.getAge(serviceUser.getPersonalFields().getDob());
-		serviceUserDetails = String.valueOf(age).concat("yrs, ").concat("G:"+appointment.getServiceUser().getGestation()
+		serviceUserDetails = String.valueOf(age).concat("'yrs, ").concat("G:"+appointment.getServiceUser().getGestation()
 							.concat(", P:").concat(serviceUser.getClinicalFields().getParity()));//hm......
 		tvSubtitle2.setText(serviceUserDetails);
 		

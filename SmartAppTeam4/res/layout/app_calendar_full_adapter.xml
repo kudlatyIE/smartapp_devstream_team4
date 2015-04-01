@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants" 
     android:orientation="horizontal" >
     
     <TextView 
@@ -28,13 +27,6 @@
         
         android:layout_margin="5dp"
         android:text="@string/data_tmp"
-        />
-    <Button 
-        android:id="@+id/app_calendar_adapter_btn_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/btn_info"
         />
     
 

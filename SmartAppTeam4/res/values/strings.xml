@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas/android.com/tools" tools:ignore="TypographyDashes">
 
     <string name="app_name">SmartAppTeam4</string>
     <string name="hello_world">Hello Girls!</string>
@@ -72,9 +72,8 @@
     <string name="free_slots">Free Slots</string>
     <string name="select_slot">Select A Slot</string>
     <string name="time_15">15 mins \></string>
-    <string name="findservice_hint">Search by service user\'s hospital number, name and /or date of birth (@dd/mm/yyyy)\n
-        							You can combne search terms in one line if you like.\n
-        							Example: Mary Murphy @17/06/1979</string>
+    <string name="findservice_hint">Search by service user\'s hospital number, name and /or date of birth \n
+        							You can combne search terms in one line if you like.</string>
     <string name="user_address_tmp">Apartment \n 185, The George, Charlotte Quay Dock, \n Ringsend Rd, Dublin 4</string>
     <string name="address_hint">Direction hints</string>
     <string name="address_hint_tmp">It\'s opposite Boland\'s Mill, just on the south side
@@ -93,6 +92,7 @@
     <string name="appoitment_duration">Duration</string>
     <string name="user_name_tmp">Sara MacLachlann-Murphy</string>
     <string name="hospital_number_tmp">H12344321</string>
+    <string name="serviceuser_dob_tmp">15-02-1984</string>
     <string name="clinic_name_tmp">Kilmacanogue</string>
     <string name="email_to">Email to:</string>
     <string name="email_tmp">sara.maclachlann@banana.com</string>

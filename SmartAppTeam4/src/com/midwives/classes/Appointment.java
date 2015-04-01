@@ -156,28 +156,6 @@ public class Appointment {
 		this.time = appTime;
 	}
 
-//	public Appointment(int id, Date date, Date time,int provider,int user,Priority priority, VisitType visit,
-//			int option,int clinic, ServiceOptions link){
-//		
-//		this.appointmentId=id;
-//		this.appointmentDate=date;
-//		this.appointmentTime=time;
-//		this.serviceUserId=user;
-//		this.priority=priority;
-//		this.serviceProviderId=provider;
-//		this.visitType=visit;
-//		this.serviceOptionId=option;
-//		this.clinicId=clinic;
-//		this.links=link;
-//		
-//	}
-	
-//	public ServiceOptions getLinks() {
-//		return this.links;
-//	}
-//	public void setLinks(ServiceOptions links) {
-//		this.links = links;
-//	}
 	public int getAppointmentId() {
 		return id;
 	}

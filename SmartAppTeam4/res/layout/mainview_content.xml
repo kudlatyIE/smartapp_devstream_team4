@@ -26,14 +26,6 @@
           		  android:layout_weight="1"
           		 />
           		 
-          	<Button
-                android:id="@+id/mainview_btn_clinics" 
-      			android:layout_width="wrap_content"
-       		    android:layout_height="wrap_content"
-        		android:text="@string/btn_forward"   
-
-       		    android:layout_gravity="center_vertical" 
-           		/>
       
       </LinearLayout >
           
@@ -56,14 +48,6 @@
           		  android:layout_weight="1"
           		 />
           		 
-          	<Button
-                android:id="@+id/mainview_btn_visits" 
-      			android:layout_width="wrap_content"
-       		    android:layout_height="wrap_content"
-        		android:text="@string/btn_forward"   
-
-       		    android:layout_gravity="center_vertical" 
-           		/>
 
       </LinearLayout>
       

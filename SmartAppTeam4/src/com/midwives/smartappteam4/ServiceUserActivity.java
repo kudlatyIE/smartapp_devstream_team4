@@ -35,7 +35,7 @@ public class ServiceUserActivity extends Activity {
 	private String serviceUserName,serviceUserDetails; // display in tvSubtitle (name, age, gestation ect..)
 	private String contact, address, nextOfKin, nextOfKinPhone;
 	
-	private int age;
+	private String age;
 	private int serviceUserId, serviceProviderId;
 	
 	private ArrayList<ServiceUser> myList;//but we expected only one object by ID...
@@ -98,11 +98,11 @@ public class ServiceUserActivity extends Activity {
 	
 		//lets get DB data!
 		token = SmartAuth.getToken();
-		apiKey = SmartAuth.getApiKey();
+		apiKey = getResources().getString(R.string.auth_api_key);
 		SmartAuth smart;
 
-			smart = new SmartAuth(token, apiKey,serviceOptionUrl);
-			jsonString = smart.accessTheDBTable(token);
+			smart = new SmartAuth(token, apiKey);
+			jsonString = SmartAuth.accessTheDBTable(serviceOptionUrl);
 			System.out.println(jsonString);
 			serviceOptionsList = ServiceOptionsParser.parseServiceOptions(jsonString);
 			DataManager.setServiceOptionsList(serviceOptionsList);
@@ -126,7 +126,7 @@ public class ServiceUserActivity extends Activity {
 		tvSubtitle1.setText(serviceUserName);
 		// need to find what is "P"
 		age = XFiles.getAge(serviceUser.getPersonalFields().getDob());
-		serviceUserDetails = String.valueOf(age).concat("yrs, ").concat("G:"+appointment.getServiceUser().getGestation()
+		serviceUserDetails = String.valueOf(age).concat("'yrs, ").concat("G:"+appointment.getServiceUser().getGestation()
 				.concat(", P:").concat(serviceUser.getClinicalFields().getParity()));//hm......
 		tvSubtitle2.setText(serviceUserDetails);
 		

@@ -139,7 +139,11 @@ public class AppointmentCalendarActivity extends Activity {
 					startActivity(intent);
 //				}catch(NullPointerException ex){//run when appointment doesn't exist -> clicked on Free Slot
 				}else{
-					intent = new Intent(getApplicationContext(),FreeSlotsActivity.class);
+//					intent = new Intent(getApplicationContext(),FreeSlotsActivity.class);
+					//temporary jump to FindServiceUser
+					intent = new Intent(getApplicationContext(),FindServiceUserActivity.class);
+					intent.putExtra("time", appList.get(position).getTime());
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					DataManager.setAppointment(null);
 					DataManager.setAppointmentFreeSlot(app);
 					startActivity(intent);

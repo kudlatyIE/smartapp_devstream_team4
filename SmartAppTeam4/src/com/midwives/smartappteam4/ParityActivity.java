@@ -38,7 +38,7 @@ public class ParityActivity extends Activity {
 	
 	private ServiceUser serviceUser;
 	private Appointment appointment;
-	private int age;
+	private String age;
 	private int[] babiesIDs, pregnancyIDs;
 	private String serviceUserName,serviceUserDetails;
 	

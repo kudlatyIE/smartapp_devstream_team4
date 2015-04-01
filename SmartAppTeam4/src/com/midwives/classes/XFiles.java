@@ -16,6 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 public class XFiles {
 	
@@ -63,6 +65,8 @@ public class XFiles {
     	
 		return daysList;
 	}
+    
+    
     //-----------------------------------------------------------------------
     private static Calendar getDataOfWeekDay(Calendar cal, String day){
     	switch(day){
@@ -96,7 +100,7 @@ public class XFiles {
      * @param stringDate (DOB) yyyy-MM-dd 
      * @return int age years
      */
-    public static int getAge(String stringDate){
+    public static String getAge(String stringDate){
 		int age=0;
 		Calendar cal = Calendar.getInstance();
 		age = cal.get(Calendar.YEAR);
@@ -107,9 +111,10 @@ public class XFiles {
 			cal.setTime(date);
 			age=age-cal.get(Calendar.YEAR);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			return "N/A";
+			
 		}
-		return age;
+		return String.valueOf(age);
 	}
     
     public static boolean isDeliveryComing(String edd){
@@ -223,10 +228,14 @@ public class XFiles {
 		return resultList;
 	}
 	/**
+	 * For AppointmentCalendar activity
 	 * create full time list with all appointments and free slots
+	 * FreeSlots holds clinicId, date, and time - all to create a new appointment
+	 * @param appointmentDay selected day - String 
+	 * @param clinic current Clinic
 	 * @param timeList String[] HH:m:ss
-	 * @param fullMap all Appointments HashMap<String, Appointment>
-	 * @return full ArrayList<Appointment>
+	 * @param fullMap HashMap: key: time(String), value: Appointment - fullMap all Appointments 
+	 * @return ArrayList<Appointment> - all Appointments for date
 	 */
 	public static ArrayList<Appointment> getAppointmentsTimeList(String[] timeList, HashMap<String,Appointment> fullMap, String appointmentDay, Clinics clinic){
 		ArrayList<Appointment> resultList = new ArrayList<Appointment>();
@@ -241,6 +250,74 @@ public class XFiles {
 		
 		return resultList;
 	}
+	/**
+	 * try extract firstName and LastName from fullName_string
+	 * split two strings by " " and compare parts
+	 * return int: 0 - perfect match(both strings are equals), higher value means: strings are more different (max value = string length)   
+	 * @param str1 - first fullName string
+	 * @param str2 - second fullName string
+	 * @return Levenshtein Distance int 
+	 */
+	public static int compareNames(String str1, String str2){//like "FirstName LastName"
+		int p1m1,p1m2,p2m1,p2m2;
+		int bestMatch,sum1, sum2;
+		int penalty; //if we try match single string to two strings.....
+		String [] partsPattern,partsMatch;
+		String pattern1,pattern2,match1, match2;
+		String pattern=str1;
+		String match=str2;
+		//split name into firstName and lastName - as same with quote
+		partsPattern = pattern.split(" ",2);
+		partsMatch = match.split(" ", 2);
+		
+		if(partsPattern.length==1 && partsMatch.length==1){
+			pattern1=partsPattern[0];
+			match1=partsMatch[0];
+			return StringUtils.getLevenshteinDistance(pattern1, match1);
+		}
+		
+		if(partsPattern.length==1 && partsMatch.length==0){
+			return partsPattern[0].length()/2;
+		}
+		
+		if(partsPattern.length==1 && partsMatch.length>1){
+			pattern1=partsPattern[0];
+			match1=partsMatch[0];
+			match2=partsMatch[1];
+//			penalty=(int)0.5*pattern1.length();
+			p1m1=StringUtils.getLevenshteinDistance(pattern1, match1);
+			p1m2=StringUtils.getLevenshteinDistance(pattern1, match2);
+			bestMatch=Math.min(p1m1, p1m2)+pattern1.length()/2;
+			return bestMatch;
+			
+		}
+		if(partsPattern.length>1 && partsMatch.length==1){
+			pattern1=partsPattern[0]; 
+			pattern2=partsPattern[1];
+			match1=partsMatch[0];
+//			penalty=(int)0.5*match1.length();
+			p1m1=StringUtils.getLevenshteinDistance(pattern1, match1);
+			p2m1=StringUtils.getLevenshteinDistance(pattern2, match1);
+			bestMatch=Math.min(p1m1, p2m1)+match1.length()/2;
+			return bestMatch;
+			
+		}else{
+			pattern1=partsPattern[0]; 
+			pattern2=partsPattern[1];
+			match1=partsMatch[0];
+			match2=partsMatch[1];
+			p1m1=StringUtils.getLevenshteinDistance(pattern1, match1);
+			p1m2=StringUtils.getLevenshteinDistance(pattern1, match2);
+			p2m1=StringUtils.getLevenshteinDistance(pattern2, match1);
+			p2m2=StringUtils.getLevenshteinDistance(pattern2, match2);
+			sum1=p1m1+p2m2;
+			sum2=p1m2+p2m1;
+			bestMatch=Math.min(sum1, sum2);
+			
+			return bestMatch;
+		}
+	}
+	
 
 }   
 

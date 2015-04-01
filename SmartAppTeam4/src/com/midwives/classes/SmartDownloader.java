@@ -3,6 +3,8 @@
  */
 package com.midwives.classes;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +24,7 @@ public class SmartDownloader {
 					urlServiceProviders, urlPregnancies, urlBabies;
 	private String linkServiceOptionsURL, linkServiceProvidersURL,linkServiceUsersURL;//set after Appointments AsyncTask
 	
-	private final String TAG_BABY="babies",TAG_USER="service_user",TAG_APPOINTMENTS="appointments",TAG_CLINIC="clinics",
+	private final String TAG_BABY="babies data",TAG_USER="service_user",TAG_APPOINTMENTS="appointments",TAG_CLINIC="clinics",
 						TAG_PREGNANCIES="pregnancies",TAG_SERVICE_OPTIONS="service_options",
 						TAG_SERVICE_PROVIDER="service_provider",TAG_ANNOUNCEMNTS="announcements";
 	
@@ -56,7 +58,8 @@ public class SmartDownloader {
 	public SmartDownloader(Context context){
 		this.context=context;
 		this.token=SmartAuth.getToken();
-		this.apiKey=SmartAuth.getApiKey();
+//		this.apiKey=convertUTFString(context.getString(R.string.auth_api_key));
+		this.apiKey=context.getString(R.string.auth_api_key);
 		this.server = context.getString(R.string.auth_url_server);
 		this.urlAppointment=server.concat(context.getString(R.string.auth_url_appointment));
 		this.urlBabies = server.concat(context.getString(R.string.auth_url_babies));
@@ -108,8 +111,8 @@ public class SmartDownloader {
 		protected String doInBackground(String... params) {
 			String jsonString, url = params[0];
 			String tag = params[1];
-			SmartAuth smart = new SmartAuth(token, apiKey, url);
-			jsonString = smart.accessTheDBTable(token);
+			new SmartAuth(getToken(),getApiKey());
+			jsonString = SmartAuth.accessTheDBTable(url);
 			if (jsonString.isEmpty())return null;
 			setJsonString(jsonString);
 			
@@ -144,7 +147,7 @@ public class SmartDownloader {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			dialog = new ProgressDialog(context);
-			dialog.setMessage(msg+" is running...");
+			dialog.setMessage(msg+" stuff is running...");
 			dialog.show();
 		}
 
@@ -162,41 +165,48 @@ public class SmartDownloader {
 					babyMap = new HashMap<Integer, Baby>();
 					babyMap = BabiesParser.parseBabyMap(getJsonBabies());
 					DataManager.setBabyMap(babyMap);
+					dialog.dismiss();
 					break;
 				case TAG_APPOINTMENTS:
 //					appointmentList = new ArrayList<Appointment>();
 					appointmentMap = new HashMap<Integer,Appointment>();
 					appointmentMap = AppointmentParser.parseAppointment(getJsonAppointments());
 					DataManager.setAppointmentFullMap(appointmentMap);
+					dialog.dismiss();
 					break;
 				case TAG_CLINIC:
 //					clinicList = new ArrayList<Clinics>();
 					clinicMap = new HashMap<Integer,Clinics>();
 					clinicMap = ClinicsParser.parseClinic(getJsonClinics());
 					DataManager.setClinicsMap(clinicMap);
+					dialog.dismiss();
 					break;
 				case TAG_PREGNANCIES:
 //					pregnanciesList = new ArrayList<Pregnancies>();
 					pregnanciesMap = new HashMap<Integer,Pregnancies>();
 					pregnanciesMap = PregnanciesParser.parsePregnancies(getJsonPregnancies());
 					DataManager.setPregnanciesMap(pregnanciesMap);
+					dialog.dismiss();
 					break;
 				case TAG_SERVICE_OPTIONS:// only this is still saved in arrayList
 					serviceOptionsList = new ArrayList<ServiceOptions>();
 					serviceOptionsList = ServiceOptionsParser.parseServiceOptions(getJsonServiceOptions());
 					DataManager.setServiceOptionsList(serviceOptionsList);
+					dialog.dismiss();
 					break;
 				case TAG_USER:
 //					serviceUserList = new ArrayList<ServiceUser>();
 					serviceUserMap = new HashMap<Integer,ServiceUser>();
 					serviceUserMap = ServiceUserParser.parseServiceUser(getJsonServiceUser());
 					DataManager.setServiceUserMap(serviceUserMap);
+					dialog.dismiss();
 					break;
 				case TAG_SERVICE_PROVIDER:
 //					serviceProviderList = new ArrayList<ServiceProvider>();
 					serviceProviderMap = new HashMap<Integer,ServiceProvider>();
 					serviceProviderMap = ServiceProviderParser.parseServiceProvider(getJsonServiceProviders());
-					DataManager.setServiceProviderMap(serviceProviderMap);					
+					DataManager.setServiceProviderMap(serviceProviderMap);	
+					dialog.dismiss();
 					break;
 				
 				}
@@ -212,6 +222,22 @@ public class SmartDownloader {
 		}
 		
 	}
+	
+	private String convertUTFString(String str){
+		byte[]rawString = null;
+		rawString = str.getBytes();
+		try{
+			return new String(rawString, "UTF-8");
+		}catch(UnsupportedEncodingException e){
+			e.printStackTrace();
+		}return null;
+	}
+//	private String convertUTFString(String str){
+//		Charset UTF8_CHARSET = Charset.forName("UTF-8");
+//		byte[] utfByte= str.getBytes(UTF8_CHARSET);
+//		return new String(utfByte,UTF8_CHARSET);
+//	}
+	
 
 	public String getJsonString() {
 		return jsonString;

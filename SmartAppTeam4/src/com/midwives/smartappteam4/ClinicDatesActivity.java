@@ -78,11 +78,7 @@ public class ClinicDatesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			
-				//need change to store real Calendar value! from myOpenDays.getCalendar();
-//				DataManager.setClinicdates(new ClinicDates(myList.get(position).getDateString(),weekDays, clinicName));
-//				DataManager.setClinicCalendar(myList.get(position));
 				DataManager.setClinicCalendar(new ClinicCalendar(myList.get(position).getDate(),myList.get(position).getDateString()));
-				System.out.println();
 				intent = new Intent (getApplicationContext(), AppointmentCalendarActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
@@ -136,7 +132,7 @@ public class ClinicDatesActivity extends Activity {
 			vHolder.tvName = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_head);
 			vHolder.tvDays = (TextView) convertView.findViewById(R.id.clinicdates_adapter_text_sub);
 		
-			vHolder.tvName.setText((position+1) + "Calendar date: "+myList.get(position).getDate()); //add value from previous Activity for test only!
+			vHolder.tvName.setText(String.valueOf(position+1)); //add value from previous Activity for test only!
 			//need to hold more than one day, when click on!!!!!!!!!!!!!!!!
 			vHolder.tvDays.setText(myList.get(position).getDateString());// Available data for test only
 			

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" 
+    android:orientation="vertical"
+    android:layout_height="wrap_content" 
     android:layout_margin="@dimen/margin_small"
-    android:background="#aa11bb22"
     android:descendantFocusability="blocksDescendants"
     >
-    <LinearLayout 
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        
-        >
+
         <TextView 
     	    android:id="@+id/clinicsoption_adapter_text_clinicname"
     	    android:layout_width="wrap_content"
@@ -38,15 +31,8 @@
     	    android:layout_marginStart="@dimen/margin_left"
     	    android:text="@string/booking_date_tmp"
         />
-    </LinearLayout>
+  
     
-    	<Button 
-    	    android:id="@+id/clinicsoption_adapter_btn_select"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:layout_gravity="end"
-    	    android:text="@string/btn_forward"
-    	    />
   
 </LinearLayout>
 

@@ -176,16 +176,16 @@ public class ServiceUserActivity extends Activity {
 				case R.id.serviceuser_body_layout_address: //goes to google map of address 
 					intent = new Intent(getApplicationContext(), ServiceUserAddressActivity.class);
 					//get location, name,  address, directions
-					String location = serviceUser.getPersonalFields().getHomeAddress() + " " + serviceUser.getPersonalFields().getHomeCounty() + " " + "ireland";
-					String name = serviceUser.getPersonalFields().getName();
-					String address = serviceUser.getPersonalFields().getHomeType() + " - " + location;
-					String directions = serviceUser.getPersonalFields().getDirections();
-					
-					//send over to serviceuseraddressactivity
-					intent.putExtra("location", location); //needed for google maps
-					intent.putExtra("name", name);
-					intent.putExtra("address", address);
-					intent.putExtra("directions", directions);
+//					String location = serviceUser.getPersonalFields().getHomeAddress() + " " + serviceUser.getPersonalFields().getHomeCounty() + " " + "ireland";
+//					String name = serviceUser.getPersonalFields().getName();
+//					String address = serviceUser.getPersonalFields().getHomeType() + " - " + location;
+//					String directions = serviceUser.getPersonalFields().getDirections();
+//					
+//					//send over to serviceuseraddressactivity
+//					intent.putExtra("location", location); //needed for google maps
+//					intent.putExtra("name", name);
+//					intent.putExtra("address", address);
+//					intent.putExtra("directions", directions);
 					startActivity(intent);
 					break;
 				case R.id.serviceuser_body_layout_nextofkin:

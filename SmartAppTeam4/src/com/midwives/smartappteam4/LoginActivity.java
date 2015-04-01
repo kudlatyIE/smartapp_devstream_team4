@@ -1,40 +1,15 @@
 package com.midwives.smartappteam4;
 
-
-
-
 import com.midwives.classes.SmartAuth;
 import com.midwives.classes.SmartDownloader;
-
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-
-
-
-
-
-
-
-import org.json.JSONException;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
@@ -43,7 +18,6 @@ public class LoginActivity extends Activity {
 	private HttpURLConnection httpcon;
 	private String loginUrl;
 
-	
 	private String user;
 	private String apiKey;
 	private String pass;
@@ -56,10 +30,15 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		
 		
-		loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
-		user = getResources().getString(R.string.auth_login_name);			
-		pass = getResources().getString(R.string.auth_password);
-
+			loginUrl = getResources().getString(R.string.auth_url_server).concat(getResources().getString(R.string.auth_url_login));
+			user = getResources().getString(R.string.auth_login_name);			
+		    pass = getResources().getString(R.string.auth_password);
+		
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		      StrictMode.setThreadPolicy(policy);
+		    }
+		
 		smartAuth = new SmartAuth(user,loginUrl,pass);
 		
 		//run my Async Downloadaer here!

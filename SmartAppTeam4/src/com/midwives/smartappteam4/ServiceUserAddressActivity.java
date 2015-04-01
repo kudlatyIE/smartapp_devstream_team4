@@ -20,6 +20,8 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.midwives.classes.DataManager;
+import com.midwives.classes.ServiceUser;
 
 
 public class ServiceUserAddressActivity extends Activity {
@@ -30,6 +32,7 @@ public class ServiceUserAddressActivity extends Activity {
 	   private TextView username;
 	   private TextView add;
 	   private TextView direct;
+	    private ServiceUser serviceUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +43,13 @@ public class ServiceUserAddressActivity extends Activity {
 		btnBack.setOnClickListener(new handleButtonsClicked());
 		
 		//get address from serviceUeseractivity(originated from personalfields class)
-		Intent i = getIntent();
-		String location = i.getExtras().getString("location"); 
-		String name = i.getExtras().getString("name");
-		String addres = i.getExtras().getString("address");
-		String directions = i.getExtras().getString("directions");
+		serviceUser = DataManager.getServiceUser();
+		
+//		Intent i = getIntent();
+		String location = serviceUser.getPersonalFields().getHomeAddress() + " " + serviceUser.getPersonalFields().getHomeCounty() + " " + "ireland";; 
+		String name = serviceUser.getPersonalFields().getName();
+		String addres = serviceUser.getPersonalFields().getHomeType() + " - " + location;
+		String directions = serviceUser.getPersonalFields().getDirections();
 		
 		username = (TextView)findViewById(R.id.serviceuser_map_username);
 		add = (TextView)findViewById(R.id.serviceuser_map_address);
@@ -54,17 +59,25 @@ public class ServiceUserAddressActivity extends Activity {
 		direct.setText(directions);
 		
 	      try {  //use location to get google map 
-	    	  
+	    	  LatLng locationLatLng=null;
+	    	  double lat,lng;
 	    	  Geocoder coder = new Geocoder(this);
 	    	  List<Address> address = coder.getFromLocationName(location, 1);
-	    	  Double lat  = address.get(0).getLatitude();
-	    	  Double lng = address.get(0).getLongitude();
-	    	  LatLng locationLatLng = new LatLng(lat, lng);
-	    	 	    	  
-	            if (googleMap == null || locationLatLng == null) {
-	               googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-	            }
-	            
+	    	  try{
+	    		  lat  = address.get(0).getLatitude();
+		    	  lng = address.get(0).getLongitude();
+		    	  
+		    	  System.out.println("Lat: "+ lat+ " | Lng: "+lng);
+	    	  }catch(IndexOutOfBoundsException ex){
+	    		  lat=0;lng=0;
+	    		  System.out.println("Lat & Lng == dupa!");
+//	    		  CustomDialogFragment1 dialog = new CustomDialogFragment1(this, "Address Not Found", "Error in Address or try again!", "Close", 0);
+//	 	  		 dialog.getShowsDialog();
+	    		  
+	    	  }
+
+	    	 locationLatLng = new LatLng(lat, lng);
+	    	 googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 	         googleMap.addMarker(new MarkerOptions().position(locationLatLng).title(location));
 	         googleMap.getUiSettings().setZoomControlsEnabled(true);

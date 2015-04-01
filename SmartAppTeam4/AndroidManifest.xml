@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.midwives.smartappteam4"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="6171000"
+    android:versionName="6.1.71-000"
+     >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="22" 
+       
+        />
 
         <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
     
@@ -126,6 +129,9 @@
     </application>
 
 </manifest><!--
+
+android:versionCode="1"
+    android:versionName="1.0"
              <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >

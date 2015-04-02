@@ -3,19 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
-   
-  
     tools:context="${relativePackage}.${activityClass}"
     >
-    
-    
+     
    <include layout="@layout/smart_header" /> 
    <include layout="@layout/smart_footer" />
    <include layout="@layout/smart_confirm_appointment"/>
    
-   
-   
+
 </RelativeLayout>
 
 

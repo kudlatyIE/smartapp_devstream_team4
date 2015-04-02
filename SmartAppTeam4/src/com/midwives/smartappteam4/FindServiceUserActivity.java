@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.midwives.classes.Appointment;
 import com.midwives.classes.DataManager;
 import com.midwives.classes.ServiceUser;
 import com.midwives.classes.XFiles;
@@ -22,6 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,7 +88,7 @@ public class FindServiceUserActivity extends Activity {
 		btnBack.setOnClickListener(button);
 		btnHome.setOnClickListener(button);
 		btnSearch.setOnClickListener(button);
-	
+
 	}
 	
 	/**
@@ -181,9 +184,20 @@ public class FindServiceUserActivity extends Activity {
 			case R.id.findservice_btn_search:
 				setSearchResult(dbestMatchList(serviceUserMap));
 				displaySearchResult(getSearchResult(),getServiceUserMap());//test
-//				MyAdapter adapter = new MyAdapter(getApplicationContext(),getSearchResult(),getServiceUserMap());
 				lv.setAdapter(new MyAdapter(getApplicationContext(),getSearchResult(),getServiceUserMap()));
-				
+				lv.setOnItemClickListener(new OnItemClickListener(){
+
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						Intent intent = new Intent(getApplicationContext(), ConfirmAppointmentActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						Appointment app = DataManager.getAppointmentFreeSlot();
+						DataManager.setAppointmentFreeSlot(new Appointment(app.getAppDate(),app.getAppTime(),app.getServiceProviderId(),
+																getSearchResult().get(position).getId(),app.getClinicId(),null,null));
+						startActivity(intent);
+					}
+					
+				});
 				break;
 			case R.id.footer_btn_home:
 				intent = new Intent(getApplicationContext(), MainViewActivity.class);
@@ -251,12 +265,8 @@ public class FindServiceUserActivity extends Activity {
 			tvHospitalNo = (TextView) view.findViewById(R.id.findserviceuser_adapter_text_hospital);
 			
 			tvMatch.setText(matchList.get(position).getMatch()+"%");
-//			tvMatch.setText("%");
-//			tvName.setText("name");
-//			tvDOB.setText("DOB");
-//			tvHospitalNo.setText("HOSPITAL");
 			
-			key=matchList.get(position).getId();
+			key=matchList.get(position).getId();//serviceUserID == key in HashMap<Integer,ServiceUser>
 			try{
 				tvName.setText(allUsers.get(key).getPersonalFields().getName());
 			}catch (Exception ex){

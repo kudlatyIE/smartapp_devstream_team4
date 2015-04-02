@@ -245,6 +245,7 @@ public class XFiles {
 				resultList.add(fullMap.get(s));
 				System.out.println("method test: "+fullMap.get(s).getServiceUser().getName());
 			}
+			//create new empty appointment - used only in AppointmentCalendar Activity, to pass some basic data used on create NEW Appointment (FreeSlot)
 			else resultList.add(new Appointment(clinic.getClinicId(),appointmentDay,s, false));
 		}
 		

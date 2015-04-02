@@ -9,6 +9,9 @@ public class Appointment {
 //	private VisitType visitType; -----------------remove all Enums!!!!
 	private String visitType;
 	private String priority;
+	//use enum type
+//	private String[] visitTypeList= {"post-natal", "ante-natal"};
+//	private String[] priorityList= {"drop-in", "scheduled"};
 	private int [] serviceOptionIds;
 	private ServiceUser serviceUser;
 	private String[] visitLogs;
@@ -34,6 +37,25 @@ public class Appointment {
 		this.date=date;
 		this.time=time;
 		this.appointmentExist=exist;
+	}
+	/**
+	 * Free Slot constructor used to create a NEW appointment holds all data to POST 
+	 * @param date
+	 * @param time
+	 * @param providerId
+	 * @param userId
+	 * @param clinicId
+	 * @param priority
+	 * @param visit
+	 */
+	public Appointment(String date, String time, int providerId, int userId, int clinicId, String priority, String visit){
+		this.date=date;
+		this.time=time;
+		this.serviceProviderId=providerId;
+		this.serviceUserId=userId;
+		this.clinicId=clinicId;
+		this.priority=priority;
+		this.visitType=visit;
 	}
 	
 	/**

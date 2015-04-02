@@ -14,7 +14,12 @@ import org.json.JSONObject;
 
 
 public class SmartAuth {
+	
+	private final static String TAG_JSON="login";
+	private final static String TAG_TOKEN="token";
+	private final static String TAG_ID="id";
 
+	private static int serviceProviderID;
 	private static String token;
 	private static String jsonLogin;
 //	private String tableURL;
@@ -36,6 +41,7 @@ public class SmartAuth {
 		SmartAuth.jsonLogin="{\"login\":{\"username\":\""+user+"\",\"password\":\""+password+"\"}}";
 		String token = getTheAuthKey(tableURL);
 		setToken(token);
+		System.out.println("ServiceProviderID: "+getServiceProviderID());
 		System.out.println(token);
 	}
 
@@ -78,7 +84,9 @@ public class SmartAuth {
 		      
 		      // create JSON Object to get Token using token key
 		      JSONObject json = new JSONObject(st);
-		      String strToken = (String) json.getJSONObject("login").get("token");
+		      String strToken = (String) json.getJSONObject(TAG_JSON).get(TAG_TOKEN);
+		      int id = (int) json.getJSONObject(TAG_JSON).get(TAG_ID);
+		      setServiceProviderID(id);
 		      httpcon.disconnect();
 		      return strToken;
 		} catch (IOException | JSONException e) {
@@ -164,5 +172,11 @@ public class SmartAuth {
 
 	public static void setJsonLogin(String jsonLogin) {
 		SmartAuth.jsonLogin = jsonLogin;
+	}
+	public static int getServiceProviderID() {
+		return serviceProviderID;
+	}
+	public static void setServiceProviderID(int serviceProviderID) {
+		SmartAuth.serviceProviderID = serviceProviderID;
 	}
 }

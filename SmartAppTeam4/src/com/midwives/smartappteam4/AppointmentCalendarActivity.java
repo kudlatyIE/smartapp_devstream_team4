@@ -139,13 +139,18 @@ public class AppointmentCalendarActivity extends Activity {
 					startActivity(intent);
 //				}catch(NullPointerException ex){//run when appointment doesn't exist -> clicked on Free Slot
 				}else{
+					//create FreeSlot half empty appointment: holds clinicID, serviceProviderID, date, time....
+					//user ID, visitType and priority will set on next Activity.
+					int serviceProviderID = SmartAuth.getServiceProviderID();
+					int clinicID = app.getClinicId();
+					String date = app.getAppDate();
+					String time = app.getAppTime();
 //					intent = new Intent(getApplicationContext(),FreeSlotsActivity.class);
 					//temporary jump to FindServiceUser
 					intent = new Intent(getApplicationContext(),FindServiceUserActivity.class);
-					intent.putExtra("time", appList.get(position).getTime());
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					DataManager.setAppointment(null);
-					DataManager.setAppointmentFreeSlot(app);
+					DataManager.setAppointmentFreeSlot(new Appointment(date,time,serviceProviderID,0,clinicID,null,null));
 					startActivity(intent);
 				}
 				

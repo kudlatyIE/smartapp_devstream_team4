@@ -131,6 +131,32 @@
             		android:textColor="@color/black"
             		android:text="@string/time_15"
             		/>
+        		<TextView 
+            		android:layout_width="wrap_content"
+            		android:layout_height="wrap_content"
+            		android:text="Priority"
+            		/>
+        		<Spinner 
+        		    android:id="@+id/app_confirm_spinner_priority"
+        		    android:layout_width="match_parent"
+        		    android:layout_height="wrap_content"
+        		    android:layout_marginStart="@dimen/margin_left"
+            		android:layout_marginLeft="@dimen/margin_left"
+            		android:textColor="@color/black"
+        		    />
+        		<TextView 
+            		android:layout_width="wrap_content"
+            		android:layout_height="wrap_content"
+            		android:text="Visit Type"
+            		/>
+        		<Spinner 
+        		    android:id="@+id/app_confirm_spinner_visitType"
+        		    android:layout_width="match_parent"
+        		    android:layout_height="wrap_content"
+        		    android:layout_marginStart="@dimen/margin_left"
+            		android:layout_marginLeft="@dimen/margin_left"
+            		android:textColor="@color/black"
+        		    />
         
         		<LinearLayout 
             		android:orientation="horizontal"

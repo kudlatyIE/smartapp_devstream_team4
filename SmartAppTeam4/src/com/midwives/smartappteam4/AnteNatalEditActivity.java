@@ -70,8 +70,6 @@ public class AnteNatalEditActivity extends Activity {
 		
 		editEdd = (EditText) findViewById(R.id.antenataledit_edit_edd);
 		editGestation = (EditText) findViewById(R.id.antenataledit_edit_gestation);
-//		editBlood = (EditText) findViewById(R.id.antenataledit_edit_blood);//to be replaced with spinner
-//		editRhesus = (EditText) findViewById(R.id.antenataledit_edit_rhesus);//to be replaced with spinner
 		editParity = (EditText) findViewById(R.id.antenataledit_edit_parity);
 		editObstretic = (EditText) findViewById(R.id.antenataledit_edit_obstretic_history);
 		
@@ -125,7 +123,6 @@ public class AnteNatalEditActivity extends Activity {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				setBlood(parent.getItemAtPosition(position).toString());
-//				tvBlood.setText(myBlood);
 			}
 
 			@Override
@@ -148,7 +145,6 @@ public class AnteNatalEditActivity extends Activity {
 					int position, long id) {
 				String str = parent.getItemAtPosition(position).toString();
 				setRhesusString(str);
-//				tvRhesus.setText(str);
 				setIsRhesus(returnRhesusBoolean(str));
 			}
 			@Override
@@ -175,8 +171,6 @@ public class AnteNatalEditActivity extends Activity {
 				try {
 					edd = getNewValue(editEdd.getText().toString());
 					gestation = getNewValue(editGestation.getText().toString());//......temporary lets switch gestation into BMI, ok?
-//					blood = getNewValue(editBlood.getText().toString());
-//					rhesus = getRhesus(getNewValue(editRhesus.getText().toString()));
 					parity = getNewValue(editParity.getText().toString());
 					obstretic = getNewValue(editObstretic.getText().toString());
 					DataManager.setClinicalFields(new ClinicalFields(getBlood(), gestation,parity, obstretic, getIsRhesus()));//store new data before POST!

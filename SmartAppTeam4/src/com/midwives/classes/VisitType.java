@@ -3,8 +3,8 @@ package com.midwives.classes;
 //not used, will be deleted..........
 
 public enum VisitType {
-	ANTE_NATAL("ante natal"),
-	PRE_NATAL("pre natal");
+	ANTE_NATAL("ante-natal"),
+	PRE_NATAL("post-natal");
 	
 	private String visitTypeName;
 	private int visitTypeId; 

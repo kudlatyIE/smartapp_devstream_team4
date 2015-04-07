@@ -23,10 +23,9 @@ import com.midwives.classes.ServiceUser;
 
 public class AppointmentParser implements Serializable{
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
+	private static final String TAG_APP="appointment";
 	private final static String TAG_ARRAY="appointments";
 	private final static String TAG_CLINIC_ID="clinic_id", TAG_DATE="date", TAG_ID="id";
 	private final static String TAG_PRIORITY="priority",TAG_SERVICE_OPTION_IDS="service_option_ids",
@@ -128,6 +127,27 @@ public class AppointmentParser implements Serializable{
 			e.printStackTrace();
 		}
 		 return appointmentsMap;
+	}
+	
+	public static String createAppointmentJsonString(Appointment app){
+		JSONObject json = new JSONObject();
+		String temp;
+		try{
+			json.put(TAG_DATE, app.getAppDate());
+			json.put(TAG_TIME, app.getAppTime());
+			json.put(TAG_SERVICE_PROVIDER_ID, app.getServiceProviderId());
+			json.put(TAG_SERVCE_USER_ID, app.getServiceUserId());
+			json.put(TAG_CLINIC_ID, app.getClinicId());
+			json.put(TAG_PRIORITY, app.getPriority());
+			json.put(TAG_VISIT_TYPE, app.getVisitType());
+			
+		}catch(JSONException ex){
+			ex.printStackTrace();
+			return null;
+		}
+		temp = "{\""+TAG_APP+"\": "+json.toString()+"}";
+		return temp;
+		
 	}
 
 }

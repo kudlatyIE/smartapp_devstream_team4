@@ -135,6 +135,52 @@ public class SmartAuth {
 		}
 		return data;
 	}
+	
+	//POST data
+	
+	public static boolean postData(String loginURL, String data) {
+		HttpURLConnection httpcon;
+		System.out.println("ToGo: "+data);
+		try {
+			httpcon = (HttpURLConnection) ((new URL(loginURL).openConnection()));
+			URLEncoder.encode(loginURL,"UTF-8");
+			httpcon.setDoOutput(true);
+			httpcon.setRequestProperty("Content-Type", "application/json");
+			httpcon.setRequestProperty("Accept", "application/json");
+			httpcon.setRequestProperty("Api-Key", apiKey);
+			httpcon.setRequestProperty("Auth-Token", token);
+			httpcon.setRequestMethod("POST");
+			httpcon.connect();
+//			int responseCode = httpcon.getResponseCode();
+//			System.out.println("response code: "+responseCode);
+			byte[] inputBytes=data.getBytes("UTF-8");
+			OutputStream os = httpcon.getOutputStream();
+			os.write(inputBytes);
+			System.out.println(os.toString());
+			os.close();
+			// grab the response
+			InputStream is = httpcon.getInputStream();
+		    int ch;
+		    StringBuffer sb = new StringBuffer();
+		    while ((ch = is.read()) != -1) {
+		        sb.append((char) ch);
+		      }
+		    String st = sb.toString();
+		      System.out.println(st);
+		      
+		      
+		      // create JSON Object to get Token using token key
+//		      JSONObject json = new JSONObject(st);
+//		      String strToken = (String) json.getJSONObject(TAG_JSON).get(TAG_TOKEN);
+//		      int id = (int) json.getJSONObject(TAG_JSON).get(TAG_ID);
+//		      setServiceProviderID(id);
+		      httpcon.disconnect();
+		      return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}return false;		
+	}
+	
 
 	public String getData() {
 		return data;
